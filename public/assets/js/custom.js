@@ -30,7 +30,7 @@ $(document).ready(()=>{
                     Your ROI + Capital : $${fullROI * 2}/#${fullROIPaymentNaira}<br>
                 </div>
                 <p style="font-weight:300">Conversion Rate $1 : #500</p>
-                <a class="text-center quote-btn mt-1 invest-now-btn" href="https://o352godxqsb.typeform.com/to/CaO8qdNm">Invest Now</a>`);
+                <a class="text-center quote-btn mt-1 invest-now-btn" href="/invest_signup">Invest Now</a>`);
                 $('.pay-alert').fadeIn(800);
                 $('.invest-now-btn').fadeIn(800);
             }
@@ -60,7 +60,7 @@ $(document).ready(()=>{
                 Naira Conversion : #${nairaROIMin} - #${nairaROIMax}.<br>
                 <p style="font-weight:300">Conversion Rate $1 : #500</p>
                 <p style="font-weight:200">Terms of this investment state that the profit from all the trading done within the duration will be split 50/50.<br>Contact Us for inquiries about this investment plan.</p>
-                <a class="text-center quote-btn mt-3 invest-now-btn" href="https://o352godxqsb.typeform.com/to/CaO8qdNm">Invest Now</a>`);
+                <a class="text-center quote-btn mt-3 invest-now-btn" href="/invest_signup">Invest Now</a>`);
                 $('.exclusive-pay-alert').fadeIn(800);
                 $('.invest-now-btn').fadeIn(800);
             });
@@ -98,7 +98,7 @@ $(document).ready(()=>{
         Your ROI + Capital : $${fullROI * 2}/#${fullROIPaymentNaira}<br>
     </div>
     <p style="font-weight:300">Conversion Rate $1 : #500</p>
-    <a class="text-center quote-btn mt-1 invest-now-btn" href="https://o352godxqsb.typeform.com/to/CaO8qdNm">Invest Now</a>`);
+    <a class="text-center quote-btn mt-1 invest-now-btn" href="/invest_signup">Invest Now</a>`);
     // Set default values of Exclusive ROI
     var exclusiveROIMin = exclusivecapital.value * 1;
     var exclusiveROIMax = exclusivecapital.value * 2;
@@ -113,7 +113,7 @@ $(document).ready(()=>{
     Naira Conversion : #${nairaROIMin} - #${nairaROIMax}.<br>
     <p style="font-weight:300">Conversion Rate $1 : #500</p>
     <p style="font-weight:200">Terms of this investment state that the profit from all the trading done within the duration will be split 50/50.<br>Contact Us for inquiries about this investment plan.</p>
-    <a class="text-center quote-btn mt-3 invest-now-btn" href="https://o352godxqsb.typeform.com/to/CaO8qdNm">Invest Now</a>`);
+    <a class="text-center quote-btn mt-3 invest-now-btn" href="/invest_signup">Invest Now</a>`);
     // Hide both ROI calculators
     $('#vip_calculator').hide();
     $('#exclusive_calculator').hide();
@@ -173,7 +173,7 @@ $(document).ready(()=>{
                     Your ROI + Capital : $${fullROI * 2}/#${fullROIPaymentNaira}<br>
                 </div>
                 <p style="font-weight:300">Conversion Rate $1 : #500</p>
-                <a class="text-center quote-btn mt-1 invest-now-btn" href="https://o352godxqsb.typeform.com/to/CaO8qdNm">Invest Now</a>`);
+                <a class="text-center quote-btn mt-1 invest-now-btn" href="/invest_signup">Invest Now</a>`);
                 $('.pay-alert').fadeIn(800);
                 $('.invest-now-btn').fadeIn(800);
             }
@@ -203,7 +203,7 @@ $(document).ready(()=>{
                 Naira Conversion : #${nairaROIMin} - #${nairaROIMax}.<br>
                 <p style="font-weight:300">Conversion Rate $1 : #500</p>
                 <p style="font-weight:200">Terms of this investment state that the profit from all the trading done within the duration will be split 50/50.<br>Contact Us for inquiries about this investment plan.</p>
-                <a class="text-center quote-btn mt-3 invest-now-btn" href="https://o352godxqsb.typeform.com/to/CaO8qdNm">Invest Now</a>`);
+                <a class="text-center quote-btn mt-3 invest-now-btn" href="/invest_signup">Invest Now</a>`);
                 $('.exclusive-pay-alert').fadeIn(800);
                 $('.invest-now-btn').fadeIn(800);
             });

@@ -44,7 +44,7 @@ app.get('/academy',(req,res)=>{
 })
 // Contact Us Route
 app.get('/contact', (req,res)=>{
-    res.render('contactus');
+    res.render('contact');
 });
 // Privacy Policy Route
 app.get('/policy',(req,res)=>{
