@@ -12,7 +12,7 @@ app.set('view engine','ejs');
 
 // Middleware and Static files
 app.use(morgan('dev'));
-app.use(expres.static('public'));
+app.use(express.static('public'));
 
 // Listen for port 4000
 app.listen(port, () => console.log(`Example app listening on port port!`))
