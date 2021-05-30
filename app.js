@@ -5,7 +5,6 @@ const morgan = require('morgan');
 //Create instance of express app
 const app = express();
 // Set port to 4000
-
 const port = 4000;
 
 // Register view engine
@@ -18,22 +17,37 @@ app.use(express.static('public'));
 // Listen for port 4000
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
 
+
+
+// Set Up Routes
 // Home Route
 app.get('/', (req, res) =>{
     res.render('index');
 });
 app.get('/home',(req,res)=>{
-    res.redirect('/')
+    res.redirect('/');
 });
 // Invest Page Route
 app.get('/invest', (req,res)=>{
     res.render('invest');
 })
+// Invest Sign Up Route
+app.get('/invest/signup',(req,res)=>{
+    res.render('invest_signup')
+})
+// Academy Sign Up Route
+app.get('./academy',(req,res)=>{
+    res.render('academy');
+})
 // Contact Us Route
 app.get('/contact', (req,res)=>{
-    res.render('contact');
+    res.render('contactus');
 });
 // Privacy Policy Route
 app.get('/policy',(req,res)=>{
     res.render('privacy');
+});
+// Terms & Conditions Route
+app.get('/terms',(req,res)=>{
+    res.render('terms');
 })
