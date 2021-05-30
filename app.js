@@ -33,10 +33,13 @@ app.get('/invest', (req,res)=>{
 })
 // Invest Sign Up Route
 app.get('/invest/signup',(req,res)=>{
-    res.render('invest_signup')
+    res.render('invest_signup');
+})
+app.get('/invest/login',(req,res)=>{
+    res.render('invest_login');
 })
 // Academy Sign Up Route
-app.get('./academy',(req,res)=>{
+app.get('/academy',(req,res)=>{
     res.render('academy');
 })
 // Contact Us Route
