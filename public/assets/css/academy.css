@@ -1,3 +1,54 @@
+/* Admin  */
 body{
     background-color:rgb(247, 152, 39) ;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+footer{
+    background-color: #ffffff;
+    margin-top:auto;
+    min-height: 75px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.form_surface{
+    background-color: #fff;
+    border-radius:25px;
+    margin-top: 5em;
+    min-width: 900px;
+    min-height:350px;
+}
+.form{
+    background-color: #fff;
+    position: absolute;
+    top:-90px;
+    left:150px;
+    max-width: 290px;
+    min-height: 500px;
+    z-index: 999;
+    box-shadow: 1px 1px 0.6px 0.8px #333;
+    border-radius: 30px;
+}
+.form .form-group{
+    /* margin-top:5em; */
+    text-align: center;
+}
+.form input{
+    margin: 15px 0;
+}
+.form button{
+    cursor: pointer;
+    margin-top: 20px;
+}
+.input{
+    margin-top:5em;
+}
+.logo{
+    width:25%;
+    height: auto;
+}
+.logo_container{
+    margin-top:2em;
 }
