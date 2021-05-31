@@ -1,7 +1,45 @@
 <html lang="en">
 <%- include('./partials/head.ejs'); %> 
-<%- include('.partials/academy.ejs'); %> 
+<%- include('./partials/academy/academy_partial.ejs'); %> 
 <body>
-    <h1>Login Page</h1>
+    <h1>Student Sign Up</h1>
+    <section id="access_form">
+        <div class="container">
+            <div class="col-12">
+                <div class="form_surface">
+                    <div class="form">
+                        <form>
+                            <div class="form-group col-12">
+                                <div class="logo_container">
+                                    <img src="assets/img/nav-logo.png" class="logo" alt="">
+                                </div>
+                                <div class="input">
+                                    <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+                                    <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                                    <input class="form-control" type="password" name="password" id="password" placeholder="Confirm Password">
+                                    <button type="submit" class="quote-btn btn">Sign Up</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <footer>
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="footer text-center">
+                    <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have read and acknowledged our <a href="/policy">Privacy Policy</a></p>
+                    <% var date = new Date(); %> 
+                    <p>The Moon House &copy; <%= date.getFullYear(); %> </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- Static Javascript -->
+	<%- include('./partials/scripts.ejs') %> 
 </body>
 </html>
