@@ -38,10 +38,13 @@ app.get('/invest/signup',(req,res)=>{
 app.get('/invest/login',(req,res)=>{
     res.render('invest_login');
 })
-// Academy Sign Up Route
+// Academy Welcome Route
 app.get('/academy',(req,res)=>{
     res.render('academy');
-})
+});
+app.get('/academy/signup',(req,res)=>{
+    res.render('academy_signup')
+});
 // Contact Us Route
 app.get('/contact', (req,res)=>{
     res.render('contact');
@@ -53,4 +56,12 @@ app.get('/policy',(req,res)=>{
 // Terms & Conditions Route
 app.get('/terms',(req,res)=>{
     res.render('terms');
+});
+// Admin Route
+app.get('/admin',(req,res)=>{
+    res.render('admin',{admin:'admin'});
+})
+// 404 Route
+app.use((req,res)=>{
+    res.status(404).render('404');
 })
