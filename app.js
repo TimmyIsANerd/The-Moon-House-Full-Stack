@@ -42,7 +42,7 @@ app.get('/invest/login',(req,res)=>{
 app.get('/academy',(req,res)=>{
     res.render('academy');
 });
-app.get('/academy/signup',(req,res)=>{
+app.get('/academy_signup',(req,res)=>{
     res.render('academy_signup')
 });
 // Contact Us Route
