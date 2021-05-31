@@ -1,0 +1,16 @@
+/* Admin  */
+body{
+    background-color:rgb(247, 152, 39) ;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+footer{
+    background-color: #ffffff;
+    margin-top:auto;
+    min-height: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
