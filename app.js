@@ -1,6 +1,17 @@
 // Import required modules
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const User = require('./model/user');
+
+// Connect MongoDB
+const dbURI = 'mongodb://127.0.0.1:27017/the_moon_house';
+mongoose.connect(dbURI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+})
 
 //Create instance of express app
 const app = express();
@@ -13,6 +24,8 @@ app.set('view engine','ejs');
 // Middleware and Static files
 app.use(morgan('dev'));
 app.use(express.static('public'));
+// Middleware to decode incoming body
+app.use(bodyParser.json());
 
 // Listen for port 4000
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
@@ -45,6 +58,12 @@ app.get('/academy',(req,res)=>{
 app.get('/academy/signup',(req,res)=>{
     res.render('academy_signup');
 });
+// JSON Request handler
+app.post('/api/register', async (req,res)=>{
+    console.log(req.body);
+    // Hashing Password
+    res.json({status : 'ok' })
+})
 app.get('/academy/login',(req,res)=>{
     res.render('academy_login');
 })
