@@ -2,13 +2,14 @@
 <%- include('./partials/academy/academy_head.ejs'); %> 
 <%- include('./partials/academy/academy_partial.ejs'); %> 
 <body>
-    <h1>Student Sign Up</h1>
+
+    <h1>Student Login</h1>
     <section id="access_form">
         <div class="container">
             <div class="col-12">
                 <div class="form_surface">
                     <div class="form">
-                        <form>
+                        <form id="reg-form">
                             <div class="form-group col-12">
                                 <div class="logo_container">
                                     <img src="/assets/img/nav-logo.png" class="logo" alt="">
@@ -16,15 +17,14 @@
                                 <div class="input">
                                     <input class="form-control" type="email" name="email" id="email" placeholder="Email">
                                     <input class="form-control" type="password" name="password" id="password" placeholder="Password">
-                                    <input class="form-control" type="password" name="password" id="password" placeholder="Confirm Password">
-                                    <button type="submit" class="quote-btn btn">Sign Up</button>
+                                    <p>Don't have an account? <a href="/academy/signup" class="text-bold">Sign Up</a></p>
+                                    <button type="submit" class="quote-btn btn">Login</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            
         </div>
     </section>
     <footer>
@@ -38,7 +38,7 @@
             </div>
         </div>
     </footer>
-
+    
     <!-- Static Javascript -->
 	<%- include('./partials/academy/academy_scripts.ejs') %> 
 </body>
