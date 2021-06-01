@@ -8,25 +8,46 @@
             <div class="col-12">
                 <div class="form_surface">
                     <div class="form">
-                        <form>
+                        <form id="reg-form">
                             <div class="form-group col-12">
                                 <div class="logo_container">
                                     <img src="/assets/img/nav-logo.png" class="logo" alt="">
                                 </div>
                                 <div class="input">
-                                    <input class="form-control" type="email" name="email" id="email" placeholder="Email">
-                                    <input class="form-control" type="password" name="password" id="password" placeholder="Password">
-                                    <input class="form-control" type="password" name="password" id="password" placeholder="Confirm Password">
-                                    <button type="submit" class="quote-btn btn">Sign Up</button>
+                                    <input class="form-control" autocomplete="off" type="email" name="email" id="email" placeholder="Email" required>
+                                    <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required>
+                                    <p>Already have an account? <a href="/academy/login" class="text-bold">Login</a></p>
+                                    <button type="submit" value="Submit Form" class="quote-btn btn">Sign Up</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            
         </div>
     </section>
+    <script>
+        const form = document.getElementById('reg-form');
+        form.addEventListener('submit',registerUser)
+
+        // 1. Send Data as JSON
+        async function registerUser(e){
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const result = await fetch('/api/register', {
+                method : 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }).then((res) => res.json());
+        }
+    </script>
     <footer>
         <div class="container-fluid">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
