@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./model/user');
+const bcrypt = require('bcryptjs');
 
 // Connect MongoDB
 const dbURI = 'mongodb://127.0.0.1:27017/the_moon_house';
@@ -61,7 +62,21 @@ app.get('/academy/signup',(req,res)=>{
 // JSON Request handler
 app.post('/api/register', async (req,res)=>{
     console.log(req.body);
-    // Hashing Password
+    // Hashing Password using bcrypt library
+    const { email, password: plainTextPassword } = req.body;
+    const password = await bcrypt.hash(plainTextPassword, 10);
+    
+    try{
+        const response = await User.create({
+            email,
+            password
+        })
+        console.log('User Created Successfully', response)
+    } catch (error){
+        console.log(error)
+        return res.json({ status : 'error' });
+    }
+
     res.json({status : 'ok' })
 })
 app.get('/academy/login',(req,res)=>{
