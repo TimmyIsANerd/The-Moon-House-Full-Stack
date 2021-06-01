@@ -16,16 +16,18 @@ footer{
 .form_surface{
     background-color: #fff;
     border-radius:25px;
-    margin-top: 5em;
+    margin-top: 10em;
     min-width: 900px;
     min-height:350px;
+    
 }
 .form{
     background-color: #fff;
     position: absolute;
     top:-90px;
     left:150px;
-    max-width: 290px;
+    max-width: 310px;
+    min-width: 280px;
     min-height: 500px;
     z-index: 999;
     box-shadow: 1px 1px 0.6px 0.8px #333;
