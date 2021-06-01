@@ -38,13 +38,16 @@ app.get('/invest/signup',(req,res)=>{
 app.get('/invest/login',(req,res)=>{
     res.render('invest_login');
 })
-// Academy Welcome Route
+// Academy Route
 app.get('/academy',(req,res)=>{
     res.render('academy');
 });
-app.get('/academy_signup',(req,res)=>{
-    res.render('academy_signup')
+app.get('/academy/signup',(req,res)=>{
+    res.render('academy_signup');
 });
+app.get('/academy/login',(req,res)=>{
+    res.render('academy_login');
+})
 // Contact Us Route
 app.get('/contact', (req,res)=>{
     res.render('contact');
