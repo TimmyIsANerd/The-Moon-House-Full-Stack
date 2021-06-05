@@ -11,6 +11,8 @@ const app = express();
 const basicRoutes = require('./routes/basicRoutes');
 // Authentication Routes
 const authRoutes = require('./routes/authRoutes');
+// Admin Account Routes
+const adminRoutes = require('./routes/adminRoutes');
 
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
@@ -36,6 +38,7 @@ app.use(bodyParser.json());
 // Use Express Routes
 app.use(basicRoutes);
 app.use(authRoutes);
+app.use(adminRoutes);
 
 // 404 Route
 app.use((req,res)=>{
