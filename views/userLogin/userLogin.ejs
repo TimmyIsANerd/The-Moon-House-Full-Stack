@@ -2,7 +2,7 @@
 <%- include('../partials/academy/academy_head.ejs'); %> 
 <%- include('../partials/academy/academy_partial.ejs'); %> 
 <body>
-    <h1>User Sign Up</h1>
+    <h1>User Login</h1>
     <section id="access_form">
         <div class="container">
             <div class="col-12">
@@ -14,11 +14,10 @@
                                     <img src="/assets/img/nav-logo.png" class="logo" alt="">
                                 </div>
                                 <div class="input">
-                                    <input type="text" class="form-control" name="fullname" placeholder="Full Name" id="fullname">
                                     <input class="form-control" autocomplete="off" type="email" name="email" id="email" placeholder="Email" required>
                                     <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required>
-                                    <p>Already have an account? <a href="/user/login" class="text-bold">Login</a></p>
-                                    <button type="submit" value="Submit Form" class="quote-btn btn">Sign Up</button>
+                                    <p>Don't have an account? <a href="/user/signup" class="text-bold">Sign Up</a></p>
+                                    <button type="submit" value="Submit Form" class="quote-btn btn">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -28,36 +27,6 @@
         </div>
     </section>
     <script>
-        const form = document.getElementById('reg-form');
-        form.addEventListener('submit',registerUser)
-
-        // 1. Send Data as JSON
-        async function registerUser(e){
-            e.preventDefault();
-            const fullname = document.getElementById('fullname').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            const result = await fetch('/api/signup', {
-                method : 'POST',
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify({
-                    fullname,
-                    email,
-                    password
-                })
-            }).then((res) => res.json())
-                .then((data) => window.location.href = data.redirect);
-
-            if(result.status === 'ok'){
-                // Everything went fine
-            } else {
-                // something went wrong
-                alert(result.error);
-            }
-        }
     </script>
     <footer>
         <div class="container-fluid">

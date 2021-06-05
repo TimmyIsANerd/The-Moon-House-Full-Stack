@@ -46,6 +46,13 @@
                     password
                 })
             }).then((res) => res.json());
+
+            if(result.status === 'ok'){
+                // Everything went fine
+            } else {
+                // something went wrong
+                alert(result.error);
+            }
         }
     </script>
     <footer>
