@@ -49,14 +49,15 @@
                     password
                 })
             }).then((res) => res.json())
-                .then((data) => window.location.href = data.redirect);
-
-            if(result.status === 'ok'){
-                // Everything went fine
-            } else {
-                // something went wrong
-                alert(result.error);
-            }
+                .then((data) => window.location.href = data.redirect)
+                .catch((error) =>{
+                    if(result.status === 'ok'){
+                    // Everything went fine
+                    } else {
+                        // something went wrong
+                        alert(result.error)
+                    }
+                })
         }
     </script>
     <footer>
