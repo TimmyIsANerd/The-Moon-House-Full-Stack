@@ -6,7 +6,7 @@ const userSignUpSchema = new mongoose.Schema(
     {
         fullname : {type : String,required:true},
         email : {type:String,required:true,unique:true,lowercase:true},
-        password: {type: String, required:true},
+        password: {type: String, required:true,minLength:8},
     },
     {collection:'user_signup_data'},
     {timestamps:true}
