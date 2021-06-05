@@ -16,12 +16,10 @@ const sign_up_post = async (req,res)=>{
     if(!fullname){
         return res.json({ status:error, error : 'Please Enter Full Name' });
     }
-
     // Password Validation
     if(!email || typeof email !== 'string'){
         return res.json({status : error, error : 'Invalid Email'});
     }
-
     if(!plainTextPassword || typeof plainTextPassword !== 'string'){
         return res.json({status : error, error : 'Invalid Password'});
     }
@@ -39,10 +37,10 @@ const sign_up_post = async (req,res)=>{
         console.log('User Created Successfully', response);
     } catch (error){
         if(error.code === 11000){
-            // duplicate key
+            // duplicate key error
             return res.json({ status : 'error', error : 'Email already in use' });
         }
-        throw error
+        throw error;
     }
     res.json({status : 'ok', redirect: '/user/signup_success' });
 }
