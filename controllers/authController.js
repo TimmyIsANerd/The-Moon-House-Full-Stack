@@ -29,7 +29,7 @@ const sign_up_post = async (req,res)=>{
         return res.json({status : error, error : '{Password is less than 6 characters}'});
     }
     const password = await bcrypt.hash(plainTextPassword, 10);
-    
+    // Use Try/Catch to Create User in the Database
     try{
         const response = await userSignUp.create({
             fullname,
@@ -55,7 +55,7 @@ const sign_up_success_get = (req,res) =>{
 const login_get = (req,res) =>{
     res.render('./userLogin/userLogin', {title : 'User Login'});
 }
-const login_post = (req,res) =>{
+const login_post = async (req,res) =>{
 
 };
 const logout_get = (req,res) =>{
