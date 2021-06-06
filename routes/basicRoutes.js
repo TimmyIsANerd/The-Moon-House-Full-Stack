@@ -9,6 +9,9 @@ router.get('/',basicController.home);
 router.get('/home',(req,res)=>{
     res.redirect('/');
 });
+router.get('/index',(req,res)=>{
+    res.redirect('/')
+})
 // Invest Page Route
 router.get('/invest',basicController.invest);
 // Contact Us Route

@@ -1,0 +1,87 @@
+<html lang="en">
+    <%- include('./../partials/user/head.ejs'); %> 
+<body>
+    <%- include('./../partials/user/nav.ejs') %> 
+    <link rel="stylesheet" href="/assets/css/user/user.css">
+    <section id="access_form">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                    <div class="welcome-col">
+                        <h4>Hi Welcome To <span>The Moon House</span></h4>
+                        <p>We are the perfect hub for crypto education and growth.</p>
+                        <a href="/user/login" class="quote-btn btn">Already an Investor? Sign In</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 mx-auto">
+                    <div class="form_surface">
+                        <div class="form col-12">
+                            <form id="reg-form">
+                                <div class="form-group">
+                                    <div class="logo_container">
+                                        <img src="/assets/img/nav-logo.png" class="logo" alt="">
+                                    </div>
+                                    <div class="input">
+                                        <input type="text" class="form-control" name="fullname" placeholder="Full Name" id="fullname">
+                                        <input class="form-control" autocomplete="off" type="email" name="email" id="email" placeholder="Email" required>
+                                        <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required>
+                                        <!-- <p>Already have an account? <a href="/user/login" class="text-bold">Login</a></p> -->
+                                        <button type="submit" value="Submit Form" class="quote-btn btn">Sign Up</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const form = document.getElementById('reg-form');
+        form.addEventListener('submit',registerUser)
+
+        // 1. Send Data as JSON
+        async function registerUser(e){
+            e.preventDefault();
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const result = await fetch('/api/signup', {
+                method : 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    fullname,
+                    email,
+                    password
+                })
+            }).then((res) => res.json())
+                .then((data) => window.location.href = data.redirect)
+                .catch((error) =>{
+                    if(result.status === 'ok'){
+                    // Everything went fine
+                    } else {
+                        // something went wrong
+                        alert(result.error)
+                    }
+                })
+        }
+    </script>
+    <footer>
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="footer text-center">
+                    <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have read and acknowledged our <a href="/policy">Privacy Policy</a></p>
+                    <% var date = new Date(); %> 
+                    <p><a href="/">The Moon House</a> &copy; <%= date.getFullYear(); %> </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Static Javascript -->
+	<%- include('../partials/academy/academy_scripts.ejs') %> 
+</body>
+</html>
