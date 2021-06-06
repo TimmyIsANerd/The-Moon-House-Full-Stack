@@ -2,7 +2,6 @@
 const investorKyc = require('../model/investor_kyc');
 const adminUser = require('../model/adminUserInformation');
 const investorPortfolio = require('../model/investorPortfolio');
-const userInvestorKyc = require('../model/investor_kyc');
 const userNotification = require('../model/userNotifications');
 // Admin Controller
  
@@ -16,7 +15,7 @@ const admin_signup_post = (req,res) =>{
 }
 // Login Controller GET
 const admin_get = (req,res) =>{
-    res.render('/admin/admin_login',{title:'Admin Login'})
+    res.render('admin/admin_login',{title:'Admin Login'})
 }
 // Login Controller POST
 const admin_post = (req,res) =>{
