@@ -19,5 +19,5 @@ const investorKyc = new mongoose.Schema(
 
 
 // Export Schema
-const investorKyc = mongoose.model('investorKyc',investorKyc);
-module.exports = investorKyc;
+const userInvestorKyc = mongoose.model('investorKyc',investorKyc);
+module.exports = userInvestorKyc; 

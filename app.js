@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 // Use Express Routes
 app.use(basicRoutes);
 app.use(authRoutes);
-app.use(adminRoutes);
+app.use('/admin',adminRoutes);
 
 // 404 Route
 app.use((req,res)=>{

@@ -10,7 +10,7 @@ const investorPortfolio = new mongoose.Schema(
             required:true,
         },
         investmentDuration : {
-            type: Number,
+            type: Number, 
             required:true
         },
         investmentPaymentMethod:{
@@ -28,5 +28,5 @@ const investorPortfolio = new mongoose.Schema(
 
 // Export Schema
 
-const investorPortfolio = mongoose.model('investorPortfolio',investorPortfolio);
-module.exports = investorPortfolio;
+const userInvestorPortfolio = mongoose.model('investorPortfolio',investorPortfolio);
+module.exports = userInvestorPortfolio;

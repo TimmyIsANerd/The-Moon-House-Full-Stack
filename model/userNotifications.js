@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 
-const userNotifications = new moongoose.Schema(
+const userNotifications = new mongoose.Schema(
     {
         sender:{
             type:String,
@@ -26,5 +26,5 @@ const userNotifications = new moongoose.Schema(
 )
 
 // Export Schema 
-const userNotifications = mongoose.model('userNotifications',userNotifications);
-module.exports = userNotifications;
+const userNotification = mongoose.model('userNotifications',userNotifications);
+module.exports = userNotification;

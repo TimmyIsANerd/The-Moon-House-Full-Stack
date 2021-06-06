@@ -19,6 +19,6 @@ const adminUserInformation = new mongoose.Schema(
 )
 
 // Export Schema
-const adminUserInformation = mongoose.model('adminUserInformation',adminUserInformation);
+const adminUserInfo = mongoose.model('adminUserInformation',adminUserInformation);
 
-module.exports = adminUserInformation;
+module.exports = adminUserInfo;

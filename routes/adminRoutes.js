@@ -6,22 +6,22 @@ const adminController = require('../controllers/adminController');
 
 // Setup Routes for Admin
 // Admin Sign Up GET
-route.get('/signup',adminController.admin_signup_get);
+router.get('/signup',adminController.admin_signup_get);
 // Admin Sign Up POST
-route.get('/signup',adminController.admin_signup_post);
+router.get('/signup',adminController.admin_signup_post);
 // Admin GET Login
-route.get('/',adminController.admin_get);
+router.get('/',adminController.admin_get);
 // Admin POST Login
-route.post('/',adminController.admin_post);
+router.post('/',adminController.admin_post);
 // Admin Dashboard
-route.get('/dashboard',adminController.admin_dasboard_get)
+router.get('/dashboard',adminController.admin_dashboard_get)
 // Admin POST Create New User
-route.post('/createUser',adminController.admin_dasboard_create_user);
+router.post('/createUser',adminController.admin_dashboard_create_user);
 // Admin DELETE User 
-route.delete('/deleteUser/:id',adminController.admin_dasboard_delete_user);
+router.delete('/deleteUser/:id',adminController.admin_dashboard_delete_user);
 // Admin POST Set Kyc Information
-route.post('/editUserKycData/:id',adminController.admin_dasboard_editUserInformation);
+router.post('/editUserKycData/:id',adminController.admin_dashboard_editUserInformation);
 // Admin Create User Portfolio
-route.post('/createUserPortfiolio/:id',adminController.admin_dasboard_createUserPortfolio);
+router.post('/createUserPortfiolio/:id',adminController.admin_dashboard_createUserPortfolio);
 
 module.exports = router;
