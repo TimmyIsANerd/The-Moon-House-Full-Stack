@@ -13,6 +13,8 @@ const basicRoutes = require('./routes/basicRoutes');
 const authRoutes = require('./routes/authRoutes');
 // Admin Account Routes
 const adminRoutes = require('./routes/adminRoutes');
+// User Account Routes
+const userRoutes = require('./routes/userRoutes');
 
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
@@ -39,6 +41,7 @@ app.use(bodyParser.json());
 app.use(basicRoutes);
 app.use(authRoutes);
 app.use('/admin',adminRoutes);
+app.use('/user',userRoutes);
 
 // 404 Route
 app.use((req,res)=>{
