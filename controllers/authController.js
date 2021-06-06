@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 // Set Up Sign Up Controller
 // GET Sign Up Page
 const sign_up_get = (req,res) =>{
-    res.render('./userSignUp/userSignUp',{title:'User Sign Up'});
+    res.render('./user/userSignUp',{title:'User Sign Up'});
 }
 // POST Sign Up Page
 const sign_up_post = async (req,res)=>{
@@ -46,12 +46,12 @@ const sign_up_post = async (req,res)=>{
 }
 // Sign Up Success GET Request
 const sign_up_success_get = (req,res) =>{
-    res.render('userSignUp/signUpSuccess');
+    res.render('user/signUpSuccess');
 }
 
 // Login Controller
 const login_get = (req,res) =>{
-    res.render('./userLogin/userLogin', {title : 'User Login'});
+    res.render('./user/userLogin', {title : 'User Login'});
 }
 const login_post = async (req,res) =>{
 

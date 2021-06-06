@@ -1,6 +1,6 @@
 /* Admin  */
 body{
-    background-color:rgb(247, 152, 39) ;
+    background-color:#fff ;
     min-height:100vh;
     display:flex;
     flex-direction:column;
@@ -19,7 +19,6 @@ footer{
     margin-top: 10em;
     min-width: 900px;
     min-height:350px;
-    
 }
 .form{
     background-color: #fff;
