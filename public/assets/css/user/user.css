@@ -49,7 +49,7 @@ footer{
     padding-top:2.5em;
 }
 #access_form{
-    margin-top:6em;
+    margin-top:4em;
     margin-bottom: 2.5rem;
 }
 .welcome-col{
@@ -66,4 +66,13 @@ footer{
     box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
     -webkit-box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
     -moz-box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
+}
+.main-header.header-2 .mainmenu-area{
+    background-color:#fff;
+}
+.main-header .mainmenu-area .navbar-nav .nav-link{
+    color:#333 !important;
+}
+.main-header .mainmenu-area .navbar-nav .nav-link:hover{
+    color:#fff !important;
 }
