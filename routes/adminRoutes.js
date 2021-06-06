@@ -10,18 +10,18 @@ router.get('/signup',adminController.admin_signup_get);
 // Admin Sign Up POST
 router.get('/signup',adminController.admin_signup_post);
 // Admin GET Login
-router.get('/',adminController.admin_get);
+router.get('/login',adminController.admin_get);
 // Admin POST Login
 router.post('/',adminController.admin_post);
 // Admin Dashboard
 router.get('/dashboard',adminController.admin_dashboard_get)
 // Admin POST Create New User
-router.post('/createUser',adminController.admin_dashboard_create_user);
+router.post('/dashboard/createuser',adminController.admin_dashboard_create_user);
 // Admin DELETE User 
-router.delete('/deleteUser/:id',adminController.admin_dashboard_delete_user);
+router.delete('/dashboard/deleteuser/:id',adminController.admin_dashboard_delete_user);
 // Admin POST Set Kyc Information
-router.post('/editUserKycData/:id',adminController.admin_dashboard_editUserInformation);
+router.post('/dashboard/edituserkycData/:id',adminController.admin_dashboard_editUserInformation);
 // Admin Create User Portfolio
-router.post('/createUserPortfiolio/:id',adminController.admin_dashboard_createUserPortfolio);
+router.post('/createuserportfiolio/:id',adminController.admin_dashboard_createUserPortfolio);
 
 module.exports = router;
