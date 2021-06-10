@@ -13,7 +13,7 @@ const investorKyc = new mongoose.Schema(
         kinHomeAddress : {type: String,required:[true,'Please Enter valid Address']},
         kinEmailAddress : {type:String,required:[true,"Please Enter valid Email"]}
     },
-    { collection : 'user_signup_data'},
+    { collection : 'investor_kyc'},
     { timestamps: true }
 )
 

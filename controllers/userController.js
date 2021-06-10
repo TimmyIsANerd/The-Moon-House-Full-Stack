@@ -3,6 +3,7 @@ const userData = require('../model/userSignUp');
 const investorKyc = require('../model/investor_kyc');
 const investorPortfolio = require('../model/investorPortfolio');
 const investorPackageData = require('../model/investmentPackage');
+const userTransactionsData = require('../model/userTransactions');
 
 // User Dashboard GET
 const user_dashboard_get = async (req,res) =>{
@@ -10,13 +11,18 @@ const user_dashboard_get = async (req,res) =>{
     const promise2 = investorKyc.find({ status: 'Investor Data '}).exec()
     const promise3 = investorPortfolio.find({ status: 'Investor Portfolio '}).exec()
     const promise4 = investorPackageData.find({ status : 'Investment Package Data'}).exec()
-    Promise.all([promise1,promise2,promise3,promise4])
-        .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult])=>{
+    const promise5 = userTransactionsData.find({ status : 'User Transaction Data'}).exec()
+    Promise.all([promise1,promise2,promise3,promise4,promise5])
+        .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult,userTransactionResult])=>{
             res.render(
-                '/dashboard',
+                'user/dashboard',
                 {
                     title:'User Dashboard',
-                    data : [userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult]
+                    userData : userDataResult,
+                    investorKyc : investorKycResult,
+                    investorPortfolio: investorPortfolioResult,
+                    investorPackageData: investorPackageDataResult,
+                    usertransactions:userTransactionResult
                 }
             )
         })

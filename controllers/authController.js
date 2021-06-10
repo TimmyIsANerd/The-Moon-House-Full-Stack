@@ -55,6 +55,33 @@ const login_get = (req,res) =>{
 }
 const login_post = async (req,res) =>{
 
+    // Store the body in deconstruction
+    const { email, password } = req.body;
+    const user = await User.findOne({ email,password }).lean()
+
+    if(!user){
+        return res.json(
+            {
+                status:'error',
+                error:'Invalid Username/Password'
+            }
+        )
+    }
+
+    if(await bcrypt.compare(password, user.password)){
+        // The username, password combination is successful.
+
+        cn
+        return res.json(
+            {
+                status:'ok',
+                data:'',
+                redirect:'/user/dashboard'
+            }
+        )
+    }
+
+    res.json({ status: 'error', error: 'Invalid Username/Password'})
 };
 const logout_get = (req,res) =>{
 

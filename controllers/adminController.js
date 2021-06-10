@@ -1,10 +1,15 @@
 // Import Models
+const userData = require('../model/userSignUp');
 const investorKyc = require('../model/investor_kyc');
-const adminUser = require('../model/adminUserInformation');
 const investorPortfolio = require('../model/investorPortfolio');
-const userNotification = require('../model/userNotifications');
+const investorPackageData = require('../model/investmentPackage');
+const userTransactionsData = require('../model/userTransactions');
 // Admin Controller
  
+// Dashboard GET
+const admin_dashboard_get = (req,res) =>{
+    res.send('Admin Dashboard');
+}
 // Sign Up Controller GET
 const admin_signup_get = (req,res) =>{
     res.render('/admin/admin_signup',{title:'Admin Sign Up'})
@@ -20,10 +25,6 @@ const admin_get = (req,res) =>{
 // Login Controller POST
 const admin_post = (req,res) =>{
     console.log('post request')
-}
-// Dashboard GET
-const admin_dashboard_get = (req,res) =>{
-    res.send('Admin Dashboard')
 }
 // Dashboard Create User POST
 const admin_dashboard_create_user = (req,res) =>{

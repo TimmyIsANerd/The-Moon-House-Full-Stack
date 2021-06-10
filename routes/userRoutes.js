@@ -10,6 +10,6 @@ router.get('/dashboard',userController.user_dashboard_get);
 // User Create Investment Portfolio
 router.post('/dashboard/createportfolio/:id',userController.user_dashboard_createUserPortfolio);
 // User Added KYC Information
-router.post('/dashboard/edituserkycData/:id',userController.user_dashboard_editUserInformation)
+router.post('/dashboard/edituserkycData/:id',userController.user_dashboard_editUserInformation);
 
 module.exports = router;

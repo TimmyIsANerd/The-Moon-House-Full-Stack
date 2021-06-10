@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // Create Investor Portfolio (Investor Plan and Length)
 
-const investorPortfolio = new mongoose.Schema(
+const investorPortfolioSchema = new mongoose.Schema(
     {
         investmentType : {
             type : String,
@@ -20,13 +20,14 @@ const investorPortfolio = new mongoose.Schema(
         InvestmentWithdrawalMethod:{
             type:String,
             required:true
-        }
+        },
+        
     },
-    { collection : 'user_signup_data'},
+    { collection : 'investor_portfolio_details'},
     { timestamps : true}
 )
 
 // Export Schema
 
-const userInvestorPortfolio = mongoose.model('investorPortfolio',investorPortfolio);
-module.exports = userInvestorPortfolio;
+const investorPortfolio = mongoose.model('investorPortfolioSchema',investorPortfolioSchema);
+module.exports = investorPortfolio;

@@ -16,7 +16,7 @@ const investmentPackagesSchema = new mongoose.Schema(
             required:true
         },
         VIPROIPercentage:{
-            type:Double,
+            type:Number,
             default:0.15
         },
         ExclusiveInvestor:{
@@ -32,7 +32,7 @@ const investmentPackagesSchema = new mongoose.Schema(
             type:Number,
             min:1,
             max:2,
-            required:True
+            required:true
         }
     }
 )

@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="form_surface">
                     <div class="form mx-auto">
-                        <form id="reg-form">
+                        <form id="login-form">
                             <div class="form-group col-12">
                                 <div class="logo_container">
                                     <img src="/assets/img/nav-logo.png" class="logo" alt="">
@@ -29,6 +29,35 @@
         </div>
     </section>
     <script>
+        const form = document.getElementById('login-form');
+        form.addEventListener('submit', login);
+
+
+        // Send Data as JSON
+        async function login(e){
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            const result = await fetch('/user/login', {
+                method: 'POST',
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }).then((res) => res.json())
+
+            if (result.stats === 'ok'){
+                // Everything went fine
+                console.log('Got the token', result.data)
+                alert('Success');
+            } else {
+                alert(result.error)
+            }
+        }
     </script>
     <%- include('../partials/user_cred_footer.ejs') %> 
 
