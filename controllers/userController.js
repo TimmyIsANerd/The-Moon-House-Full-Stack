@@ -7,11 +7,11 @@ const userTransactionsData = require('../model/userTransactions');
 
 // User Dashboard GET
 const user_dashboard_get = async (req,res) =>{
-    const promise1 = userData.find({ status : 'User Data' }).exec()
-    const promise2 = investorKyc.find({ status: 'Investor Data '}).exec()
-    const promise3 = investorPortfolio.find({ status: 'Investor Portfolio '}).exec()
-    const promise4 = investorPackageData.find({ status : 'Investment Package Data'}).exec()
-    const promise5 = userTransactionsData.find({ status : 'User Transaction Data'}).exec()
+    const promise1 = userData.find().exec()
+    const promise2 = investorKyc.find().exec()
+    const promise3 = investorPortfolio.find().exec()
+    const promise4 = investorPackageData.find().exec()
+    const promise5 = userTransactionsData.find().exec()
     Promise.all([promise1,promise2,promise3,promise4,promise5])
         .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult,userTransactionResult])=>{
             res.render(
@@ -36,7 +36,7 @@ const user_dashboard_createUserPortfolio = (req,res) =>{
 
     createPortfolio.save()
         .then((results)=>{
-            res.redirect('/dashboard');
+            res.redirect('/');
         })
         .catch((err)=>{
             console.log(err)
@@ -44,21 +44,24 @@ const user_dashboard_createUserPortfolio = (req,res) =>{
 }
 // User Dashboard POST (Edit User Information)
 const user_dashboard_editUserInformation = (req,res) =>{
-    // Access specific user by ID
-    const id = req.params.id;
     const userkyc = new investorKyc(req.body);
-
+    
     userkyc.save()
         .then((results)=>{
-            res.redirect('/dashboard');
+            res.redirect('/dashboard')
         })
         .catch((err)=>{
-            console.log(err,'There is an error somewhere! I dunno! just find it');
+            console.log(err)
         })
+}
+// User Dashboard Fund Account POST
+const user_dashboard_fund_post = (req,res) =>{
+    console.log('post request')
 }
 
 module.exports = {
     user_dashboard_get,
     user_dashboard_createUserPortfolio,
-    user_dashboard_editUserInformation
+    user_dashboard_editUserInformation,
+    user_dashboard_fund_post
 }

@@ -26,7 +26,7 @@ const userTransactionsSchema = new mongoose.Schema(
         investmentPayOutDate:{
             type:Date
         },
-        // Investment Payout Information ()
+        // Investment Payout Information 
         investmentPayoutInformation:{
             type:String,
             required:[true,'Bank/Wallet Information Needed']

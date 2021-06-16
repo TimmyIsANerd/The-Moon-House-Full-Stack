@@ -41,7 +41,7 @@ app.use(bodyParser.json());
 app.use(basicRoutes);
 app.use(authRoutes);
 app.use('/admin',adminRoutes);
-app.use('/user',userRoutes);
+app.use(userRoutes);
 
 // 404 Route
 app.use((req,res)=>{

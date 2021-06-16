@@ -1,6 +1,13 @@
+// Import Express
 const express = require('express');
+// Import Body parser 
+const bodyParser = require('body-parser');
 // Authentication Routes
 const router = express.Router();
+router.use(bodyParser.json())
+    .use(bodyParser.urlencoded({
+        extended:true
+    }));
 // Import Controller
 const authController = require('../controllers/authController');
 
@@ -11,6 +18,12 @@ router.post('/user/login',authController.login_post);
 // Login GET Request
 router.get('/user/logout',authController.logout_get);
 module.exports = router;
+
+
+// Change Password GET Request
+router.get('/user/changepassword',authController.change_password_get);
+// Change Password POST Request
+router.post('/user/changepassword',authController.change_password_post);
 
 
 // Sign Up Route

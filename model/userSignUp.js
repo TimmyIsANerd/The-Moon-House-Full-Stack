@@ -1,13 +1,13 @@
 // Require Mongoose
 const mongoose = require('mongoose');
-const { isEmail } = require('validator');
+// const { isEmail } = require('validator');
 
 // Create User Sign Up Schema
 const userSignUpSchema = new mongoose.Schema(
     {
         fullname : {type : String,required:true},
-        email : {type:String,required:[true,'Please enter an Email'],unique:true,lowercase:true,validate:[isEmail, 'Please Enter a Valid Email']},
-        password: {type: String, required:[true,'Please Enter a Password'],minlength:[8,'Minimum Password Length is 8 Characters']},
+        email : {type:String,required:true, unique:true ,lowercase:true},
+        password: {type: String, required:true,minlength:8},
     },
     {collection:'registration_data'},
     {timestamps:true}

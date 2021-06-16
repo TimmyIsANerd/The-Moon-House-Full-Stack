@@ -8,7 +8,28 @@ const userTransactionsData = require('../model/userTransactions');
  
 // Dashboard GET
 const admin_dashboard_get = (req,res) =>{
-    res.send('Admin Dashboard');
+    const promise1 = userData.find().exec()
+    const promise2 = investorKyc.find().exec()
+    const promise3 = investorPortfolio.find().exec()
+    const promise4 = investorPackageData.find().exec()
+    const promise5 = userTransactionsData.find().exec()
+    Promise.all([promise1,promise2,promise3,promise4,promise5])
+    .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult,userTransactionResult])=>{
+        res.render(
+            'admin/dashboard',
+            {
+                title:'Admin Dashboard',
+                userData : userDataResult,
+                investorKyc : investorKycResult,
+                investorPortfolio: investorPortfolioResult,
+                investorPackageData: investorPackageDataResult,
+                usertransactions:userTransactionResult
+            }
+        )
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
 }
 // Sign Up Controller GET
 const admin_signup_get = (req,res) =>{

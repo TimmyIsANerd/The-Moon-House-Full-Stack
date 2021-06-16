@@ -7,7 +7,7 @@ const investorKyc = new mongoose.Schema(
     {   
         // Specify Needed KYC Information
         homeAddress : {type: String,required:[true,'Please Enter valid Address']},
-        phoneAddress : {type:Number,required:[true,'Please Enter valid Phone Number']},
+        phoneNumber : {type:Number,required:[true,'Please Enter valid Phone Number']},
         // Next of Kin
         kinFullName : {type:String,required:[true,'Please Enter a Valid Name']},
         kinHomeAddress : {type: String,required:[true,'Please Enter valid Address']},
