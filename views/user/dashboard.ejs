@@ -1,1 +1,46 @@
-User Dashboard
+<%- include('./../partials/head.ejs') %> 
+
+<div class="kyc_data">
+    <h3>Kyc Data</h3>
+    <% if(investorKyc.length > 0){ %>
+        <% investorKyc.forEach(investorData =>{%>
+        <h3>Home Address</h3>
+        <p><%= investorData.homeAddress %></p>
+        <h3>Phone Number</h3>
+        <p><%= investorData.phoneNumber %></p>
+        <h3>Next of Kin</h3>
+        <p><%= investorData.phoneNumber %></p>
+        <h3>Next Of Kin's Home Address</h3>
+        <p><%= investorData.kinHomeAddress %> </p>
+        <h3>Next of Kin's Email Address</h3>
+        <p><%= investorData.kinEmailAddress %> </p>
+        <% });  %> 
+    <% } else { %>
+        <p>NO Data Available</p>
+    <% } %>  
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <form action="/dashboard/edituserkycData" method="POST">
+                <label for="homeAddress">Home Address</label>
+                <input type="text" class="form-control" id="home_address" name="homeAddress">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                <label for="kinFullName">Next of Kin (Full Name)</label>
+                <input type="text" name="kinFullName" id="kinFullName" class="form-control">
+                <label for="kinHomeAddress">Next of Kin (Home Address)</label>
+                <input type="text" name="kinHomeAddress" id="kinHomeAddress" class="form-control">
+                <label for="kinEmailAddress">Next of Kin (Email Address)</label>
+                <input type="text" name="kinEmailAddress" id="kinEmailAddress" class="form-control">
+                <button type="submit" value="Submit Form" class="btn btn-primary mt-3"> Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include('./../partials/scripts') %> 
