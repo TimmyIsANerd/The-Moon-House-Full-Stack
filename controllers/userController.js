@@ -17,7 +17,7 @@ const user_dashboard_get = async (req,res) =>{
             res.render(
                 'user/dashboard',
                 {
-                    title:'User Dashboard',
+                    title:'The Moon House | User Dashboard',
                     userData : userDataResult,
                     investorKyc : investorKycResult,
                     investorPortfolio: investorPortfolioResult,
