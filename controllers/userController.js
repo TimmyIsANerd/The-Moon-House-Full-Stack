@@ -77,7 +77,7 @@ const user_dashboard_editUserInformation = (req,res) =>{
     
     userkyc.save()
         .then((results)=>{
-            res.redirect('/dashboard')
+            res.redirect('/dashboard/profile')
         })
         .catch((err)=>{
             console.log(err)
