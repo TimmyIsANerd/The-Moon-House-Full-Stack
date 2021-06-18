@@ -1,0 +1,83 @@
+<% 
+// Conditional Rendering For active Nav Link
+const activeLink = {
+  dashboard:'',
+  profile:'',
+  security:'',
+  notification:'',
+  history:''
+}
+if(activeNavLink == 'dashboard'){
+  activeLink.dashboard = 'active'
+}
+
+if(activeNavLink == 'profile'){
+  activeLink.profile = 'active'
+}
+
+if(activeNavLink == 'security'){
+  activeLink.security = 'active'
+}
+
+if(activeNavLink == 'notifications'){
+  activeLink.notification = 'active'
+}
+
+if(activeNavLink == 'history'){
+  activeLink.history = 'active'
+}
+%> 
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="orange" data-background-color="black" data-image="/dashboard/assets/img/sidebar-2.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <img src="/assets/img/nav-logo.png" class="img-fluid mx-auto" style="height:auto;width:35%" alt="">
+        <a href="/dashboard" class="simple-text logo-normal">
+          The Moon House
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item <%= activeLink.dashboard %> ">
+            <a class="nav-link" href="/dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item <%= activeLink.profile %> ">
+            <a class="nav-link" href="/dashboard/profile">
+              <i class="material-icons">person</i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="nav-item <%= activeLink.security %> ">
+            <a class="nav-link" href="/dashboard/security">
+              <i class="material-icons">shield</i>
+              <p>Security</p>
+            </a>
+          </li>
+          <li class="nav-item <%= activeLink.notification %> ">
+            <a class="nav-link" href="/dashboard/notifications">
+              <i class="material-icons">notifications</i>
+              <p>Notifications</p>
+            </a>
+          </li>
+          <li class="nav-item <%= activeLink.history %> ">
+            <a class="nav-link" href="/dashboard/history">
+              <i class="material-icons">history</i>
+              <p>history</p>
+            </a>
+          </li>
+          <!-- <li class="nav-item active-pro ">
+                <a class="nav-link" href="./upgrade.html">
+                    <i class="material-icons">unarchive</i>
+                    <p>Upgrade to PRO</p>
+                </a>
+            </li> -->
+        </ul>
+      </div>
+    </div>
