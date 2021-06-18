@@ -5,7 +5,14 @@ const mongoose = require('mongoose');
 // Create User Sign Up Schema
 const userSignUpSchema = new mongoose.Schema(
     {
-        fullname : {type : String,required:true},
+        firstName: {
+            type:String,
+            required:true
+        },
+        lastName: {
+            type:String,
+            required:true
+        },
         email : {type:String,required:true, unique:true ,lowercase:true},
         password: {type: String, required:true,minlength:8},
     },

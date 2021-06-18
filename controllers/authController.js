@@ -13,10 +13,10 @@ const sign_up_get = (req,res) =>{
 // POST Sign Up Page
 const sign_up_post = async (req,res)=>{
     console.log(req.body);    
-    const { fullname,email, password: plainTextPassword } = req.body;
+    const { firstName ,lastName ,email, password: plainTextPassword } = req.body;
     // Hashing Password using bcrypt library
     // Full Name Validation
-    if(!fullname){
+    if(!firstName || !lastName){
         return res.json({ status:error, error : 'Please Enter Full Name' });
     }
     // Password Validation
@@ -33,7 +33,8 @@ const sign_up_post = async (req,res)=>{
     // Use Try/Catch to Create User in the Database
     try{
         const response = await userSignUp.create({
-            fullname,
+            firstName,
+            lastName,
             email,
             password
         })

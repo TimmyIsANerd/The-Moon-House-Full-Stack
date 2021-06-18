@@ -12,7 +12,7 @@ const supportController = require('../controllers/supportController');
 
 // Set up routes for Customer Support
 
-router.get('/support');
+router.get('/support', supportController.user_support_dash_get);
 
 
 module.exports = router;
