@@ -21,8 +21,9 @@
                                     <div class="logo_container">
                                         <img src="/assets/img/nav-logo.png" class="logo" alt="">
                                     </div>
-                                    <div class="input">
-                                        <input type="text" class="form-control" name="fullname" placeholder="Full Name" id="fullname">
+                                    <div class="input">    
+                                        <input type="text" class="form-control" name="firstName" placeholder="First Name" id="firstName">
+                                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" id="lastName">
                                         <input class="form-control" autocomplete="off" type="email" name="email" id="email" placeholder="Email" required>
                                         <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required>
                                         <!-- <p>Already have an account? <a href="/user/login" class="text-bold">Login</a></p> -->
@@ -43,7 +44,8 @@
         // 1. Send Data as JSON
         async function registerUser(e){
             e.preventDefault();
-            const fullname = document.getElementById('fullname').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
@@ -53,7 +55,8 @@
                     'Content-Type':'application/json'
                 },
                 body: JSON.stringify({
-                    fullname,
+                    firstName,
+                    lastName,
                     email,
                     password
                 })

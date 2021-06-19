@@ -291,6 +291,24 @@ md = {
       }
     });
   },
+  showNotificationRefer: function(from, align) {
+    type = ['', 'info', 'danger', 'success', 'warning', 'primary'];
+
+    color = Math.floor((Math.random() * 5) + 1);
+
+    $.notify({
+      icon: "add_alert",
+      message: "Referal system is currently under Maintainance. Please bear with us."
+
+    }, {
+      type: type[color],
+      timer: 3000,
+      placement: {
+        from: from,
+        align: align
+      }
+    });
+  },
 
   checkScrollForTransparentNavbar: debounce(function() {
     if ($(document).scrollTop() > 260) {

@@ -22069,3 +22069,15 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+/* Custom CSS */                
+.invest-choice-box{
+  cursor: pointer;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  min-height:150px;
+  border-radius: 3px;
+  background: linear-gradient(60deg, #029eb1, #25b1c3);
+}

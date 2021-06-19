@@ -1,8 +1,32 @@
+<% 
+const activeLinkHeader = {
+  header:''
+}
+if(activeNavLink == 'dashboard'){
+  activeLinkHeader.header = 'User Dashboard'
+}
+
+if(activeNavLink == 'profile'){
+  activeLinkHeader.header = 'User Profile (KYC Information)'
+}
+
+if(activeNavLink == 'security'){
+  activeLinkHeader.header = 'User Security'
+}
+
+if(activeNavLink == 'notifications'){
+  activeLinkHeader.header = 'Notifcations'
+}
+
+if(activeNavLink == 'history'){
+  activeLinkHeader.header = 'Transaction History'
+}
+%> 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
     <div class="container-fluid">
       <div class="navbar-wrapper">
-        <a class="navbar-brand" href="javascript:void(0)">User Dashboard</a>
+        <a class="navbar-brand" href="javascript:void(0)"><%= activeLinkHeader.header  %> </a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
         <span class="sr-only">Toggle navigation</span>
