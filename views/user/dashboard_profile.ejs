@@ -176,6 +176,42 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row" id="trcWallet">
+                    <div class="col-md-12">
+                      <h6 class="text-white">USDT Wallet</h6>
+                      <p>Please make sure you are sending via a TRC20 Wallet.</p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating"> Wallet Address:</label>
+                        <input type="text" class="form-control" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" id="bankAccount">
+                    <div class="col-md-12">
+                      <h6 class="text-white">Bank Account Information</h6>
+                      <p>Please make sure all submitted information is accurate.</p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">Bank:</label>
+                        <input type="text" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">Account Name:</label>
+                        <input type="text" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">Account No:</label>
+                        <input type="number" min="0" class="form-control" required>
+                      </div>
+                    </div>
+                  </div>
                   <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                   <div class="clearfix"></div>
                 </form>
@@ -220,6 +256,30 @@
         $sidebar_responsive = $('body > .navbar-collapse');
 
         window_width = $(window).width();
+        
+
+        $wallet = $('#trcWallet');
+        $usdtOption = $('#usdt');
+        $nairaOption = $('#naira');
+        $nairaBankAccount = $('#bankAccount');
+
+        $wallet.show();
+        $nairaBankAccount.hide();
+        
+
+
+        $usdtOption.click(function(){
+          $usdtOption.prop('checked',true);
+          $nairaOption.prop('checked',false);
+          $wallet.show(300);
+          $nairaBankAccount.hide();
+        })
+        $nairaOption.click(function(){
+          $nairaOption.prop('checked',true);
+          $usdtOption.prop('checked',false);
+          $wallet.hide(100);
+          $nairaBankAccount.show(300);
+        })
 
         $('.fixed-plugin a').click(function(event) {
           // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
@@ -365,7 +425,6 @@
           setTimeout(function() {
             clearInterval(simulateWindowResize);
           }, 1000);
-
         });
       });
     });
