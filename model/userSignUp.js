@@ -15,6 +15,21 @@ const userSignUpSchema = new mongoose.Schema(
         },
         email : {type:String,required:true, unique:true ,lowercase:true},
         password: {type: String, required:true,minlength:8},
+        status: {
+            type: String,
+            enum: ['Pending', 'Active'],
+            default:'Pending'
+        },
+        confirmationCode:{
+            type: String,
+            unique: true
+        },
+        roles: [
+            {
+                type:mongoose.Schema.Types.ObjectId,
+                ref: 'Role'
+            }
+        ]
     },
     {collection:'registration_data'},
     {timestamps:true}

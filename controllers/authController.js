@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 // Import JWT
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'asdasnnnL@#*@#@$NFOQANOKNAODAOapsa';
+// Set Up Roles in User Account Creation
+const User = userSignUp.user;
+const
 // Set Up Sign Up Controller
 // GET Sign Up Page
 const sign_up_get = (req,res) =>{
@@ -82,7 +85,11 @@ const login_post = async (req,res) =>{
             }
         )
     }
-
+    if(user.status != 'Active'){
+        return res.status(401).send({
+            message:"Pending Account. Please verify your Email!"
+        })
+    }
     if(await bcrypt.compare(password, user.password)){
         // The username, password combination is successful.
         try{
