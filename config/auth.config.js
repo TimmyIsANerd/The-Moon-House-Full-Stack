@@ -1,5 +1,5 @@
 module.exports = {
     secret : 'theMoonHouse-secret-key',
     user:'themoonhouse.crypto@gmail.com',
-    pass:'TheTitan1123',
+    pass:'themoonhouse@1123',
 };
