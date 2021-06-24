@@ -22,10 +22,13 @@
                                         <img src="/assets/img/nav-logo.png" class="logo" alt="">
                                     </div>
                                     <div class="input">    
-                                        <input type="text" class="form-control" name="firstName" placeholder="First Name" id="firstName">
-                                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" id="lastName">
+                                        <input type="text" class="form-control" name="firstName" placeholder="First Name" id="firstName" required>
+                                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" id="lastName" required>
+                                        <div id="fullname-error" style="color:red; font-size:12px;text-align:left;"></div>
                                         <input class="form-control" autocomplete="off" type="email" name="email" id="email" placeholder="Email" required>
-                                        <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required>
+                                        <div id="email-error" style="color:red; font-size:12px;text-align:left;"></div>
+                                        <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required minlength="8">
+                                        <div id="password-error" style="color:red; font-size:12px;text-align:left;"></div>
                                         <!-- <p>Already have an account? <a href="/user/login" class="text-bold">Login</a></p> -->
                                         <button type="submit" value="Submit Form" class="quote-btn btn">Sign Up</button>
                                     </div>
@@ -39,8 +42,10 @@
     </section>
     <script>
         const form = document.getElementById('reg-form');
-        form.addEventListener('submit',registerUser)
-
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+        const fullNameError = document.getElementById('fullname-error')
+        form.addEventListener('submit',registerUser);
         // 1. Send Data as JSON
         async function registerUser(e){
             e.preventDefault();
@@ -48,7 +53,6 @@
             const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-
             const result = await fetch('/api/signup', {
                 method : 'POST',
                 headers: {
@@ -61,13 +65,31 @@
                     password
                 })
             }).then((res) => res.json())
-                .then((data) => window.location.href = data.redirect)
+                .then((data)=>{
+                    if(data.error == 'Email is already registered'){
+                        console.log('Email Already in Use');
+                        emailError.textContent = data.error
+                    }
+                    if(data.error == 'Please Enter Full Name'){
+                        fullNameError.textContent = data.error
+                    }
+                    if(data.error == 'Password is less than 8 characters'){
+                        passwordError.textContent = data.error
+                    }
+                })
+                // .then((data) => window.location.href = data.redirect)
                 .catch((error) =>{
                     if(result.status === 'ok'){
+                        console.log('Submission to Database Successful');
+                        alert('Sign Up Successful')
+                        emailError.textContent = data.error
                     // Everything went fine
-                    } else {
+                    } 
+                    if(result.status === "error") {
                         // something went wrong
                         alert(result.error)
+                    } else {
+                        console.log(error)
                     }
                 })
         }

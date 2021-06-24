@@ -10,7 +10,6 @@ const activeLink = {
 if(activeNavLink == 'dashboard'){
   activeLink.dashboard = 'active'
 }
-
 if(activeNavLink == 'profile'){
   activeLink.profile = 'active'
 }
@@ -35,49 +34,50 @@ if(activeNavLink == 'history'){
 
         Tip 2: you can also add an image using data-image tag
     -->
+    <style>
+      .img-center{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
       <div class="logo">
-        <img src="/assets/img/nav-logo.png" class="img-fluid mx-auto" style="height:auto;width:35%" alt="">
-        <a href="/dashboard" class="simple-text logo-normal">
+        <img src="/assets/img/nav-logo.png" class="img-fluid img-center" style="height:auto;width:35%;" alt="">
+        <a href="/dashboard/<%= profileid._id %>" class="simple-text logo-normal">
           The Moon House
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item <%= activeLink.dashboard %> ">
-            <a class="nav-link" href="/dashboard">
+            <a class="nav-link" href="/dashboard/<%= profileid._id %>">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.profile %> ">
-            <a class="nav-link" href="/dashboard/profile">
+            <a class="nav-link" href="/dashboard/profile/<%= profileid._id  %> ">
               <i class="material-icons">person</i>
               <p>User Profile</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.security %> ">
-            <a class="nav-link" href="/dashboard/security">
+            <a class="nav-link" href="/dashboard/security/<%= profileid._id  %> ">
               <i class="material-icons">shield</i>
               <p>Security</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.notification %> ">
-            <a class="nav-link" href="/dashboard/notifications">
+            <a class="nav-link" href="/dashboard/notifications/<%= profileid._id  %> ">
               <i class="material-icons">notifications</i>
               <p>Notifications</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.history %> ">
-            <a class="nav-link" href="/dashboard/history">
+            <a class="nav-link" href="/dashboard/history/<%= profileid._id  %> ">
               <i class="material-icons">history</i>
               <p>history</p>
             </a>
           </li>
-          <!-- <li class="nav-item active-pro ">
-                <a class="nav-link" href="./upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li> -->
         </ul>
       </div>
     </div>
