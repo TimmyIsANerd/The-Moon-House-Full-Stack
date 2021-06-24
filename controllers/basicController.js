@@ -28,5 +28,5 @@ module.exports = {
     invest,
     contact_us,
     privacy_policy,
-    terms
+    terms,
 };

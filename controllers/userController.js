@@ -5,13 +5,21 @@ const investorPortfolio = require('../model/investorPortfolio');
 const investorPackageData = require('../model/investmentPackage');
 const userTransactionsData = require('../model/userTransactions');
 
+// Import jwt
+const jwt = require('jsonwebtoken');
+
+
 // User Dashboard GET
 const user_dashboard_get = async (req,res) =>{
-    const promise1 = userData.find().exec()
-    const promise2 = investorKyc.find().exec()
-    const promise3 = investorPortfolio.find().exec()
-    const promise4 = investorPackageData.find().exec()
-    const promise5 = userTransactionsData.find().exec()
+    
+    // Collect information based on profle ID
+    console.log(req.params.profileid)
+    const profileID = req.params.profileid;
+    const promise1 = userData.findById(profileID).exec()
+    const promise2 = investorKyc.findById(profileID).exec()
+    const promise3 = investorPortfolio.findById(profileID).exec()
+    const promise4 = investorPackageData.findById(profileID).exec()
+    const promise5 = userTransactionsData.findById(profileID).exec()
     Promise.all([promise1,promise2,promise3,promise4,promise5])
         .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult,userTransactionResult])=>{
             res.render(
@@ -23,7 +31,8 @@ const user_dashboard_get = async (req,res) =>{
                     investorKyc : investorKycResult,
                     investorPortfolio: investorPortfolioResult,
                     investorPackageData: investorPackageDataResult,
-                    usertransactions:userTransactionResult
+                    usertransactions:userTransactionResult,
+                    profileid:profileID
                 }
             )
         })
@@ -87,6 +96,7 @@ const user_dashboard_editUserInformation = (req,res) =>{
 const user_dashboard_fund_post = (req,res) =>{
     console.log('post request')
 }
+
 
 module.exports = {
     user_dashboard_get,
