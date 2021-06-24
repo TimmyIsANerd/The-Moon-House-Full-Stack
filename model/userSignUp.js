@@ -20,6 +20,11 @@ const userSignUpSchema = new mongoose.Schema(
             enum: ['Pending', 'Active'],
             default:'Pending'
         },
+        userType:{
+            type:String,
+            enum:['student','admin','investor'],
+            default:'investor'
+        },
         confirmationCode:{
             type: String,
             unique: true
@@ -31,7 +36,7 @@ const userSignUpSchema = new mongoose.Schema(
             }
         ]
     },
-    {collection:'registration_data'},
+    {collection:'user_data_signup'},
     {timestamps:true}
 )
 
