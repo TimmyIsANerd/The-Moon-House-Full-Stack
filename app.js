@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const cookieParser = require('cookie-parser');
 //Create instance of express app
 const app = express();
 
@@ -36,6 +36,8 @@ app.use(morgan('dev'));
 app.use(express.static('public'));
 // Middleware to decode incoming body
 app.use(bodyParser.json());
+// Cookie Parser
+app.use(cookieParser())
 
 // Use Express Routes
 app.use(basicRoutes);
