@@ -4,6 +4,10 @@ const investorKyc = require('../model/investor_kyc');
 const investorPortfolio = require('../model/investorPortfolio');
 const investorPackageData = require('../model/investmentPackage');
 const userTransactionsData = require('../model/userTransactions');
+
+// Import User Notification Models
+const userNotificaitons = require('../model/userNotifications');
+const userNotification = require('../model/userNotifications');
 // Admin Controller
  
 // Dashboard GET
@@ -63,6 +67,23 @@ const admin_dashboard_editUserInformation = (req,res) =>{
 const admin_dashboard_createUserPortfolio = (req,res) =>{
     console.log('post request')
 }
+// Send Notification GET
+const send_notification_get = (req,res) =>{
+    res.render('admin/notificaton');
+}
+
+// Send Notification POST
+const send_notification_post = (req,res) =>{
+    const createNewNotification = new userNotification(req.body);
+
+    createNewNotification.save()
+        .then((results)=>{
+            res.redirect('/dashboard')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+}
 
 module.exports = {
     admin_signup_get,
@@ -73,5 +94,7 @@ module.exports = {
     admin_dashboard_create_user,
     admin_dashboard_delete_user,
     admin_dashboard_editUserInformation,
-    admin_dashboard_createUserPortfolio
+    admin_dashboard_createUserPortfolio,
+    send_notification_get,
+    send_notification_post
 }
