@@ -84,7 +84,7 @@ const sign_up_post = async (req,res)=>{
             // Use nested try/catch to send confirmation email
             try{
                 // Call the sendEmail Function in the signup method
-                newUser.save((err, user) =>{
+                newUser.save((err, newUser) =>{
                     if(err) {
                         res.status(500)
                         return;
