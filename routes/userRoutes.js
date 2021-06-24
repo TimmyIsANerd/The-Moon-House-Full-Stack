@@ -31,7 +31,7 @@ router.get('/dashboard',(req,res)=>{
     res.redirect('/dashboard/:profileid');
 })
 router.get('/dashboard/profile',(req,res)=>{
-    res.redirect('/dashboard/profile');
+    res.redirect('/dashboard/profile/:profileid');
 })
 router.get('/dashboard/security',(req,res)=>{
     res.redirect('/dashboard/security/:profileid')

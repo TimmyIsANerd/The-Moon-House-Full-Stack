@@ -24,4 +24,8 @@ router.post('/dashboard/edituserkycData/:id',adminController.admin_dashboard_edi
 // Admin Create User Portfolio
 router.post('/createuserportfiolio/:id',adminController.admin_dashboard_createUserPortfolio);
 
+// User Notification
+router.get('/sendnotification',adminController.send_notification_get);
+router.post('/sendnotification',adminController.send_notification_post);
+
 module.exports = router;

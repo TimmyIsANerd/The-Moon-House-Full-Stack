@@ -34,4 +34,11 @@ router.post('/api/signup',authController.sign_up_post);
 // Sign Up Succesful GET Request
 router.get('/user/signup_success',authController.sign_up_success_get);
 
+// User Email Confirmation Route GET Request
+router.get('/api/auth/:confirmationCode',authController.verifyUser);
+
+
+// Unverified Account attempted login Route
+router.get('/error/unverifiedaccount',authController.unverifieduseraccount);
+
 module.exports = router;
