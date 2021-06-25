@@ -17,7 +17,6 @@ router.get('/user/login',authController.login_get);
 router.post('/user/login',authController.login_post);
 // Login GET Request
 router.get('/user/logout',authController.logout_get);
-module.exports = router;
 
 
 // Change Password GET Request
