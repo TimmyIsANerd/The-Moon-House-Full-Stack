@@ -10,14 +10,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // Creating JWT Secret
-const JWT_SECRET = function createJWTToken(){
-    const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let JWT_SECRET = '';
-    for (let i = 0; i < 25; i++) {
-        JWT_SECRET += characters[Math.floor(Math.random() * characters.length)];
-    }
-    return JWT_SECRET;
-}
+const JWT_SECRET = 'the-moon-house-secret';
 // Set Up Sign Up Controller
 // GET Sign Up Page
 const sign_up_get = (req,res) =>{
@@ -63,7 +56,7 @@ const sign_up_post = async (req,res)=>{
             password,
             status:'Active',
             userType:'investor',
-            confirmationCode:confirmationToken
+            confirmationCode:confirmationToken,
         })
         console.log('User Created Successfully', newUser)
         // Use nested try/catch to create token
@@ -73,14 +66,17 @@ const sign_up_post = async (req,res)=>{
             const createToken = (id) =>{
                 return jwt.sign(
                     { id },
-                    JWT_SECRET(),
+                    JWT_SECRET,
                     {expiresIn:maxAge}
                 );
             }
             // Create Cookie
             const token = await createToken(newUser._id);
             res.cookie('jwt', token, {httpOnly:true, maxAge : maxAge * 1000})
-            return res.json(newUser._id).status(201);
+            return res.json({
+                user:newUser._id,
+                status:'ok',
+            }).status(201);
             // Use nested try/catch to send confirmation email
             try{
                 // Call the sendEmail Function in the signup method
@@ -170,16 +166,15 @@ const login_get = (req,res) =>{
     res.render('./user/userLogin', {title : 'User Login'});
 }
 const login_post = async (req,res) =>{
-
     // Store the incoming body in deconstructed object
     const { email, password } = req.body
-    const user = await userSignUp.findOne({ email })
+    const user = await userSignUp.findOne({ email });
     console.log(req.body)
     if(!user){
         return res.json(
             {
                 status:'error',
-                error:'Invalid Username/Password'
+                error:'Invalid Email/Password'
             }
         )
     }
@@ -197,33 +192,37 @@ const login_post = async (req,res) =>{
     if(await bcrypt.compare(password, user.password)){
         // The username, password combination is successful.
         try{
-            const token = jwt.sign({
-                id:user._id,
-                email:user.email
-            },JWT_SECRET);
-            return res.json(
-                {
-                    status:'ok',
-                    data:token,
-                    // redirect:`/dashboard/${user._id}`
-                }
-            )
-            console.log('Got the Token')
-        } catch(error){
+            // Create Token
+            const maxAge = 3 * 24 * 60 * 60;
+            const createToken = (id) =>{
+                return jwt.sign(
+                    { id },
+                    JWT_SECRET,
+                    {expiresIn:maxAge}
+                );
+            }
+            // Create Cookie
+            const token = await createToken(user._id);
+            res.cookie('jwt', token, {httpOnly:true, maxAge : maxAge * 1000})
+            return res.status(200).json({
+                status:'ok',
+                user:user._id
+            })
+        }catch(error){
             if(error){
-                return res.json({ status: 'error', error: 'Invalid Username/Password'})
-                throw error;
+                return res.status(400).json({ status: 'error', error: 'Invalid Email/Password'})
             }
         }
     } else {
-        return res.json({ status: 'error', error: 'Invalid Username/Password'});
+        return res.json({ status: 'error', error: 'Invalid Email/Password'});
     }
     
 
 };
 
 const logout_get = (req,res) =>{
-
+    res.cookie('jwt','',{httpOnly:true,maxAge:1});
+    res.redirect('/user/login');
 }
 
 // Unverifed Account Attempting Login
