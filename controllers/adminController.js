@@ -7,7 +7,6 @@ const userTransactionsData = require('../model/userTransactions');
 
 // Import User Notification Models
 const userNotificaitons = require('../model/userNotifications');
-const userNotification = require('../model/userNotifications');
 // Admin Controller
  
 // Dashboard GET
@@ -74,11 +73,13 @@ const send_notification_get = (req,res) =>{
 
 // Send Notification POST
 const send_notification_post = (req,res) =>{
-    const createNewNotification = new userNotification(req.body);
+    const createNewNotification = userNotification.create({
+
+    });
 
     createNewNotification.save()
         .then((results)=>{
-            res.redirect('/dashboard')
+            res.redirect('/dashboard/notifications')
         })
         .catch((err)=>{
             console.log(err)
