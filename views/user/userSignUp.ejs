@@ -10,7 +10,7 @@
                     <div class="welcome-col">
                         <h3>Hi Welcome To <span>The Moon House</span></h3>
                         <p>We Are The Perfect Hub For Crypto Education & Growth.</p>
-                        <a href="/user/login" class="quote-btn btn">Already an Investor? Sign In</a>
+                        <a href="/invest/login" class="quote-btn btn">Already an Investor? Sign In</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 mx-auto">
@@ -76,8 +76,12 @@
                     if(data.error == 'Password is less than 8 characters'){
                         passwordError.textContent = data.error
                     }
+                    console.log(data.user)
+                    if(data.user){
+                        location.assign('/dashboard')
+                    }
                 })
-                // .then((data) => window.location.href = data.redirect)
+                // .then((data) => 
                 .catch((error) =>{
                     if(result.status === 'ok'){
                         console.log('Submission to Database Successful');

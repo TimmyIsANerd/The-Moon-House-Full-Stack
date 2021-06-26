@@ -41,13 +41,13 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Adefeyitimi</label>
+                        <label class="bmd-label-floating"><%= user.firstName %> </label>
                         <input type="text" class="form-control" disabled="">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Adeyeloja</label>
+                        <label class="bmd-label-floating"><%= user.lastName %></label>
                         <input type="text" class="form-control" disabled="">
                       </div>
                     </div>
@@ -55,14 +55,14 @@
                   <div class="row">
                     <div class="col-md-5">
                       <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">adefeyitimi@gmail.com</label>
+                        <label class="bmd-label-floating"><%= user.email %> </label>
                         <input type="text" class="form-control" disabled="">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">+2348054372445</label>
-                        <input type="text" class="form-control" disabled="">
+                        <label class="bmd-label-floating">Phone Number</label>
+                        <input type="text" class="form-control">
                       </div>
                     </div>
                     <!-- <div class="col-md-4">
@@ -239,8 +239,6 @@
           </div> -->
         </div>
       </div>
-
-
     </div>
       
 <%- include('../partials/dashboard/scripts.ejs') %> 

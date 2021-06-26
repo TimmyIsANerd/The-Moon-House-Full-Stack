@@ -43,39 +43,39 @@ if(activeNavLink == 'history'){
     </style>
       <div class="logo">
         <img src="/assets/img/nav-logo.png" class="img-fluid img-center" style="height:auto;width:35%;" alt="">
-        <a href="/dashboard/<%= profileid._id %>" class="simple-text logo-normal">
+        <a href="/dashboard" class="simple-text logo-normal">
           The Moon House
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item <%= activeLink.dashboard %> ">
-            <a class="nav-link" href="/dashboard/<%= profileid._id %>">
+            <a class="nav-link" href="/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.profile %> ">
-            <a class="nav-link" href="/dashboard/profile/<%= profileid._id  %> ">
+            <a class="nav-link" href="/dashboard/profile">
               <i class="material-icons">person</i>
               <p>User Profile</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.security %> ">
-            <a class="nav-link" href="/dashboard/security/<%= profileid._id  %> ">
+            <a class="nav-link" href="/dashboard/security">
               <i class="material-icons">shield</i>
               <p>Security</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.notification %> ">
-            <a class="nav-link" href="/dashboard/notifications/<%= profileid._id  %> ">
+            <a class="nav-link" href="/dashboard/notifications">
               <i class="material-icons">notifications</i>
               <p>Notifications</p>
             </a>
           </li>
           <li class="nav-item <%= activeLink.history %> ">
-            <a class="nav-link" href="/dashboard/history/<%= profileid._id  %> ">
-              <i class="material-icons">history</i>
-              <p>history</p>
+            <a class="nav-link" href="/user/logout">
+              <i class="material-icons">logout</i>
+              <p>Logout</p>
             </a>
           </li>
         </ul>
