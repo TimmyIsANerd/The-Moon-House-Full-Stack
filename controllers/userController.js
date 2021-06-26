@@ -1,17 +1,18 @@
+// Import JWT
+const jwt = require('jsonwebtoken');
 // Import Models
 const userData = require('../model/userSignUp');
 const investorKyc = require('../model/investor_kyc');
 const investorPortfolio = require('../model/investorPortfolio');
 const investorPackageData = require('../model/investmentPackage');
 const userTransactionsData = require('../model/userTransactions');
-
-// Import jwt
-const jwt = require('jsonwebtoken');
-
+const userNotifications = require('../model/userNotifications')
 
 // User Dashboard GET
 const user_dashboard_get = async (req,res) =>{
-    
+
+
+    // Check if Cookie is not compromised
     // Collect information based on profle ID
     console.log(req.params.profileid)
     const profileID = req.params.profileid;

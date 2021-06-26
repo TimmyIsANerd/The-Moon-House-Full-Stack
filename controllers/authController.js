@@ -1,4 +1,4 @@
-// Import Sign Up Model
+// Import Required Model
 const userSignUp = require('../model/userSignUp');
 const Role = require('../model/role');
 // Import nodemailer auth config
@@ -222,7 +222,7 @@ const login_post = async (req,res) =>{
 
 const logout_get = (req,res) =>{
     res.cookie('jwt','',{httpOnly:true,maxAge:1});
-    res.redirect('/user/login');
+    res.redirect('/invest/login');
 }
 
 // Unverifed Account Attempting Login

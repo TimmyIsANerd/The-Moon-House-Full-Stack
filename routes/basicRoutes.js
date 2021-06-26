@@ -2,9 +2,12 @@
 const express = require('express');
 const router = express.Router();
 const basicController = require('../controllers/basicController');
+// Import checkUser Middleware
+const { checkUser } = require('../middleware/authMiddleware');
 
 // Set up Basic Routes
 // Home Route
+router.get('*', checkUser)
 router.get('/',basicController.home);
 router.get('/home',(req,res)=>{
     res.redirect('/');

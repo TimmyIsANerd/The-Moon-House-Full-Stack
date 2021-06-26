@@ -14,7 +14,7 @@ const requireAuth = (req,res,next) =>{
         jwt.verify(token,JWT_SECRET,(err,decodedToken)=>{
             if(err){
                 console.log(err.message)
-                res.redirect('/user/login');
+                res.redirect('/invest/login');
             } else {
                 console.log(decodedToken);
                 next();
@@ -22,7 +22,7 @@ const requireAuth = (req,res,next) =>{
         })
     } else {
         // If cookie does not exist, redirect user to login
-        res.redirect('/user/login');
+        res.redirect('/invest/login');
     }
 }
 
