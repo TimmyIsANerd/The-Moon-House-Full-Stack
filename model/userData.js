@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 // const { isEmail } = require('validator');
 
 // Create User Sign Up Schema
-const userSignUpSchema = new mongoose.Schema(
-    {
+const userDataSchema = new mongoose.Schema(
+    {   
+        // User Sign Up
         firstName: {
             type:String,
             required:true
@@ -29,17 +30,31 @@ const userSignUpSchema = new mongoose.Schema(
             type: String,
             unique: true
         },
-        roles: [
-            {
-                type:mongoose.Schema.Types.ObjectId,
-                ref: 'Role'
-            }
-        ]
+        // Account Investment Data
+        investorAccount:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'investorAccount'
+        },
+        // User Contact Information
+        userContactInformation:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'userContactInformation'
+        },
+        // Next Of Kin Information
+        nextOfKinInformation:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'nextOfKinInformation'
+        },
+        // Withdrawal Information
+        withDrawalInfo:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'withDrawalInfo'
+        }
     },
     {collection:'user_data_signup'},
     {timestamps:true}
 )
 
 // Export Schema
-const userSignUp = mongoose.model('userSignUpSchema',userSignUpSchema);
-module.exports = userSignUp;
+const userData = mongoose.model('userDataSchema',userDataSchema);
+module.exports = userData;

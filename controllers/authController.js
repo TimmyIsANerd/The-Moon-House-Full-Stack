@@ -1,5 +1,5 @@
 // Import Required Model
-const userSignUp = require('../model/userSignUp');
+const userSignUp = require('../model/userData');
 const Role = require('../model/role');
 // Import nodemailer auth config
 const config = require('../config/auth.config');
