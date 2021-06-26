@@ -1,26 +1,18 @@
 // Import JWT
 const jwt = require('jsonwebtoken');
 // Import Models
-const userData = require('../model/userSignUp');
-const investorKyc = require('../model/investor_kyc');
-const investorPortfolio = require('../model/investorPortfolio');
-const investorPackageData = require('../model/investmentPackage');
-const userTransactionsData = require('../model/userTransactions');
-const userNotifications = require('../model/userNotifications')
+const userData = require('../model/userData');
 
 // User Dashboard GET
 const user_dashboard_get = async (req,res) =>{
 
-
     // Check if Cookie is not compromised
     // Collect information based on profle ID
-    console.log(req.params.profileid)
-    const profileID = req.params.profileid;
-    const promise1 = userData.findById(profileID).exec()
-    const promise2 = investorKyc.findById(profileID).exec()
-    const promise3 = investorPortfolio.findById(profileID).exec()
-    const promise4 = investorPackageData.findById(profileID).exec()
-    const promise5 = userTransactionsData.findById(profileID).exec()
+    const promise1 = userData.find().exec()
+    const promise2 = investorKyc.find().exec()
+    const promise3 = investorPortfolio.find().exec()
+    const promise4 = investorPackageData.find().exec()
+    const promise5 = userTransactionsData.find().exec()
     Promise.all([promise1,promise2,promise3,promise4,promise5])
         .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult,userTransactionResult])=>{
             res.render(
