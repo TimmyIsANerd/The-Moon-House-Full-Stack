@@ -1,6 +1,6 @@
 // Import Required Model
-const userSignUp = require('../model/userData');
-const Role = require('../model/role');
+const { userData,investorAccount,nextOfKinInformation,userContactInformation,withdrawalInfo } = require('../model/userData');
+const userSignUp = userData;
 // Import nodemailer auth config
 const config = require('../config/auth.config');
 const nodemailer = require('../config/nodemailer.config');
@@ -28,7 +28,20 @@ const sign_up_post = async (req,res)=>{
     for (let i = 0;i < 25; i++){
         confirmationToken += characters[Math.floor(Math.random() * characters.length )];
     }
+    // Collect body into destructured object
     const { firstName ,lastName ,email, password: plainTextPassword } = req.body;
+    // Specifications for Account Balance
+    // const date = new Date();
+    // const currentDate = date.getDate();
+    // const investmentBalance = {
+    //     accountBalance:0,
+    //     deposits:{
+    //         amount:0,
+    //     },
+    //     transactionDate:currentDate,
+    //     transactionType:['Bank Deposit','USDT Wallet']
+    // }
+    // const {accountBalance,deposits,transactionDate,transactionType} = investmentBalance;
     // Hashing Password using bcrypt library
     // Full Name Validation
     if(!firstName || !lastName){
@@ -49,6 +62,8 @@ const sign_up_post = async (req,res)=>{
     // Use Try/Catch to Create User in the Database
     // Create a New unverified user in the system
     try{
+        var date = new Date().toLocaleDateString()
+        var currentDate = date
         const newUser = await userSignUp.create({
             firstName,
             lastName,
@@ -57,6 +72,28 @@ const sign_up_post = async (req,res)=>{
             status:'Active',
             userType:'investor',
             confirmationCode:confirmationToken,
+            investorAccount:{
+                accountBalance:0,
+                deposits:{
+                    amount:0,
+                    transactionDate: currentDate,
+                    transactionType:'',
+                },
+                ROI:{
+                    amount:0,
+                    transactionDate:currentDate,
+                    investmentPackage:''
+                },
+                Invested:{
+                    amount:0,
+                    transactionDate:currentDate,
+                },
+                Referal:{
+                    amount:0,
+                    transactionDate:currentDate,
+                    payoutOption:''
+                },
+            }
         })
         console.log('User Created Successfully', newUser)
         // Use nested try/catch to create token
@@ -88,7 +125,6 @@ const sign_up_post = async (req,res)=>{
                     return res.json({
                         status: "ok",
                     });
-        
         
                     nodemailer.sendConfirmationEmail(
                         newUser.firstName,

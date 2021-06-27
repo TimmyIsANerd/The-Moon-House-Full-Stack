@@ -26,36 +26,6 @@
       <%- include('../partials/dashboard/nav.ejs') %> 
       <!-- Navbar -->   
       <!-- Body --> 
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="myModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-mdb-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
       <div class="container" style="margin-top:6em;">
         <div class="row">
           <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
@@ -65,7 +35,7 @@
                   <i class="material-icons">account_balance</i>
                 </div>
                 <p class="card-category">Available Balance</p>
-                <h3 class="card-title">$3,500
+                <h3 class="card-title">$<span><%= user.investorAccount[0].accountBalance %> </span>
                   <!-- <small>GB</small> -->
                 </h3>
               </div>
@@ -84,7 +54,7 @@
                   <i class="material-icons">payments</i>
                 </div>
                 <p class="card-category">Paid ROI</p>
-                <h3 class="card-title">$755</h3>
+                <h3 class="card-title">$<span><%= user.investorAccount[0].ROI.amount %></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -101,7 +71,7 @@
                   <i class="material-icons">paid</i>
                 </div>
                 <p class="card-category">Invested</p>
-                <h3 class="card-title">$200</h3>
+                <h3 class="card-title">$<span><%= user.investorAccount[0].Invested.amount %></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -118,7 +88,7 @@
                   <i class="material-icons">group</i>
                 </div>
                 <p class="card-category">Referal Earnings</p>
-                <h3 class="card-title">$0</h3>
+                <h3 class="card-title">$<span><%= user.investorAccount[0].Referal.amount %></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -132,13 +102,13 @@
         <style>
         /* Custom CSS */                
         .invest-choice-box{
-          cursor: pointer;
+          /* cursor: pointer; */
           width:100%;
           border-radius: 10px;
           background: #333;
           transition:0.5s;
           text-align: center;
-          box-shadow: 0px 1px 30px -5px #333;
+          box-shadow: 0px 1px 30px -5px #000;
         }
         .invest-choice-box h4{
           font-weight: bold;
@@ -169,10 +139,10 @@
                 <h3 class="card-title">Active Services</h3>
                 <p class="card-category">All our value added packages in one place.</p>
               </div>
-              <div class="row" id="packages_slot">
-                <div class="col-md-12 text-center">
+              <div class="row mt-2" id="packages_slot">
+                <!-- <div class="col-md-12 text-center">
                   <h3 class="text-white">Investment Packages</h3>
-                </div>
+                </div> -->
                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">   
                   <div class="card-body">
                     <div class="invest-choice-box" style="min-height:350.783px;">
@@ -207,22 +177,52 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12 mx-auto">
+          <div class="col-lg-3 col-md-12 mx-auto">
             <div class="card">
-              <div class="card-header card-header-warning">
+              <div class="card-header card-header-info">
                 <h4>Quick Actions</h4>
               </div>
               <div class="card-body text-center">
-                <button class="btn btn-warning text-center btn-block my-3" type="button" data-mdb-toggle="modal" data-mdb-target="#myModal">Quick Deposit</button>
-                <button class="btn btn-warning text-center btn-block my-3" type="button">Notifications</button>
-                <button class="btn btn-warning text-center btn-block my-3" type="button">ROI Calculator</button>
-                <button class="btn btn-warning text-center btn-block my-3" type="button">Reports</button>
-                <button class="btn btn-warning text-center btn-block my-3" type="button">Support</button>
+                <button class="btn btn-info text-center btn-block my-3" type="button" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Quick Deposit</button>
+                <button class="btn btn-info text-center btn-block my-3" type="button">Notifications</button>
+                <button class="btn btn-info text-center btn-block my-3" type="button">ROI Calculator</button>
+                <button class="btn btn-info text-center btn-block my-3" type="button">Reports</button>
+                <button class="btn btn-info text-center btn-block my-3" type="button">Support</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+        <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-mdb-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
       <!-- Body -->
     </div>
       

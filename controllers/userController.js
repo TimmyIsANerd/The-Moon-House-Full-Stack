@@ -1,37 +1,16 @@
 // Import JWT
 const jwt = require('jsonwebtoken');
 // Import Models
-const userData = require('../model/userData');
-
+const { userData,investorAccount,nextOfKinInformation,userContactInformation,withdrawalInfo } = require('../model/userData');
 // User Dashboard GET
 const user_dashboard_get = async (req,res) =>{
-
-    // Check if Cookie is not compromised
-    // Collect information based on profle ID
-    const promise1 = userData.find().exec()
-    const promise2 = investorKyc.find().exec()
-    const promise3 = investorPortfolio.find().exec()
-    const promise4 = investorPackageData.find().exec()
-    const promise5 = userTransactionsData.find().exec()
-    Promise.all([promise1,promise2,promise3,promise4,promise5])
-        .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult,userTransactionResult])=>{
-            res.render(
-                'user/dashboard',
-                {
-                    title:'User Dashboard',
-                    activeNavLink:'dashboard',
-                    userData : userDataResult,
-                    investorKyc : investorKycResult,
-                    investorPortfolio: investorPortfolioResult,
-                    investorPackageData: investorPackageDataResult,
-                    usertransactions:userTransactionResult,
-                    profileid:profileID
-                }
-            )
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+    res.render(
+        'user/dashboard',
+        {
+            title:'User Dashboard',
+            activeNavLink:'dashboard'
+        }
+    )
 }
 // User Dashboard Profile GET
 const user_dashboard_profile_get = (req,res) =>{
@@ -67,7 +46,7 @@ const user_dashboard_createUserPortfolio = (req,res) =>{
 
     createPortfolio.save()
         .then((results)=>{
-            res.redirect('/');
+            res.redirect('/dashboard/profile');
         })
         .catch((err)=>{
             console.log(err)

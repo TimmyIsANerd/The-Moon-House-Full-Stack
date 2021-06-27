@@ -83,6 +83,12 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">Postal Code</label>
+                        <input type="text" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">City</label>
                         <input type="text" class="form-control" required>
                       </div>
@@ -90,12 +96,6 @@
                     <div class="col-md-4">
                       <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">Country</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Postal Code</label>
                         <input type="text" class="form-control" required>
                       </div>
                     </div>
@@ -432,6 +432,15 @@
       md.initDashboardPageCharts();
 
     });
+  </script>
+  <script>
+    // API To Populate Select Form with Countries
+    const xhttp = new XMLHttpRequest();
+    const countriesSelect = document.querySelector('.countries');
+
+    let countries;
+    
+    
   </script>
 </body>
 

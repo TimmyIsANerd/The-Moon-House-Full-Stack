@@ -1,7 +1,9 @@
 // Import JWT
 const jwt = require('jsonwebtoken');
 // Import User Model
-const User = require('../model/userData');
+const { userData } = require('../model/userData');
+
+const User = userData;
 
 // JWT SECRET
 const JWT_SECRET = 'the-moon-house-secret';

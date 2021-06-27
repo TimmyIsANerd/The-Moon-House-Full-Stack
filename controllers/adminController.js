@@ -1,38 +1,15 @@
 // Import Models
-const userData = require('../model/userSignUp');
-const investorKyc = require('../model/investor_kyc');
-const investorPortfolio = require('../model/investorPortfolio');
-const investorPackageData = require('../model/investmentPackage');
-const userTransactionsData = require('../model/userTransactions');
-
-// Import User Notification Models
-const userNotificaitons = require('../model/userNotifications');
+const userData = require('../model/userData');
 // Admin Controller
  
 // Dashboard GET
 const admin_dashboard_get = (req,res) =>{
-    const promise1 = userData.find().exec()
-    const promise2 = investorKyc.find().exec()
-    const promise3 = investorPortfolio.find().exec()
-    const promise4 = investorPackageData.find().exec()
-    const promise5 = userTransactionsData.find().exec()
-    Promise.all([promise1,promise2,promise3,promise4,promise5])
-    .then(([userDataResult,investorKycResult,investorPortfolioResult,investorPackageDataResult,userTransactionResult])=>{
-        res.render(
-            'admin/dashboard',
-            {
-                title:'Admin Dashboard',
-                userData : userDataResult,
-                investorKyc : investorKycResult,
-                investorPortfolio: investorPortfolioResult,
-                investorPackageData: investorPackageDataResult,
-                usertransactions:userTransactionResult
-            }
-        )
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    res.render(
+        'admin/dashboard',
+        {
+            title:'Admin Dashboard'
+        }
+    )
 }
 // Sign Up Controller GET
 const admin_signup_get = (req,res) =>{
