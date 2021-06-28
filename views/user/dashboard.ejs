@@ -26,7 +26,7 @@
       <%- include('../partials/dashboard/nav.ejs') %> 
       <!-- Navbar -->   
       <!-- Body --> 
-      <div class="container" style="margin-top:6em;">
+      <div class="container" style="margin-top:6em;" id="main_dashboard">
         <div class="row">
           <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
             <div class="card card-stats">
@@ -42,7 +42,7 @@
               <div class="card-footer">
                 <div class="stats">
                   <i class="material-icons text-warning">payment</i>
-                  <a class="warning-link">Quick Withdraw</a>
+                  <a class="warning-link">Withdraw</a>
                 </div>
               </div>
             </div>
@@ -136,8 +136,8 @@
           <div class="col-lg-8 col-md-12">
             <div class="card">
               <div class="card-header card-header-warning">
-                <h3 class="card-title">Active Services</h3>
-                <p class="card-category">All our value added packages in one place.</p>
+                <h3 class="card-title">Available Services</h3>
+                <p class="card-category">All Investment packages in one place.</p>
               </div>
               <div class="row mt-2" id="packages_slot">
                 <!-- <div class="col-md-12 text-center">
@@ -149,7 +149,7 @@
                       <img src="/assets/img/service/2.jpg" class="img-fluid" alt="">
                       <div class="text">
                         <h4 class='text-center text-white mt-2' id="vip-package">VIP PACKAGE</h4>
-                        <p class="text-warning">15% <span class="text-bold">ROI Monthly</span> </p>
+                        <p class="text-warning">ROI : <span class="text-bold">15% Monthly/100% 6th Month</span> </p>
                         <p class="text-white">Min. Capital : <span class="text-warning">$100</span></p>
                         <p class="text-white">Duration: <span class="text-warning">6 Months</span></p>
                       </div>    
@@ -172,58 +172,84 @@
                     </div>
                   </div>
               </div>
-              <div class="row">
-                </div>
-              </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-12 mx-auto">
+        </div>
+        <div class="col-lg-3 col-md-3 mx-auto">
             <div class="card">
               <div class="card-header card-header-info">
                 <h4>Quick Actions</h4>
               </div>
               <div class="card-body text-center">
-                <button class="btn btn-info text-center btn-block my-3" type="button" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Quick Deposit</button>
-                <button class="btn btn-info text-center btn-block my-3" type="button">Notifications</button>
+                <button class="btn btn-info text-center btn-block my-3" type="button" id="quick_deposit">Quick Deposit</button>
+                <a href="/dashboard/notifications" class="btn btn-info text-center btn-block my-3" type="button">Notifications</a>
                 <button class="btn btn-info text-center btn-block my-3" type="button">ROI Calculator</button>
                 <button class="btn btn-info text-center btn-block my-3" type="button">Reports</button>
                 <button class="btn btn-info text-center btn-block my-3" type="button">Support</button>
               </div>
             </div>
           </div>
-        </div>
       </div>
-        <!-- Modal -->
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-mdb-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+      <!-- Body -->
+      <!-- Quick Deposit  -->
+      <style>
+        #deposit_tabs h4{
+          transition: 0.8s;
+        }
+        #deposit_tabs h4:hover{
+          color:#fff;
+          cursor:pointer;
+          font-style: underline;
+        }
+        .tab-active{
+          color:#fff;
+          transition: 0.8s;
+        }
+      </style>
+      
+      <!-- Quick Deposit  -->
+          </div>
+          <div class="container" id="dashboard_deposit" style="margin-top:6em;z-index:999;">
+            <div class="row">
+              
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+              <h3 class="text-white">Add Cash <i class="material-icons text-white">payment</i></h3>
+              <p class="text-white"><%= user.firstName %> Fund your account from this section</p>
+              <button class="btn btn-info text-center mt-5" id="back_to_dashboard">Back</button>
+              <div class="container mt-4" id="deposit_tabs">
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <h4 class="text-center tab-active" id="card_deposit_option">Card Deposit</h4>
+    
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <h4 class="text-center" id="usdt_deposit_option">USDT Deposit (TRC20 Wallet)</h4>
+                  </div>
+                </div>
+    
+                <div class="row" id="deposit_option">
+                  <div class="col-md-12 mt-5" id="atm_deposit">
+                    <div class="col-3 mx-auto">
+                      <form action="/user/deposit" id="atm_deposit_form">
+                        <div class="form-group bmd-form-group">
+                          <label for="deposit" class="bmd-label-floating">Amount ($)</label>
+                          <input type="number" name='deposit' id="deposit" class="form-control" min="0" value="" required>
+                          <button class="btn btn-info btn-block mt-3" type="submit" id="deposit_button">Deposit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-md-12 text-center mt-5" id="usdt_qr">
+                    <div class="col-4 mx-auto">
+                      <h5 class="text-white">Make your transfer to this wallet address, Scan QR Code</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
           </div>
         </div>
-      </div>
-      <!-- Modal -->
-      <!-- Body -->
     </div>
       
 <%- include('../partials/dashboard/scripts.ejs') %> 
@@ -394,6 +420,46 @@
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
 
+    });
+  </script>
+  <!-- Dashboard Structure -->
+  <script>
+    $(document).ready(function(){
+      $("#dashboard_deposit").hide();
+
+      // Open Deposit Section
+      $("#quick_deposit").click(function(){
+        $("#main_dashboard").fadeOut(500);
+        $("#dashboard_deposit").fadeIn(500);
+      })
+
+      // Back to Main Dashboard Button
+      $("#back_to_dashboard").click(function(){
+        $("#dashboard_deposit").fadeOut(500);
+        $("#main_dashboard").fadeIn(500);
+      });
+
+      // Deposit Option Toggle
+      $('#usdt_qr').hide();
+      $('#card_deposit_option').click(function(){
+        // Switch Active Tab Classes
+        $('#card_deposit_option').addClass('tab-active');
+        $('#usdt_deposit_option').removeClass('tab-active');
+
+        // Hide Crypto Deposit Option
+        $('#usdt_qr').hide(500);
+        $('#atm_deposit').show(500);
+      })
+
+      $('#usdt_deposit_option').click(function(){
+        // Switch Active Tab Classes
+        $('#usdt_deposit_option').addClass('tab-active');
+        $('#card_deposit_option').removeClass('tab-active');
+
+        // Hide Crypto Deposit Option
+        $('#atm_deposit').hide(500);
+        $('#usdt_qr').show(500);
+      })
     });
   </script>
 </body>
