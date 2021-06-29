@@ -28,6 +28,15 @@ const sign_up_post = async (req,res)=>{
     for (let i = 0;i < 25; i++){
         confirmationToken += characters[Math.floor(Math.random() * characters.length )];
     }
+    // Referal Code Generator
+    const referalCodeGen = () =>{
+        var codeCharacters = "abcdefgh01234"
+        let referalCode = '';
+        for (let i = 0; i < 10; i++){
+            referalCode += codeCharacters[Math.floor(Math.random() * codeCharacters.lenght )];
+        }
+        return referalCode;
+    }
     // Collect body into destructured object
     const { firstName ,lastName ,email, password: plainTextPassword } = req.body;
     // Specifications for Account Balance
@@ -71,27 +80,44 @@ const sign_up_post = async (req,res)=>{
             password,
             status:'Active',
             userType:'investor',
+            referalCode:confirmationToken,
             confirmationCode:confirmationToken,
             investorAccount:{
                 accountBalance:0,
                 deposits:{
-                    amount:0,
-                    transactionDate: currentDate,
-                    transactionType:'',
+                    depositEntry:[
+                        {
+                            amount:0,
+                            transactionDate: currentDate,
+                            transactionType:'',
+                        }
+                    ]
                 },
                 ROI:{
-                    amount:0,
-                    transactionDate:currentDate,
-                    investmentPackage:''
+                    accountBalance:0,
+                    ROIEntry:[
+                        {
+                            amount:0,
+                            transactionDate:currentDate,
+                            investmentPackage:''
+                        }
+                    ]
                 },
                 Invested:{
-                    amount:0,
-                    transactionDate:currentDate,
+                    accountBalance:0,
+                    investmentEntry:[
+                        {
+                            amount:0,
+                            transactionDate:currentDate,
+                        }
+                    ]
                 },
                 Referal:{
+                    accountBalance:0,
                     amount:0,
                     transactionDate:currentDate,
-                    payoutOption:''
+                    payoutOption:'',
+                    referals:[]
                 },
             }
         })
