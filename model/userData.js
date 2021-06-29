@@ -12,32 +12,53 @@ const investorAccountSchema = new mongoose.Schema(
         },
         // Deposits
         deposits:{
-            amount:{type:Number,default:0,min:0},
-            transactionDate:{type:String},
-            transactionType:{
-                type:String,
-                option:['Bank Deposit','USDT']
-            }
+            depositEntry:[
+                {
+                    amount:{type:Number,default:0,min:0},
+                    transactionDate:{type:String},
+                    transactionType:{
+                        type:String,
+                        option:['Bank Deposit','USDT']
+                    }
+                }
+            ]
         },
         // ROI
         ROI:{
-            amount:{type:Number,default:0,min:0},
-            transactionDate:{type:String},
-            investmentPackage:{
-                type:String,
-                option:['VIP','Exclusive']
-            }
+            accountBalance:0,
+            ROIEntry:[
+                {
+                    amount:{type:Number,default:0,min:0},
+                    transactionDate:{type:String},
+                    payOutDate:{type:String},
+                    investmentPackage:{
+                        type:String,
+                        option:['VIP','Exclusive']
+                    }
+                }
+            ]
         },
         // Invested
         Invested:{
-            amount:{type:Number,default:0,min:0},
-            transactionDate:{type:String}
+            accountBalance:0,
+            investmentEntry:[
+                {
+                    amount:{type:Number,default:0,min:0},
+                    transactionDate:{type:String},
+                    investmentPackage:{
+                        type:String,
+                        option:['VIP','Exclusive']
+                    }
+                }
+            ]
         },
         // Referal System
         Referal:{
+            accountBalance:0,
             amount:{type:Number,default:0,min:0},
             transactionDate:{type:String},
-            payoutOption:['Bank Deposit','USDT']
+            payoutOption:['Bank Deposit','USDT'],
+            referals:{type:Array}
         }
     },
     {timestamps:true}
@@ -45,25 +66,33 @@ const investorAccountSchema = new mongoose.Schema(
 // Next of Kin Information
 const nextOfKinInformationSchema = new mongoose.Schema(
     {
-        firstName:{
+        KinfirstName:{
             type:String,
             required:true
         },
-        lastName:{
+        KinlastName:{
             type:String,
             required:true
         },
-        email:{
+        Kinemail:{
             type:String,
             required:true
         },
-        phoneNumber:{
+        KinphoneNumber:{
             type:Number
         },        
-        address:[String],
-        PostalCode:[Number],
-        City:[String],
-        Country:[String]
+        Kinaddress:{
+            type:String
+        },
+        KinPostalCode:{
+            type:String
+        },
+        KinCity:{
+            type:String
+        },
+        KinCountry:{
+            type:String
+        }
     },
     {timestamps:true}
 )
@@ -84,7 +113,6 @@ const withdrawalInfoSchema = new mongoose.Schema(
     {
         pin:{
             type:Number,
-            required:true
         },
         withdrawalOption:{
             type:String,
@@ -97,7 +125,7 @@ const withdrawalInfoSchema = new mongoose.Schema(
         },
         BankInformation:{
             BankAccName:{type:String},
-            BankAccNo:{type:String},
+            BankAccNo:{type:Number},
             NameOfBank:{type:String}
         }
     },
@@ -131,6 +159,10 @@ const userDataSchema = new mongoose.Schema(
         confirmationCode:{
             type: String,
             unique: true
+        },
+        referalCode:{
+            type:String,
+            unique:true
         },
         // Account Investment Data
         investorAccount:[investorAccountSchema],
