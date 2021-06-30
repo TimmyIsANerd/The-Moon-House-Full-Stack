@@ -54,7 +54,7 @@
                   <i class="material-icons">payments</i>
                 </div>
                 <p class="card-category">Paid ROI</p>
-                <h3 class="card-title">$<span><%= user.investorAccount[0].ROI.amount %></h3>
+                <h3 class="card-title">$<span><%= user.investorAccount[0].ROI.accountBalance %></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -71,7 +71,7 @@
                   <i class="material-icons">paid</i>
                 </div>
                 <p class="card-category">Invested</p>
-                <h3 class="card-title">$<span><%= user.investorAccount[0].Invested.amount %></h3>
+                <h3 class="card-title">$<span><%= user.investorAccount[0].Invested.accountBalance %></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -88,7 +88,7 @@
                   <i class="material-icons">group</i>
                 </div>
                 <p class="card-category">Referal Earnings</p>
-                <h3 class="card-title">$<span><%= user.investorAccount[0].Referal.amount %></h3>
+                <h3 class="card-title">$<span><%= user.investorAccount[0].Referal.accountBalance %></h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -143,9 +143,9 @@
                 <!-- <div class="col-md-12 text-center">
                   <h3 class="text-white">Investment Packages</h3>
                 </div> -->
-                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">   
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">   
                   <div class="card-body">
-                    <div class="invest-choice-box" style="min-height:350.783px;">
+                    <div class="invest-choice-box" style="min-height:306.183px;">
                       <img src="/assets/img/service/2.jpg" class="img-fluid" alt="">
                       <div class="text">
                         <h4 class='text-center text-white mt-2' id="vip-package">VIP PACKAGE</h4>
@@ -153,11 +153,11 @@
                         <p class="text-white">Min. Capital : <span class="text-warning">$100</span></p>
                         <p class="text-white">Duration: <span class="text-warning">6 Months</span></p>
                       </div>    
-                      <button type="button" class="text-center btn btn-warning btn-sm" data-mdb-ripple-color="dark" style="margin-top:30px;"><i class="material-icons">attach_money</i> Invest Now</button>
+                      <button type="button" class="text-center btn btn-warning btn-sm" data-mdb-ripple-color="dark" id="vip_package_option"><i class="material-icons">attach_money</i> Invest Now</button>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">   
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">   
                   <div class="card-body">
                     <div class="invest-choice-box">
                       <img src="/assets/img/service/3.jpg" class="img-fluid" alt="">
@@ -168,7 +168,7 @@
                         <p class="text-white">Min. Capital : <span class="text-warning">$1000</span></p>
                         <p class="text-white">Duration: <span class="text-warning">6 Months</span></p>
                       </div>    
-                      <button type="button" class="text-center my-2 btn btn-warning btn-sm" data-mdb-ripple-color="dark"> <i class="material-icons">attach_money</i> Invest Now</button>
+                      <button type="button" class="text-center my-2 btn btn-warning btn-sm" data-mdb-ripple-color="dark" id="exclusive_package_option"> <i class="material-icons">attach_money</i> Invest Now</button>
                     </div>
                   </div>
               </div>
@@ -183,7 +183,7 @@
               <div class="card-body text-center">
                 <button class="btn btn-info text-center btn-block my-3" type="button" id="quick_deposit">Quick Deposit</button>
                 <a href="/dashboard/notifications" class="btn btn-info text-center btn-block my-3" type="button">Notifications</a>
-                <button class="btn btn-info text-center btn-block my-3" type="button">ROI Calculator</button>
+                <button class="btn btn-info text-center btn-block my-3" type="button" id="roi_calculator_btn">ROI Calculator</button>
                 <button class="btn btn-info text-center btn-block my-3" type="button">Reports</button>
                 <button class="btn btn-info text-center btn-block my-3" type="button">Support</button>
               </div>
@@ -215,21 +215,24 @@
             <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
               <h3 class="text-white">Add Cash <i class="material-icons text-white">payment</i></h3>
               <p class="text-white"><%= user.firstName %> Fund your account from this section</p>
-              <button class="btn btn-info text-center mt-5" id="back_to_dashboard">Back</button>
+              <button type="button" class="btn btn-info btn-floating" id="back_to_dashboard">
+                <i class="material-icons">
+                  arrow_back
+                  </i>
+              </button>
               <div class="container mt-4" id="deposit_tabs">
                 <div class="row">
-                  <div class="col-md-6 col-sm-6 col-xs-6">
+                  <!-- <div class="col-md-6 col-sm-6 col-xs-6">
                     <h4 class="text-center tab-active" id="card_deposit_option">Card Deposit</h4>
-    
-                  </div>
-                  <div class="col-md-6 col-sm-6 col-xs-6">
-                    <h4 class="text-center" id="usdt_deposit_option">USDT Deposit (TRC20 Wallet)</h4>
+                  </div> -->
+                  <div class="col-md-6 mx-auto col-sm-6 col-xs-6">
+                    <h3 class="text-center tab-active" id="usdt_deposit_option text-bold">USDT Deposit (TRC20 Wallet)</h3>
                   </div>
                 </div>
     
                 <div class="row" id="deposit_option">
-                  <div class="col-md-12 mt-5" id="atm_deposit">
-                    <div class="col-3 mx-auto">
+                  <!-- <div class="col-md-12 mt-5" id="atm_deposit">
+                    <div class="col-md-3 mx-auto">
                       <form action="/user/deposit" id="atm_deposit_form">
                         <div class="form-group bmd-form-group">
                           <label for="deposit" class="bmd-label-floating">Amount ($)</label>
@@ -238,9 +241,9 @@
                         </div>
                       </form>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="col-md-12 text-center mt-5" id="usdt_qr">
-                    <div class="col-4 mx-auto">
+                    <div class="col-md-3 mx-auto">
                       <h5 class="text-white">Make your transfer to this wallet address, Scan QR Code</h5>
                     </div>
                   </div>
@@ -249,6 +252,114 @@
           </div>
           </div>
           </div>
+          <!-- Quick Deposit -->
+          <!-- ROI Calculator -->
+          <div class="container" id="roi_calculator_section" style="margin-top:6em;">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <h3 class="text-white">ROI Calculator <i class="material-icons text-white">calculator</i></h3>
+                <button type="button" class="btn btn-info btn-floating" id="back_to_dashboard_cal">
+                  <i class="material-icons">
+                    arrow_back
+                    </i>
+                </button>
+                <!-- <div class="row mt-5">
+                  <div class="col-md-6 mx-auto">
+                    <h3 class="text-center text-white mb-3">Choose Your Prefered Investment Package</h3>
+                    <div id="optionsbox">
+                      <div class="investmentOptionBox bg-primary text-white">VIP Package</div>
+                      <div class="investmentOptionBox bg-primary text-white">Exclusive Package</div>
+                    </div>
+                  </div>
+                </div> -->
+                <form id="dashboard_roi_calculator" class="mt-3">
+                  <div class="row">
+                    <div class="col-md-3 mx-auto">
+                      <h4 class="text-white text-center">Input amount you are looking to invest</h4>
+                      <div class="form-group bmd-form-group mt-3">
+                        <label class="bmd-label-floating">Amount($)</label>
+                        <input type="number" min='0' name="investmentCapital" id="investmentCapital" class="form-control" required>
+                        <button class="btn btn-warning btn-block" type="submit">Calculate</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                
+              </div>
+            </div>
+            <div class="row" id="roiResultContainer">
+              <div class="col-md-4 text-center mx-auto">                  
+                <h3 class="text-white">VIP Package</h3>    
+                <h4 class="text-warning text-bold">Monthly Returns</h4>
+                <p class="text-bold text-white">Capital : $100 
+                </p>
+                <p class="text-white">
+                  ROI: $15 every month. <br>
+                  (6 Months) Your ROI + Capital : $190
+                </p>
+
+                <h4 class="text-white text-bold">6th Month Payment Option</h4>
+
+                <p class=" text-white">100% ROI : $100 <br>
+                Your ROI + Capital : $200</p>
+              </div>
+              <div class="col-md-4 text-center mx-auto">
+                <h3 class="text-white">Exclusive Package</h3>    
+                <h4 class="text-warning text-bold">6th Month Payment</h4>
+                <p class="text-white">Minimum ROI Estimate 100 - 200% : 1000 & 2000<br> ROI Target : 1000%</p>
+
+                <p class="text-white">Terms of this investment state that the profit from all the trading done within the duration will be split 50/50.
+                  Contact Us for inquiries about this investment plan.</p>
+              </div>
+            </div>
+          </div>
+          <!-- ROI Calculator -->
+          <!-- Investment Form -->
+          <div class="container" id="investmentform" style="margin-top:6em;">
+            <div class="row">
+              <button type="button" class="btn btn-info btn-floating" id="back_to_dashboard_investment_form">
+                <i class="material-icons">
+                  arrow_back
+                  </i>
+              </button>
+              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 mx-auto mt-5" id="vip_package_section">
+                    <% if(user.investorAccount[0].accountBalance == 0){ %>
+                      <div class="text-center">
+                        <p class="text-white">Please fund your account before attempting to make this Investment. <br>
+                        You need a minimum of <span class="text-warning text-bold">$100</span> in your account to invest in this plan.
+                        </p>
+                        <p class="text-white">Your current balance is <span class="text-warning text-bold">$<%= user.investorAccount[0].accountBalance %></span> </p>
+                      </div>
+                      <% } if(user.investorAccount[0].accountBalance > 1000) { %>
+                      <p class="text-white">This Investment package is only available for capital less than 1000</p>
+                      <% } if(user.investorAccount[0].accountBalance > 0)  { %>
+                      <form action="">
+                        <label for="">Input Amount</label>
+                      </form>
+                      <% }%>
+                  </div>
+                  <div class="col-lg-12 col-md-12 mx-auto" id="exclusive_package_section">
+                    <% if(user.investorAccount[0].accountBalance == 0){ %>
+                      <div class="d-flex justify-content-center align-items-center">
+                        <p class="text-white">Please fund your account before attempting to make this Investment. <br>
+                        You need a minimum of <span class="text-warning text-bold">$1000</span> in your account to invest in this plan.
+                        </p>
+                      </div>
+                      <% } if(user.investorAccount[0].accountBalance < 1000) { %>
+                      <p class="text-white">This Investment package is only available for capital less than 1000</p>
+                      <% } if(user.investorAccount[0].accountBalance > 1000)  { %>
+                      <form action="">
+                        <label for="">Input Amount</label>
+                      </form>
+                      <% }%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Investment Form -->
         </div>
     </div>
       
@@ -425,6 +536,8 @@
   <!-- Dashboard Structure -->
   <script>
     $(document).ready(function(){
+
+      // Hide Deposit Section
       $("#dashboard_deposit").hide();
 
       // Open Deposit Section
@@ -439,27 +552,97 @@
         $("#main_dashboard").fadeIn(500);
       });
 
+      let $dashboard = $("#main_dashboard");
+
       // Deposit Option Toggle
-      $('#usdt_qr').hide();
-      $('#card_deposit_option').click(function(){
-        // Switch Active Tab Classes
-        $('#card_deposit_option').addClass('tab-active');
-        $('#usdt_deposit_option').removeClass('tab-active');
+      // $('#usdt_qr').hide();
+      // $('#card_deposit_option').click(function(){
+      //   // Switch Active Tab Classes
+      //   $('#card_deposit_option').addClass('tab-active');
+      //   $('#usdt_deposit_option').removeClass('tab-active');
 
-        // Hide Crypto Deposit Option
-        $('#usdt_qr').hide(500);
-        $('#atm_deposit').show(500);
+      //   // Hide Crypto Deposit Option
+      //   $('#usdt_qr').hide(500);
+      //   $('#atm_deposit').show(500);
+      // })
+
+      // $('#usdt_deposit_option').click(function(){
+      //   // Switch Active Tab Classes
+      //   $('#usdt_deposit_option').addClass('tab-active');
+      //   $('#card_deposit_option').removeClass('tab-active');
+
+      //   // Hide Crypto Deposit Option
+      //   $('#atm_deposit').hide(500);
+      //   $('#usdt_qr').show(500);
+      // })
+      // Investment Form Section 
+      let $investmentForm = $('#investmentform');
+      let $vipOption = $('#vip_package_option');
+      let $exclusiveOption = $('#exclusive_package_option');
+      let $vipSection = $('#vip_package_section');
+      let $exclusiveSection = $('#exclusive_package_section');
+      let $returntoDash = $('#back_to_dashboard_investment_form');
+
+      $investmentForm.hide()
+      $vipSection.hide();
+      $exclusiveSection.hide();
+      // When VIP Option Clicked
+      $vipOption.click(()=>{
+        $dashboard.fadeOut(400);
+        $investmentForm.fadeIn(500);
+        $exclusiveSection.hide();
+
+        $vipSection.fadeIn(500);
+      })
+      // When Exclusive Option Clicked
+      $exclusiveOption.click(()=>{
+        $dashboard.fadeOut(400);
+        $investmentForm.fadeIn(500);
+        $vipSection.hide();
+
+
+        $exclusiveSection.fadeIn(500);
+      })
+      // Return to Dashboard
+      $returntoDash.click(()=>{
+        $investmentForm.fadeOut(400);
+
+        $dashboard.fadeIn(500);
+
       })
 
-      $('#usdt_deposit_option').click(function(){
-        // Switch Active Tab Classes
-        $('#usdt_deposit_option').addClass('tab-active');
-        $('#card_deposit_option').removeClass('tab-active');
 
-        // Hide Crypto Deposit Option
-        $('#atm_deposit').hide(500);
-        $('#usdt_qr').show(500);
+
+      // ROI Calculator
+      let $roicalculator = $('#roi_calculator_section');
+      let $roicalculatorBtnShow = $('#roi_calculator_btn');
+      let $closeroicalculator = $('#back_to_dashboard_cal');
+      let $calulatorForm = $('#dashboard_roi_calculator');
+
+      // Hide Calculator
+      $roicalculator.hide();
+      // $calulatorForm.hide();
+      $roicalculatorBtnShow.click(function(){
+        $dashboard.fadeOut(500);
+        $roicalculator.fadeIn(800);
+      });
+      $closeroicalculator.click(function(){
+        $dashboard.fadeIn(800);
+        $roicalculator.fadeOut(500);
+      });
+
+
+      // Calculator Logic
+      $calulatorForm.submit((e)=>{
+        e.preventDefault();
+        let $investmentCapital = $('investmentCapital').val();
+
+
       })
+
+
+      // Available Services
+
     });
   </script>
 </body>
