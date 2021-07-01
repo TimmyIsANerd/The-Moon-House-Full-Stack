@@ -210,46 +210,54 @@
       <!-- Quick Deposit  -->
           </div>
           <div class="container" id="dashboard_deposit" style="margin-top:6em;z-index:999;">
-            <div class="row">
-              
-            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-              <h3 class="text-white">Add Cash <i class="material-icons text-white">payment</i></h3>
-              <p class="text-white"><%= user.firstName %> Fund your account from this section</p>
-              <button type="button" class="btn btn-info btn-floating" id="back_to_dashboard">
-                <i class="material-icons">
-                  arrow_back
-                  </i>
-              </button>
-              <div class="container mt-4" id="deposit_tabs">
-                <div class="row">
-                  <!-- <div class="col-md-6 col-sm-6 col-xs-6">
-                    <h4 class="text-center tab-active" id="card_deposit_option">Card Deposit</h4>
-                  </div> -->
-                  <div class="col-md-6 mx-auto col-sm-6 col-xs-6">
-                    <h3 class="text-center tab-active" id="usdt_deposit_option text-bold">USDT Deposit (TRC20 Wallet)</h3>
-                  </div>
-                </div>
-    
-                <div class="row" id="deposit_option">
-                  <!-- <div class="col-md-12 mt-5" id="atm_deposit">
-                    <div class="col-md-3 mx-auto">
-                      <form action="/user/deposit" id="atm_deposit_form">
-                        <div class="form-group bmd-form-group">
-                          <label for="deposit" class="bmd-label-floating">Amount ($)</label>
-                          <input type="number" name='deposit' id="deposit" class="form-control" min="0" value="" required>
-                          <button class="btn btn-info btn-block mt-3" type="submit" id="deposit_button">Deposit</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div> -->
-                  <div class="col-md-12 text-center mt-5" id="usdt_qr">
-                    <div class="col-md-3 mx-auto">
-                      <h5 class="text-white">Make your transfer to this wallet address, Scan QR Code</h5>
-                    </div>
-                  </div>
+            <div class="row"> 
+            <% if(user.userContactInformation.length == 0) { %>
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 mt-5">
+                <div class="text-center">
+                  <h3 class="text-warning text-bold">Please verify your account<br> before attempting to make a deposit</h3>
+                  <a href="/dashboard/profile" class="btn btn-warning">Verify</a>
                 </div>
               </div>
-          </div>
+            <% } else { %> 
+              <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                <h3 class="text-white">Add Cash <i class="material-icons text-white">payment</i></h3>
+                <p class="text-white"><%= user.firstName %> Fund your account from this section</p>
+                <button type="button" class="btn btn-info btn-floating" id="back_to_dashboard">
+                  <i class="material-icons">
+                    arrow_back
+                    </i>
+                </button>
+                <div class="container mt-4" id="deposit_tabs">
+                  <div class="row">
+                    <!-- <div class="col-md-6 col-sm-6 col-xs-6">
+                      <h4 class="text-center tab-active" id="card_deposit_option">Card Deposit</h4>
+                    </div> -->
+                    <div class="col-md-6 mx-auto col-sm-6 col-xs-6">
+                      <h3 class="text-center tab-active" id="usdt_deposit_option text-bold">USDT Deposit (TRC20 Wallet)</h3>
+                    </div>
+                  </div>
+      
+                  <div class="row" id="deposit_option">
+                    <!-- <div class="col-md-12 mt-5" id="atm_deposit">
+                      <div class="col-md-3 mx-auto">
+                        <form action="/user/deposit" id="atm_deposit_form">
+                          <div class="form-group bmd-form-group">
+                            <label for="deposit" class="bmd-label-floating">Amount ($)</label>
+                            <input type="number" name='deposit' id="deposit" class="form-control" min="0" value="" required>
+                            <button class="btn btn-info btn-block mt-3" type="submit" id="deposit_button">Deposit</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div> -->
+                    <div class="col-md-12 text-center mt-5" id="usdt_qr">
+                      <div class="col-md-3 mx-auto">
+                        <h5 class="text-white">Make your transfer to this wallet address, Scan QR Code</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <% } %> 
           </div>
           </div>
           <!-- Quick Deposit -->
@@ -325,31 +333,36 @@
               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                 <div class="row">
                   <div class="col-lg-12 col-md-12 mx-auto mt-5" id="vip_package_section">
-                    <% if(user.investorAccount[0].accountBalance == 0){ %>
+                    <% if(user.investorAccount[0].accountBalance < 100){ %>
                       <div class="text-center">
+                        <p class="text-warning text-bold">Insufficient Balance</p>
                         <p class="text-white">Please fund your account before attempting to make this Investment. <br>
                         You need a minimum of <span class="text-warning text-bold">$100</span> in your account to invest in this plan.
                         </p>
                         <p class="text-white">Your current balance is <span class="text-warning text-bold">$<%= user.investorAccount[0].accountBalance %></span> </p>
                       </div>
                       <% } if(user.investorAccount[0].accountBalance > 1000) { %>
-                      <p class="text-white">This Investment package is only available for capital less than 1000</p>
-                      <% } if(user.investorAccount[0].accountBalance > 0)  { %>
-                      <form action="">
-                        <label for="">Input Amount</label>
+                      <p class="text-white">This Investment package is only available for capital less than $1000</p>
+                      <% } if(user.investorAccount[0].accountBalance >= 100)  { %>
+                      <form action="/dashboard/invest/vip">
+                        <div class="form-group bmd-form-group col-md-2 mx-auto">
+                          <label for="amount" class="bmd-label-floating">Input Amount</label>
+                          <input type="number" name="amount" id="amount" min="100" class="form-control">
+                          <button class="btn btn-primary btn-block" type="submit">Invest</button>
+                        </div>
                       </form>
                       <% }%>
                   </div>
-                  <div class="col-lg-12 col-md-12 mx-auto" id="exclusive_package_section">
-                    <% if(user.investorAccount[0].accountBalance == 0){ %>
-                      <div class="d-flex justify-content-center align-items-center">
+                  <div class="col-lg-12 col-md-12 mx-auto mt-5" id="exclusive_package_section">
+                    <% if(user.investorAccount[0].accountBalance < 1000 ){ %>
+                      <div class="text-center">
+                        <p class="text-warning text-bold">Insufficient Balance</p>
                         <p class="text-white">Please fund your account before attempting to make this Investment. <br>
                         You need a minimum of <span class="text-warning text-bold">$1000</span> in your account to invest in this plan.
                         </p>
+                        <p class="text-white">Your current balance is <span class="text-warning text-bold">$<%= user.investorAccount[0].accountBalance %></span> </p>
                       </div>
-                      <% } if(user.investorAccount[0].accountBalance < 1000) { %>
-                      <p class="text-white">This Investment package is only available for capital less than 1000</p>
-                      <% } if(user.investorAccount[0].accountBalance > 1000)  { %>
+                      <% } if(user.investorAccount[0].accountBalance >= 1000)  { %>
                       <form action="">
                         <label for="">Input Amount</label>
                       </form>
