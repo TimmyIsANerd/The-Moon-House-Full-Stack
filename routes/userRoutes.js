@@ -24,9 +24,11 @@ router.get('/dashboard/notifications',requireAuth,userController.user_dashboard_
 router.get('/dashboard/history',requireAuth,userController.user_dashboard_history_get);
 // User Dashboard Fund Account Post
 router.post('/dashboard/fund',requireAuth,userController.user_dashboard_fund_post);
-// User Create Investment Portfolio
+// User Create Investment Portfolio POST
 router.post('/dashboard/createportfolio/:id',requireAuth,userController.user_dashboard_createUserPortfolio);
-// User Added KYC Information
+// User Added KYC Information POST
 router.post('/dashboard/edituserkycData',requireAuth,userController.user_dashboard_editUserInformation);
+// User Invests (VIP) POST
+router.post('/dashboard/invest/vip',requireAuth,userController.user_dashboard_invests_vip_post);
 
 module.exports = router;
