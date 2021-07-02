@@ -119,6 +119,18 @@ const sign_up_post = async (req,res)=>{
                     payoutOption:'',
                     referals:[]
                 },
+            },
+            userNotifications:{
+                notification:[
+                    {
+                        message:'Welcome to The Moon House Investor Dashboard, Verify your account by clicking the User Profile section',
+                        messageStatus:'Unread'
+                    },
+                    {
+                        message:'Currently you can only make deposits to your account using USDT',
+                        messageStatus:'Unread'
+                    },
+                ]
             }
         })
         console.log('User Created Successfully', newUser)
