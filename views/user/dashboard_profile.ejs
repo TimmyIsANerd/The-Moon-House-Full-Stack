@@ -25,220 +25,233 @@
       <!-- Navbar -->
       <%- include('../partials/dashboard/nav.ejs') %> 
       <!-- Navbar -->     
-      <div class="container" style="margin-top: 6em;">
-        <div class="row">
-          <div class="col-md-8 col-sm-12">
-            <div class="card">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title">Edit Profile</h4>
-                <p class="card-category">Complete your profile.</p>
-              </div>
-              <div class="card-body">
-                <form method="POST" action="/dashboard/edituserkycData">
-                  <div class="row">
-                    <div class="col-md-12 col-sm-12 mt-3">
-                      <h5 class="text-white">Contact Information</h5>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating"><%= user.firstName %> </label>
-                        <input type="text" class="form-control" disabled="">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating"><%= user.lastName %></label>
-                        <input type="text" class="form-control" disabled="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating"><%= user.email %> </label>
-                        <input type="text" class="form-control" disabled="">
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Phone Number</label>
-                        <input type="text" class="form-control">
-                      </div>
-                    </div>
-                    <!-- <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Email address</label>
-                        <input type="email" class="form-control">
-                      </div>
-                    </div> -->
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Address</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Postal Code</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">City</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Country</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 mt-3">
-                      <h5 class="text-white">Next of Kin Information.</h5>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">First Name</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Last Name</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Email Address</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Phone Number</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Address</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">City</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Country</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Postal Code</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h5 class="text-white">Withdrawal Information.</h5>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="custom-control custom-radio mb-4">
-                        <input type="radio" class="custom-control-input" id="usdt" name="withdrawalOption" value="usdt" required>
-                        <label class="custom-control-label" for="usdt">USDT</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="custom-control custom-radio mb-4">
-                        <input type="radio" class="custom-control-input" id="naira" name="withdrawalOption" value="naira" required>
-                        <label class="custom-control-label" for="naira">Naira</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row" id="trcWallet">
-                    <div class="col-md-12">
-                      <h6 class="text-white">USDT Wallet</h6>
-                      <p>Please make sure to input a valid TRC20 Wallet Address to avoid loss of funds.</p>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating"> Wallet Address:</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row" id="bankAccount">
-                    <div class="col-md-12">
-                      <h6 class="text-white">Bank Account Information</h6>
-                      <p>Please make sure all submitted information is accurate.</p>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Bank:</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Account Name:</label>
-                        <input type="text" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Account No:</label>
-                        <input type="number" min="0" class="form-control" required>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                  <div class="clearfix"></div>
-                </form>
+      
+      <% if(user.userContactInformation.length>0){ %>    
+        <div class="container" style="margin-top:6em">
+          <div class="row">
+            <div class="col-md-5 mx-auto">
+              <div class="card card-profile">
+                <span class="material-icons text-success mt-4">
+                  verified
+                  </span>
+                <!-- <div class="card-avatar">
+                  <a href="#pablo">
+                    <img class="img" src="../assets/img/faces/marc.jpg">
+                  </a>
+                  
+                </div> -->
+                <div class="card-body">
+                  <h6 class="card-category">Verified Investor @The Moon House</h6>
+                  <h4 class="card-title"><%= user.firstName %> <%= user.lastName %></h4>
+                  <p class="card-description">
+                    <p class="text-white"><%= user.email %> </p>
+                    <p class="text-white"><%= user.userContactInformation[0].phoneNumber %> </p>
+                    
+                  </p>
+                  <!-- <a href="#pablo" class="btn btn-primary btn-round">Follow</a> -->
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <!-- <div class="card card-profile">
-              <div class="card-avatar">
-                <a href="#pablo">
-                  <img class="img" src="../assets/img/faces/marc.jpg">
-                </a>
-              </div>
-              <div class="card-body">
-                <h6 class="card-category">CEO / Co-Founder</h6>
-                <h4 class="card-title">Adefeyitimi Adeyeloja</h4>
-                <p class="card-description">
-                  <p class="text-white">adefeyitimi@gmail.com</p>
-                  <p class="text-white">+2348054372445</p>
+        </div>
+      <% } else { %>
 
-                </p>
-                <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+        <div class="container" style="margin-top: 6em;">
+          <div class="row">
+            <div class="col-md-8 col-sm-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Complete Profile</h4>
+                  <p class="card-category">Verify your account by providing the following information</p>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="/dashboard/edituserkycData">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12 mt-3">
+                        <h5 class="text-white">Contact Information</h5>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating"><%= user.firstName %> </label>
+                          <input type="text" class="form-control" disabled="">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating"><%= user.lastName %></label>
+                          <input type="text" class="form-control" disabled="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating"><%= user.email %> </label>
+                          <input type="text" class="form-control" disabled="">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Phone Number</label>
+                          <input type="number" min="0" name="phoneNumber" id="phoneNumber" class="form-control" required>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Email address</label>
+                          <input type="email" class="form-control">
+                        </div>
+                      </div> -->
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Address</label>
+                          <input type="text" name="address" id="address" class="form-control" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Postal Code</label>
+                          <input type="text" name="PostalCode" id="PostalCode" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">City</label>
+                          <input type="text" name="City" id="City" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Country</label>
+                          <input type="text" name="Country" id="Country" class="form-control" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 mt-3">
+                        <h5 class="text-white">Next of Kin Information.</h5>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">First Name</label>
+                          <input type="text" name="KinfirstName" id="KinfirstName" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Last Name</label>
+                          <input type="text" class="form-control" name="KinlastName" id="KinlastName" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Email Address</label>
+                          <input type="text" class="form-control" name="Kinemail" id="Kinemail" required>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Phone Number</label>
+                          <input type="number" min='0' name="KinphoneNumber" class="form-control" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Address</label>
+                          <input type="text" name="Kinaddress" id="Kinaddress" class="form-control" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">City</label>
+                          <input type="text" name='KinCity' class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Country</label>
+                          <input type="text" name="KinCountry" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Postal Code</label>
+                          <input type="text" class="form-control" name="KinPostalCode" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h5 class="text-white">Withdrawal Information.</h5>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="custom-control custom-radio mb-4">
+                          <input type="radio" class="custom-control-input" id="usdt" name="withdrawalOption" value="USDT Wallet Address" required>
+                          <label class="custom-control-label" for="usdt">USDT</label>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="custom-control custom-radio mb-4">
+                          <input type="radio" class="custom-control-input" id="naira" name="withdrawalOption" value="Bank Information" required>
+                          <label class="custom-control-label" for="naira">Naira</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" id="trcWallet">
+                      <div class="col-md-12">
+                        <h6 class="text-white">USDT Wallet</h6>
+                        <p>Please make sure to input a valid TRC20 Wallet Address to avoid loss of funds.</p>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating"> Wallet Address:</label>
+                          <input type="text" class="form-control" name="USDTWalletAddress">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" id="bankAccount">
+                      <div class="col-md-12">
+                        <h6 class="text-white">Bank Account Information</h6>
+                        <p>Please make sure all submitted information is accurate.</p>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Bank:</label>
+                          <input type="text" name="NameOfBank" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Account Name:</label>
+                          <input type="text" name="BankAccName" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">Account No:</label>
+                          <input type="number" name="BankAccNo" min="0" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
               </div>
             </div>
-          </div> -->
+          </div>
         </div>
-      </div>
+      <% } %> 
     </div>
       
 <%- include('../partials/dashboard/scripts.ejs') %> 
@@ -261,21 +274,42 @@
         $nairaOption = $('#naira');
         $nairaBankAccount = $('#bankAccount');
 
+        // USDT Wallet Address Form required prop
+        $('[name="USDTWalletAddress"]').prop("required",true);
+        // Bank Information Text Form required prop
+        $('[name="NameOfBank"]').prop('required',false);
+        $('[name="BankAccName"]').prop('required',false);
+        $('[name="BankAccNo"]').prop('required',false);
+
         $usdtOption.prop('checked',true);
         $wallet.show();
         $nairaBankAccount.hide();
         
         $usdtOption.click(function(){
+          // USDT Wallet Address Form required prop
+          $('[name="USDTWalletAddress"]').prop("required",true);
+          // Bank Information Text Form required prop
+          $('[name="NameOfBank"]').prop('required',false);
+          $('[name="BankAccName"]').prop('required',false);
+          $('[name="BankAccNo"]').prop('required',false);
           $usdtOption.prop('checked',true);
           $nairaOption.prop('checked',false);
-          $wallet.show(300);
+          $wallet.fadeIn(300);
           $nairaBankAccount.hide();
         })
         $nairaOption.click(function(){
           $nairaOption.prop('checked',true);
           $usdtOption.prop('checked',false);
-          $wallet.hide(100);
-          $nairaBankAccount.show(300);
+
+          // USDT Wallet Address Form required prop
+          $('[name="USDTWalletAddress"]').prop("required",false);
+          // Bank Information Text Form required prop
+          $('[name="NameOfBank"]').prop('required',true);
+          $('[name="BankAccName"]').prop('required',true);
+          $('[name="BankAccNo"]').prop('required',true);
+
+          $wallet.hide();
+          $nairaBankAccount.fadeIn(300);
         })
 
         $('.fixed-plugin a').click(function(event) {
