@@ -131,7 +131,24 @@ const withdrawalInfoSchema = new mongoose.Schema(
     },
     {timestamps:true}
 )
-
+// User Notifications Schema
+const userNotificationsSchema = new mongoose.Schema(
+    {
+        notification:[
+            {
+                message:{
+                    type:String,
+                    unique:true
+                },
+                messageStatus:{
+                    type:String,
+                    status:['Read','Unread'],
+                    default: 'Unread'
+                }
+            }
+        ]
+    }
+)
 // Create User Sign Up Schema
 const userDataSchema = new mongoose.Schema(
     {   
@@ -171,7 +188,9 @@ const userDataSchema = new mongoose.Schema(
         // Next Of Kin Information
         nextOfKinInformation:[nextOfKinInformationSchema],
         // Withdrawal Information
-        withdrawalInfo:[withdrawalInfoSchema]
+        withdrawalInfo:[withdrawalInfoSchema],
+        // User Notifications
+        userNotifications:[userNotificationsSchema]
     },
     {collection:'user_data_signup'},
     {timestamps:true}
@@ -184,5 +203,6 @@ const investorAccount = mongoose.model('investorAccount',investorAccountSchema);
 const nextOfKinInformation = mongoose.model('nextOfKinInformation',nextOfKinInformationSchema);
 const userContactInformation = mongoose.model('userContactInformation',userContactInformationSchema);
 const withdrawalInfo = mongoose.model('withdrawalInfo',withdrawalInfoSchema);
+const userNotifications = mongoose.model('userNotifications',userNotificationsSchema);
 
-module.exports = {userData,investorAccount,nextOfKinInformation,userContactInformation,withdrawalInfo};
+module.exports = {userData,investorAccount,nextOfKinInformation,userContactInformation,withdrawalInfo,userNotifications};
