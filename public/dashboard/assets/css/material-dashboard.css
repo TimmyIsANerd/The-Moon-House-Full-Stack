@@ -22099,3 +22099,9 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
   border-radius:5px;
   box-shadow: 0px 1px 30px -5px #000;
 }
+
+/* Modal */
+.modal-dialog {
+  margin:10rem auto;
+  background-color:#1a2035;
+}
