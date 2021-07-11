@@ -79,6 +79,7 @@ const sign_up_post = async (req,res)=>{
             email,
             password,
             status:'Active',
+            fundAccVerification:'Unverified',
             userType:'investor',
             referalCode:confirmationToken,
             confirmationCode:confirmationToken,
@@ -123,7 +124,7 @@ const sign_up_post = async (req,res)=>{
             userNotifications:{
                 notification:[
                     {
-                        message:'Welcome to The Moon House Investor Dashboard, Verify your account by clicking the User Profile section',
+                        message:'Welcome to The Moon House Investor Dashboard',
                         messageStatus:'Unread'
                     },
                     {
