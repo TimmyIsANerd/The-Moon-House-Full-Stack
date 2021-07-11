@@ -24,65 +24,83 @@
     <div class="main-panel">
       <!-- Navbar -->
       <%- include('../partials/dashboard/nav.ejs') %> 
-      <!-- Navbar -->     
-      <div class="container" style="margin-top: 6em;">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title">Withdrawal Pin</h4>
-                <p class="card-category">Update your withdrawal pin to secure your funds.</p>
-              </div>
-              <div class="card-body">
-                <form method="POST" action="/dashboard/setpin">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <!-- Material input -->
-                      <div class="form-group bmd-form-group">
-                        <label for="pinCode" class="bmd-label-floating">Your New Pin</label>
-                        <input type="password" id="pinCode" class="form-control" name="pin" maxlength="4" pattern="[0-9]{4}" required>
-                      </div>    
-                      <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                      <div class="clearfix"></div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div class="card">
-              <div class="card-header card-header-warning">
-                <h4 class="card-title">Update Password</h4>
-                <p class="card-category">Secure your investor Account</p>
-              </div>
-              <div class="card-body">
-                <form method="POST" action="/dashboard/changepassword">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <!-- Material input -->
-                      <div class="form-group bmd-form-group">
-                        <label for="password" class="bmd-label-floating">Old Password</label>
-                        <input type="password" id="oldpassword" class="form-control" name="oldpassword" minlength="6" required>
+      <!-- Navbar -->   
+      <!-- Body --> 
+        <!-- Investment Form -->
+        <div class="container" id="investmentform" style="margin-top:6em;">
+            <div class="row">
+              <a href="/dashboard" type="button" class="btn btn-info btn-outline btn-floating" id="back_to_dashboard_investment_form">
+                <i class="material-icons">
+                  arrow_back
+                  </i>
+              </a>
+              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 mx-auto mt-3" id="vip_package_section">
+                    <% if(user.investorAccount[0].accountBalance < 100){ %>
+                      <div class="text-center">
+                        <p class="text-warning text-bold">Insufficient Balance</p>
+                        <p class="text-white">Please fund your account before attempting to make this Investment. <br>
+                        You need a minimum of <span class="text-warning text-bold">$100</span> in your account to invest in this plan.
+                        </p>
+                        <p class="text-white">Your current balance is <span class="text-warning text-bold">$<%= user.investorAccount[0].accountBalance %></span> </p>
                       </div>
-                      <div class="form-group bmd-form-group">
-                        <label for="password" class="bmd-label-floating">New Password</label>
-                        <input type="password" id="password" class="form-control" name="password" minlength="6" required>
-                      </div>    
-                      <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating" for="confirmPassword">Confirm New Password</label>
-                        <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" minlength="6" required>
-                      </div>    
-                      <button type="submit" class="btn btn-warning pull-right">Submit</button>
-                      <div class="clearfix"></div>
-                    </div>
+                      <% } if(user.investorAccount[0].accountBalance > 1000) { %>
+                      <div>
+                      <p class="text-white">This Investment package is only available for capital less than $1000</p>
+                      <% } if(user.investorAccount[0].accountBalance >= 100)  { %>
+                        <div class="col-md-4 mx-auto">
+                          <img src="/dashboard/assets/img/crypto.jpg" alt="" class="img-fluid img-rounded vip_opt_img">
+                          <p class="text-center text-white mt-3">This investment plan offers option to get paid either monthly or at the end of the investment duration.</p>
+                        </div>
+                        <form action="/dashboard/invest/vip" id="investmentConfirmFillForm">
+                          <div class="row">
+                            <div class="col-md-3 mx-auto">
+                              <div class="custom-control custom-radio mb-2">
+                                <input type="radio" class="custom-control-input" id="monthlyPayOption" name="vipPayOption" value="15% Monthly" required checked aria-checked="true">
+                                <label class="custom-control-label" for="monthlyPayOption">15% Monthly</label>
+                              </div>
+                              <div class="custom-control custom-radio mb-2">
+                                <input type="radio" class="custom-control-input" id="6thMonthOption" name="vipPayOption" value="100% (6th Month)" required>
+                                <label class="custom-control-label" for="6thMonthOption">100% (6th Month)</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group bmd-form-group col-md-3 mx-auto">
+                            <label for="amount" class="bmd-label-floating">Input Amount</label>
+                            <input type="number" name="amount" id="amount" min="100" value="" class="form-control">
+                            <button class="btn btn-info btn-block" id="" type="button" data-toggle="modal" data-target="#exampleModal">Invest</button>
+                          </div>
+                          
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirm Investment</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p id="vipInvestConfirmationMessage">Confirm that you are about to invest "amount" to get paid "percentage per month"/"percentage 6th Month"</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-info" id="submitInvestment">Invest</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </form>
+                      <% }%>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          <!-- Investment Form -->
+      <!-- Body -->
     </div>
       
 <%- include('../partials/dashboard/scripts.ejs') %> 
@@ -252,9 +270,9 @@
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
-
     });
   </script>
+  <script src="../dashboard/assets/js/custom.js"></script>
 </body>
 
 </html>

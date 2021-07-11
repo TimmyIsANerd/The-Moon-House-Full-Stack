@@ -168,6 +168,12 @@ const userDataSchema = new mongoose.Schema(
             enum: ['Pending', 'Active'],
             default:'Pending'
         },
+        fundAccVerification:{
+            type:String,
+            option:['Verified','Unverified'],
+            default:'Unverified'
+        }
+        ,
         userType:{
             type:String,
             enum:['student','admin','investor'],
