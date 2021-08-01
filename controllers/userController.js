@@ -90,7 +90,6 @@ const user_dashboard_editUserInformation = (req,res) =>{
     } = req.body;
     
     // Check if cookie token exists & is verified
-
     const token = req.cookies.jwt
     if(token){
         jwt.verify(token,JWT_SECRET, async (err,decodedToken)=>{
