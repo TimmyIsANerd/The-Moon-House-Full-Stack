@@ -109,7 +109,7 @@
 //     // Calculator Logic
 //     $calulatorForm.submit((e)=>{
 //       e.preventDefault();
-//       let $investmentCapital = $('investmentCapital').val();
+//       let $investmentCapital = $('investmentCapital' ).val();
 
 
 //     })
