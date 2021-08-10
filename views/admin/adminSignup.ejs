@@ -1,12 +1,12 @@
 <html lang="en">
     <%- include('./../partials/user/head.ejs'); %> 
 <body>
-   
+    <%- include('./../partials/user/nav.ejs') %> 
     <link rel="stylesheet" href="/assets/css/user/user.css">
     <section id="access_form">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12" id="welcome-col-container">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
                     <div class="welcome-col">
                         <h3>Hi Welcome To <span>The Moon House</span></h3>
                         <p>We Are The Perfect Hub For Crypto Education & Growth.</p>
@@ -20,9 +20,6 @@
                                 <div class="form-group">
                                     <div class="logo_container">
                                         <img src="/assets/img/nav-logo.png" class="logo" alt="">
-                                    </div>
-                                    <div class="text-center">
-                                        <h3>Sign Up</h3>
                                     </div>
                                     <div class="input">    
                                         <input type="text" class="form-control" name="firstName" placeholder="First Name" id="firstName" required>
@@ -114,6 +111,6 @@
     </footer>
 
     <!-- Static Javascript -->
-	<%- include('./partials/form_scripts.ejs') %> 
+	<%- include('../partials/academy/academy_scripts.ejs') %> 
 </body>
 </html>

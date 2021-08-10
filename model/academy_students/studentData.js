@@ -18,7 +18,34 @@ const registeredCourseSchema = new mongoose.Schema(
                 'Block Chain Development',
                 'Back End Development',
                 'Front End Development'
-            ]
+            ],
+            default:''
+        }
+    }
+)
+
+// Course Specifications
+const courseSpecificationsSchema = new mongoose.Schema(
+    {
+        courseName:{type:String},
+        courseDuration:{type:Number,default:0},
+        coursePurchaseDate:{type:Date},
+    }
+)
+
+// Student Notifications
+const studentNotificationsSchema = new mongoose.Schema(
+    {
+        message:{
+            content:{type:String},
+            status:{
+                type:String,
+                readStatus:[
+                    'Read',
+                    'Unread'
+                ],
+                default:'Unread'
+            }
         }
     }
 )
@@ -28,11 +55,16 @@ const registeredCourseSchema = new mongoose.Schema(
 const studentDataSchema = new mongoose.Schema(
     {
         // User Data
-        fullname:{type:String,required:true},
+        firstName:{type:String,required:true},
+        lastName:{type:String,required:true},
         email:{type:String,required:true,unique:true},
         password:{type:String,required:true},
         // Registered Course
-        registeredCourses:[registeredCourseSchema]
+        registeredCourses:[registeredCourseSchema],
+        // Course Specifications
+        courseSpecification:[courseSpecificationsSchema],
+        // Student Notifications
+        studentNotifications:[studentNotificationsSchema]
     },
     {timestamps:true}
 )

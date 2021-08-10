@@ -83,7 +83,7 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                <p id="vipInvestConfirmationMessage">Confirm that you are about to invest "amount" to get paid "percentage per month"/"percentage 6th Month"</p>
+                                <p id="vipInvestConfirmationMessage">...</p>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -107,6 +107,18 @@
   <script>
     $(document).ready(function() {
       $().ready(function() {
+        const $confirmationMessage = $('#vipInvestConfirmationMessage');
+        
+
+        $confirmationMessage.text = `<span>${amount.value}</span>`
+
+
+        console.log($confirmationMessage,amount)
+
+
+
+
+
         $sidebar = $('.sidebar');
 
         $sidebar_img_container = $sidebar.find('.sidebar-background');

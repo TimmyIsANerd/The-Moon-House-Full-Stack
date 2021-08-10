@@ -5,7 +5,7 @@ const userData = require('../model/userData');
 // Dashboard GET
 const admin_dashboard_get = (req,res) =>{
     res.render(
-        'admin/dashboard',
+        'admin/admin_dashboard',
         {
             title:'Admin Dashboard'
         }

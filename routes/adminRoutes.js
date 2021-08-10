@@ -5,6 +5,9 @@ const router = express.Router();
 const adminController = require('../controllers/adminController');
 
 // Setup Routes for Admin
+router.get('/admin',(req,res)=>{
+    res.redirect('/admin/dashboard')
+});
 // Admin Sign Up GET
 router.get('/admin/signup',adminController.admin_signup_get);
 // Admin Sign Up POST

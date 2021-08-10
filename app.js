@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const csrf = require('csurf');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 //Create instance of express app
@@ -15,6 +16,9 @@ const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 // User Account Routes
 const userRoutes = require('./routes/userRoutes');
+// Academy Students Routes
+const authAcademyRoutes = require('./routes/authAcademyRoutes');
+const academyDashboard = require('./routes/academyRoutes')
 
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
@@ -43,6 +47,8 @@ app.use(cookieParser())
 app.use(basicRoutes);
 app.use(authRoutes);
 app.use('/admin',adminRoutes);
+app.use(authAcademyRoutes);
+app.use('/dashboard',academyDashboard);
 app.use(userRoutes);
 
 // 404 Route

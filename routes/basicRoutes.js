@@ -9,6 +9,13 @@ const { checkUser } = require('../middleware/authMiddleware');
 // Home Route
 router.get('*', checkUser)
 router.get('/',basicController.home);
+// About Us
+router.get('/about',basicController.about);
+// Academy
+router.get('/academy',basicController.academy_page)
+// Referal System
+router.get('/affiliate/signup',basicController.affiliate_signup);
+// Redirect Routes
 router.get('/home',(req,res)=>{
     res.redirect('/');
 });

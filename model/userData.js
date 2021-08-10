@@ -25,7 +25,11 @@ const investorAccountSchema = new mongoose.Schema(
         },
         // ROI
         ROI:{
-            accountBalance:0,
+            accountBalance:{
+                type:Number,
+                default:0,
+                min:0
+            },
             ROIEntry:[
                 {
                     amount:{type:Number,default:0,min:0},
@@ -40,7 +44,11 @@ const investorAccountSchema = new mongoose.Schema(
         },
         // Invested
         Invested:{
-            accountBalance:0,
+            accountBalance:{
+                type:Number,
+                default:0,
+                min:0
+            },
             investmentEntry:[
                 {
                     amount:{type:Number,default:0,min:0},

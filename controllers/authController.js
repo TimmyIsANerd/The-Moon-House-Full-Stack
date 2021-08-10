@@ -1,6 +1,7 @@
 // Import Required Model
-const { userData,investorAccount,nextOfKinInformation,userContactInformation,withdrawalInfo } = require('../model/userData');
+const { userData } = require('../model/userData');
 const userSignUp = userData;
+const adminData = require('../model/adminData');
 // Import nodemailer auth config
 const config = require('../config/auth.config');
 const nodemailer = require('../config/nodemailer.config');
@@ -151,7 +152,7 @@ const sign_up_post = async (req,res)=>{
             res.cookie('jwt', token, {httpOnly:true, maxAge : maxAge * 1000})
             return res.json({
                 user:newUser._id,
-                status:'ok',
+                status:'ok'
             }).status(201);
             // Use nested try/catch to send confirmation email
             try{
@@ -284,6 +285,7 @@ const login_post = async (req,res) =>{
                 user:user._id
             })
         }catch(error){
+
             if(error){
                 return res.status(400).json({ status: 'error', error: 'Invalid Email/Password'})
             }
@@ -305,6 +307,85 @@ const unverifieduseraccount = (req,res) =>{
     res.render('unverifiedlogin', {title:'Unverified Account'});
 }
 
+// Admin Account Set Up
+// Admin Login Access
+const admin_login_get = (req,res) =>{
+    res.render('/admin/adminLogin',{
+        title:'Admin Login'
+    });
+}
+
+const admin_login_post = (req,res) =>{
+    // Store incoming body in deconstructed object
+
+    const {username,password,passKey} = req.body;
+}
+
+// Admin Signup Access
+const admin_signup_get = (req,res) =>{
+    res.render('admin/adminSignup',
+    {title:'Admin Sign Up'})
+}
+const admin_signup_post = async (req,res) =>{
+    // Simple Passkey generator
+    const passKeygen = () =>{
+        const characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let passKey = '';
+        for (let i = 0;i < 25; i++){
+            passKey += characters[Math.floor(Math.random() * characters.length )];
+        }
+        return passKey;
+    }
+    // Collect body into deconstructed object
+    const {username,password} = req.body;
+
+    try{
+        const newAdmin = await adminData.create({
+            username,
+            password,
+            passKey
+        })
+        console.log('Admin User created successfully',newAdmin)
+        try{
+            // Create Token
+            const maxAge = 3 * 24 * 60 * 60;
+
+            const createToken = (id) =>{
+                return jwt.sign(
+                    { id },
+                    JWT_SECRET,
+                    {expiresIn:maxAge}
+                );
+            }
+            // Create Cookie
+            const token = await createToken(newAdmin._id)
+            res.cookie('jwt', token, 
+            {httpOnly:true, maxAge:maxAge * 1000})
+            return res.json({
+                user:newAdmin._id,
+                status:ok,
+            }).status(201);
+        } catch (err){
+            if(err){
+                res.status(500).json(
+                    {
+                        status:'error',
+                        error:'Error with creating Token'
+                    }
+                )
+            }
+        }
+    } catch(err){
+        if(err){
+            res.status(500).json(
+                {
+                    status:'error',
+                    error:'Creating Admin User Failed'
+                }
+            )
+        }
+    }
+}
 
 module.exports = {
     sign_up_get,
@@ -316,5 +397,8 @@ module.exports = {
     change_password_get,
     change_password_post,
     verifyUser,
-    unverifieduseraccount
+    unverifieduseraccount,
+    // Admin Access Functions
+    admin_signup_get,
+    admin_signup_post
 }

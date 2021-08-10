@@ -1,18 +1,11 @@
 <html lang="en">
-    <%- include('./../partials/user/head.ejs'); %> 
+<%- include('./partials/academy/academy_head.ejs'); %> 
+<%- include('./partials/academy/academy_partial.ejs'); %> 
 <body>
-   
-    <link rel="stylesheet" href="/assets/css/user/user.css">
+    <h1>Student Sign Up</h1>
     <section id="access_form">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12" id="welcome-col-container">
-                    <div class="welcome-col">
-                        <h3>Hi Welcome To <span>The Moon House</span></h3>
-                        <p>We Are The Perfect Hub For Crypto Education & Growth.</p>
-                        <a href="/invest/login" class="quote-btn btn">Already an Investor? Sign In</a>
-                    </div>
-                </div>
                 <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 mx-auto">
                     <div class="form_surface">
                         <div class="form col-12">
@@ -45,75 +38,46 @@
     </section>
     <script>
         const form = document.getElementById('reg-form');
-        const emailError = document.getElementById('email-error');
-        const passwordError = document.getElementById('password-error');
-        const fullNameError = document.getElementById('fullname-error')
-        form.addEventListener('submit',registerUser);
+        form.addEventListener('submit',registerUser)
+
         // 1. Send Data as JSON
         async function registerUser(e){
             e.preventDefault();
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const result = await fetch('/api/signup', {
+
+            const result = await fetch('/api/register', {
                 method : 'POST',
                 headers: {
                     'Content-Type':'application/json'
                 },
                 body: JSON.stringify({
-                    firstName,
-                    lastName,
                     email,
                     password
                 })
-            }).then((res) => res.json())
-                .then((data)=>{
-                    if(data.error == 'Email is already registered'){
-                        console.log('Email Already in Use');
-                        emailError.textContent = data.error
-                    }
-                    if(data.error == 'Please Enter Full Name'){
-                        fullNameError.textContent = data.error
-                    }
-                    if(data.error == 'Password is less than 8 characters'){
-                        passwordError.textContent = data.error
-                    }
-                    console.log(data.user)
-                    if(data.user){
-                        location.assign('/dashboard')
-                    }
-                })
-                // .then((data) => 
-                .catch((error) =>{
-                    if(result.status === 'ok'){
-                        console.log('Submission to Database Successful');
-                        alert('Sign Up Successful')
-                        emailError.textContent = data.error
-                    // Everything went fine
-                    } 
-                    if(result.status === "error") {
-                        // something went wrong
-                        alert(result.error)
-                    } else {
-                        console.log(error)
-                    }
-                })
+            }).then((res) => res.json());
+
+            if(result.status === 'ok'){
+                // Everything went fine
+            } else {
+                // something went wrong
+                alert(result.error);
+            }
         }
     </script>
-    <footer>
+    <!-- <footer>
         <div class="container-fluid">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="footer text-center">
                     <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have read and acknowledged our <a href="/policy">Privacy Policy</a></p>
                     <% var date = new Date(); %> 
-                    <p><a href="/">The Moon House</a> &copy; <%= date.getFullYear(); %> </p>
+                    <p>The Moon House &copy; <%= date.getFullYear(); %> </p>
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Static Javascript -->
-	<%- include('./partials/form_scripts.ejs') %> 
+	<%- include('./partials/academy/academy_scripts.ejs') %> 
 </body>
 </html>

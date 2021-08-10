@@ -13,6 +13,20 @@ const authController = require('../controllers/authController');
 // Import Middleware
 const { dashboardRedirect } = require('../middleware/authMiddleware');
 
+// Admin Access Routes
+router.get('/admin/login');
+router.post('/admin/login');
+router.get('/admin/logout');
+
+// Admin Password Change
+router.get('/admin/changepassword');
+router.post('/admin/changepassword');
+
+// Admin Sign Up
+router.get('/admin/signup',authController.admin_signup_get);
+router.post('/admin/signup',authController.admin_signup_post);
+router.get('/admin/signup_success');
+
 // Login GET Request
 router.get('/invest/login',dashboardRedirect,authController.login_get);
 // Login POST Requst

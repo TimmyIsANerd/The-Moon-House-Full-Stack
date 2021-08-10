@@ -1,8 +1,9 @@
 <html lang="en">
 <%- include('./../partials/user/head.ejs'); %> 
-<link rel="stylesheet" href="/assets/css/user/user.css">
-
 <body>
+
+    <%- include('./../partials/user/nav.ejs') %> 
+    <link rel="stylesheet" href="/assets/css/user/user.css">
     <section id="access_form">
         <div class="container">
             <div class="col-12">
@@ -13,17 +14,13 @@
                                 <div class="logo_container">
                                     <img src="/assets/img/nav-logo.png" class="logo" alt="">
                                 </div>
-                                <div>
-                                    <h3>Login</h3>
-                                </div>
                                 <div class="input">
                                     <input class="form-control" autocomplete="off" type="email" name="email" id="email" placeholder="Email" required>
                                     <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required>
                                     <div id="password-error" style="color:red;font-weight:bold;"></div>
                                     <p><a href="/user/forgot_password">Forgot Password?</a></p>
                                     <p>Don't have an account? <a href="/invest/signup" class="text-bold">Sign Up</a></p>
-                                    <button type="submit" value="Submit 
-                                    Form" class="quote-btn btn">Login</button>
+                                    <button type="submit" value="Submit Form" class="quote-btn btn">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -88,6 +85,6 @@
         </footer>
 
     <!-- Static Javascript -->
-	<%- include('./partials/form_scripts.ejs') %> 
+	<%- include('../partials/academy/academy_scripts.ejs') %> 
 </body>
 </html>
