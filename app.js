@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 //Create instance of express app
 const app = express();
 
+// ENV Variable Handler
+require('dotenv').config();
+
 // Import Express Routes
 const basicRoutes = require('./routes/basicRoutes');
 // Authentication Routes
@@ -17,8 +20,12 @@ const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 // Connect MongoDB
+// DB Credentials
+const dbUsername = process.env.MONGO_DB_USERNAME;
+const dbPassword = process.env.MONGO_DB_PASS;
+
 // After Mongo Connection is successful, start listening on open port.
-const dbURI = 'mongodb://127.0.0.1:27017/the_moon_house';
+const dbURI = `mongodb+srv://${dbUsername}:${dbPassword}@themoonhouse.miu4r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 mongoose.connect(dbURI,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
