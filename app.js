@@ -19,11 +19,15 @@ const userRoutes = require('./routes/userRoutes');
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
 const dbURI = 'mongodb://127.0.0.1:27017/the_moon_house';
-mongoose.connect(dbURI,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-}).then((result) =>app.listen(port, () => console.log(`The Moon House App listening on port ${port}`))).catch((err) => console.log(err));
+if(proces.env === "production"){
+    app.listen(80, () => console.log(`The Moon House App listening on port ${port}`))
+} else {
+    mongoose.connect(dbURI,{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+    }).then(() => app.listen(port, () => console.log(`The Moon House App listening on port ${port}`))).catch((err) => console.log(err));
+}
 
 // Set port to 4000
 const port = 4000;
