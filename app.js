@@ -19,7 +19,7 @@ const userRoutes = require('./routes/userRoutes');
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
 const dbURI = 'mongodb://127.0.0.1:27017/the_moon_house';
-if(proces.env === "production"){
+if(process.env === "production"){
     app.listen(80, () => console.log(`The Moon House App listening on port ${port}`))
 } else {
     mongoose.connect(dbURI,{
