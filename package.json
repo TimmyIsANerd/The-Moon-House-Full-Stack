@@ -4,7 +4,8 @@
   "description": "The Moon House Full Project",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node app"
   },
   "repository": {
     "type": "git",
