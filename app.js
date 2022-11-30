@@ -29,10 +29,11 @@ const dbURI = 'mongodb://127.0.0.1:27017/the_moon_house';
 // }
 
 
-app.listen(80, () => console.log(`The Moon House App listening on port ${port}`))
 
 // Set port to 4000
 const port = 4000;
+
+app.listen(port, () => console.log(`The Moon House App listening on port ${port}`))
 
 // Register view engine
 app.set('view engine','ejs');
