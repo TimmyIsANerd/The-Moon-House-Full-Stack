@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "jest",
-    "start": "node app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "nodemon app",
-    "build": "node app.js"
+    "build": "NODE_ENV=production node app.js"
   },
   "repository": {
     "type": "git",
