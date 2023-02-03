@@ -254,7 +254,7 @@ const login_post = async (req, res) => {
   // Store the incoming body in deconstructed object
   const { email, password } = req.body;
   const user = await userSignUp.findOne({ email });
-  console.log(req.body);
+
   if (!user) {
     return res.status(403).json({
       status: "error",
@@ -262,6 +262,7 @@ const login_post = async (req, res) => {
     });
   }
   // Login Condition
+
   // Incase of unverified account
   if ((await user.status) != "Active") {
     return res.status(401).json({
@@ -270,6 +271,7 @@ const login_post = async (req, res) => {
       redirect: "/error/unverifiedaccount",
     });
   }
+
   if (await bcrypt.compare(password, user.password)) {
     // The username, password combination is successful.
     try {
@@ -284,6 +286,7 @@ const login_post = async (req, res) => {
       return res.status(200).json({
         status: "ok",
         user: user._id,
+        token,
       });
     } catch (error) {
       if (error) {
@@ -293,7 +296,9 @@ const login_post = async (req, res) => {
       }
     }
   } else {
-    return res.json({ status: "error", error: "Invalid Email/Password" });
+    return res
+      .status(403)
+      .json({ status: "error", error: "Invalid Email/Password" });
   }
 };
 
