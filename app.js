@@ -22,28 +22,21 @@ const dbURI =
   process.env.NODE_ENV === "production"
     ? "mongodb+srv://timmyisanerd:TheTitan1123@themoonhouse.miu4r.mongodb.net/tmh"
     : "mongodb://127.0.0.1:27017/the_moon_house";
-if (dbURI) {
-} else {
-  mongoose
-    .connect(dbURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    })
-    .then(() =>
-      app.listen(port, () =>
-        console.log(`The Moon House App listening on port ${port}`)
-      )
+
+mongoose.set("strictQuery", true);
+mongoose
+  .connect(dbURI, {
+    useNewUrlParser: true,
+  })
+  .then(() =>
+    app.listen(port, () =>
+      console.log(`The Moon House App listening on port ${port}`)
     )
-    .catch((err) => console.log(err));
-}
+  )
+  .catch((err) => console.log(err));
 
 // Set port to 4000
 const port = process.env.PORT || 4000;
-
-app.listen(port, () =>
-  console.log(`The Moon House App listening on port ${port}`)
-);
 
 // Register view engine
 app.set("view engine", "ejs");
