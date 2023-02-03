@@ -1,58 +1,68 @@
 // Import required modules
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 //Create instance of express app
 const app = express();
 
 // Import Express Routes
-const basicRoutes = require('./routes/basicRoutes');
+const basicRoutes = require("./routes/basicRoutes");
 // Authentication Routes
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require("./routes/authRoutes");
 // Admin Account Routes
-const adminRoutes = require('./routes/adminRoutes');
+const adminRoutes = require("./routes/adminRoutes");
 // User Account Routes
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require("./routes/userRoutes");
 
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
-const dbURI = 'mongodb://127.0.0.1:27017/the_moon_house';
-// if(process.env === "production"){
-// } else {
-//     mongoose.connect(dbURI,{
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//         useCreateIndex: true
-//     }).then(() => app.listen(port, () => console.log(`The Moon House App listening on port ${port}`))).catch((err) => console.log(err));
-// }
-
-
+const dbURI =
+  process.env.NODE_ENV === "production"
+    ? "mongodb+srv://timmyisanerd:TheTitan1123@themoonhouse.miu4r.mongodb.net/tmh"
+    : "mongodb://127.0.0.1:27017/the_moon_house";
+if (dbURI) {
+} else {
+  mongoose
+    .connect(dbURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    .then(() =>
+      app.listen(port, () =>
+        console.log(`The Moon House App listening on port ${port}`)
+      )
+    )
+    .catch((err) => console.log(err));
+}
 
 // Set port to 4000
-const port = 4000;
+const port = process.env.PORT || 4000;
 
-app.listen(port, () => console.log(`The Moon House App listening on port ${port}`))
+app.listen(port, () =>
+  console.log(`The Moon House App listening on port ${port}`)
+);
 
 // Register view engine
-app.set('view engine','ejs');
+app.set("view engine", "ejs");
 
 // Middleware and Static files
-app.use(morgan('dev'));
-app.use(express.static('public'));
+app.use(morgan("dev"));
+app.use(express.static("public"));
 // Middleware to decode incoming body
 app.use(bodyParser.json());
 // Cookie Parser
-app.use(cookieParser())
+app.use(cookieParser());
 
 // Use Express Routes
 app.use(basicRoutes);
 app.use(authRoutes);
-app.use('/admin',adminRoutes);
+app.use("/admin", adminRoutes);
 app.use(userRoutes);
 
 // 404 Route
-app.use((req,res)=>{
-    res.status(404).render('404');
-})
+app.use((req, res) => {
+  res.status(404).render("404");
+});
