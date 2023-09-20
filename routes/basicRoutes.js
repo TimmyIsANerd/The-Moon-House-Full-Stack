@@ -15,6 +15,9 @@ router.get('/home',(req,res)=>{
 router.get('/index',(req,res)=>{
     res.redirect('/')
 })
+router.get('/health',(req,res) =>{
+    return res.status(200);
+})
 // Invest Page Route
 router.get('/invest',basicController.invest);
 // Contact Us Route
