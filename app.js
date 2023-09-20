@@ -51,6 +51,10 @@ app.use(cookieParser());
 
 // Use Express Routes
 app.use(basicRoutes);
+// Health check route
+app.get("/health",(req,res) =>{
+  res.status(200)
+})
 app.use(authRoutes);
 app.use("/admin", adminRoutes);
 app.use(userRoutes);
