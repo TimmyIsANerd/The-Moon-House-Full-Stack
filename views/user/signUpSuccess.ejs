@@ -1,4 +1,45 @@
-<p>
+<html lang="en">
+<%- include('./../partials/user/head.ejs'); %>
+    <body>
 
-    Sign Up Successful
-</p>
+        <style>
+            .sign_up_successful{
+                color:#fff;
+                height:100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+        </style>
+        <%- include('./../partials/user/nav.ejs') %>
+            <link rel="stylesheet" href="/assets/css/user/user.css">
+            <section id="access_form">
+                <div class="container">
+                    <div class="col-12 text-center text-white">
+                        <div class="sign_up_successful mt-5">
+                            <span class="fa fa-envelope my-3 fa-2x"></span>
+                            <h3>Sign Up Successful</h3>
+                            <p>You are almost there. Please check your email to verify your account.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <div class="container-fluid">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer text-center">
+                            <% var date=new Date(); %>
+                                <p><a href="/">The Moon House</a> &copy; <%= date.getFullYear(); %>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Static Javascript -->
+            <%- include('../partials/academy/academy_scripts.ejs') %>
+    </body>
+
+</html>
