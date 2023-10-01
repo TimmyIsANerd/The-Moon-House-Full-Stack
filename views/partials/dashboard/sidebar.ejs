@@ -1,30 +1,51 @@
-<% // Conditional Rendering For active Nav Link const activeLink={ dashboard:'', profile:'', security:'',
-  notification:'', history:'' } if(activeNavLink=='dashboard' ){ activeLink.dashboard='active' }
-  if(activeNavLink=='profile' ){ activeLink.profile='active' } if(activeNavLink=='security' ){
-  activeLink.security='active' } if(activeNavLink=='notifications' ){ activeLink.notification='active' }
-  if(activeNavLink=='history' ){ activeLink.history='active' } %>
+<% 
+// Conditional Rendering For active Nav Link
+const activeLink = {
+  dashboard:'',
+  profile:'',
+  security:'',
+  notification:'',
+  history:''
+}
+if(activeNavLink == 'dashboard'){
+  activeLink.dashboard = 'active'
+}
+if(activeNavLink == 'profile'){
+  activeLink.profile = 'active'
+}
 
-  <div class="wrapper ">
-    <div class="sidebar" data-color="orange" data-background-color="black"
-      data-image="/dashboard/assets/img/sidebar-2.jpg">
+if(activeNavLink == 'security'){
+  activeLink.security = 'active'
+}
+
+if(activeNavLink == 'notifications'){
+  activeLink.notification = 'active'
+}
+
+if(activeNavLink == 'history'){
+  activeLink.history = 'active'
+}
+%> 
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="orange" data-background-color="black" data-image="/dashboard/assets/img/sidebar-2.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <style>
-        .img-center {
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        }
-      </style>
+    <style>
+      .img-center{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
       <div class="logo">
         <img src="/assets/img/nav-logo.png" class="img-fluid img-center" style="height:auto;width:35%;" alt="">
         <a href="/dashboard" class="simple-text logo-normal">
-          Xionvest
-        </a>
-      </div>
+          The Moon House
+        </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item <%= activeLink.dashboard %> ">
