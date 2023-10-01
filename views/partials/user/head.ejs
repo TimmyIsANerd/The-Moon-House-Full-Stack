@@ -5,7 +5,7 @@
 	<meta name="author" content="Adefeyitimi Adeyeloja">
 	<meta name="keyword" content="The Moon House,Bitcoin,The Moon House Academy,Cryptocurrency School, Cryptocurrency Tutor,Crypto Trading, Investment, Crypto Money, Investing in Cryptocurrency, The Moon House Training, Trading Bitcoin">
     <link rel="shortcut icon" type="image/x-icon" href="/assets/img/icon.png" />
-    <title>The Moon House | <%= title %> </title>
+    <title>The Moon House <%= title ?  `| ${title}` : "" %> </title>
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="/assets/css/custom.css">
     <!-- Bootstrap core CSS -->
