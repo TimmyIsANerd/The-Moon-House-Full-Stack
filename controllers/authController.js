@@ -24,7 +24,7 @@ const sign_up_get = (req, res) => {
 };
 // Sign Up Success GET Request
 const sign_up_success_get = (req, res) => {
-  res.render("user/signUpSuccess");
+  res.render("user/signUpSuccess", { title: "User Sign Up Success" });
 };
 // POST Sign Up Page
 const sign_up_post = async (req, res) => {
@@ -77,10 +77,10 @@ const sign_up_post = async (req, res) => {
       status: error,
       error: "Password is less than 8 characters",
     });
-    throw error;
   }
   const password = await bcrypt.hash(plainTextPassword, 10);
   // Use Try/Catch to Create User in the Database
+
   // Create a New unverified user in the system
   try {
     var date = new Date().toLocaleDateString();
@@ -158,13 +158,7 @@ const sign_up_post = async (req, res) => {
       // Create Cookie
       const token = await createToken(newUser._id);
       res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-      return res
-        .json({
-          user: newUser._id,
-          status: "ok",
-        })
-        .status(201);
-      // Use nested try/catch to send confirmation email
+
       try {
         // Call the sendEmail Function in the signup method
         newUser.save((err, newUser) => {
@@ -172,15 +166,16 @@ const sign_up_post = async (req, res) => {
             res.status(500);
             return;
           }
-          return res.json({
-            status: "ok",
-          });
 
           nodemailer.sendConfirmationEmail(
             newUser.firstName,
             newUser.email,
             newUser.confirmationCode
           );
+
+          return res.json({
+            status: "ok",
+          });
         });
       } catch (error) {
         if (error) {
@@ -190,6 +185,14 @@ const sign_up_post = async (req, res) => {
           });
         }
       }
+
+      return res
+        .json({
+          user: newUser._id,
+          status: "ok",
+        })
+        .status(201);
+      // Use nested try/catch to send confirmation email
     } catch (error) {
       if (error) {
         res.status(500).json({
@@ -209,7 +212,6 @@ const sign_up_post = async (req, res) => {
     }
     throw error;
   }
-  return res.json({ status: "ok" });
 };
 // Verify User Account GET Request
 const verifyUser = (req, res, next) => {
@@ -218,12 +220,12 @@ const verifyUser = (req, res, next) => {
       confirmationCode: req.params.confirmationCode,
     })
     .then((user) => {
-      console.log(user);
       if (!user) {
         return res.status(404).send({
           message: "User Not Found",
         });
       }
+
       user.status = "Active";
       user.save((err) => {
         if (err) {
