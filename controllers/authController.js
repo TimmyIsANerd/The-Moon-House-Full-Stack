@@ -136,7 +136,7 @@ const sign_up_post = async (req, res) => {
       userNotifications: {
         notification: [
           {
-            message: "Welcome to The Moon House Investor Dashboard",
+            message: "Welcome to Xionvest Investor Dashboard",
             messageStatus: "Unread",
           },
           {

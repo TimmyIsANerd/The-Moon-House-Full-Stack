@@ -11,8 +11,8 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-12 pl-0 mb-lg-0 mb-5">
                     <div class="logo">
                         <a href="#">
-                           <img class="img-fluid nav-logo" src="assets/img/nav-logo.png" alt="">
-                           <span class="logo-text">The Moon House</span>
+                            <img class="img-fluid nav-logo" src="assets/img/nav-logo.png" alt="">
+                            <span class="logo-text">Xionvest</span>
                         </a>
                     </div>
                 </div>
@@ -33,7 +33,8 @@
                         <h6>+123(456)789</h6>
                     </div>
                     <div class="header-info-box">
-                        <a href="/academy/signup" target="_blank" class="quote-btn">Get Started <i class="icofont icofont-caret-right"></i></a>
+                        <a href="/academy/signup" target="_blank" class="quote-btn">Get Started <i
+                                class="icofont icofont-caret-right"></i></a>
                     </div>
                 </div>
                 <!-- end col -->
@@ -41,39 +42,32 @@
         </div>
     </div>
     <!-- END LOGO AREA -->
-    <% 
-    var navDir = {
-        service : '/#sevice',
-        price : '/#price',
-        team :'/#team'
-    }
-
-     %>
-    <!-- START NAVIGATION AREA -->
-    <div class="sticky-menu">
-        <div class="mainmenu-area">
-            <div class="auto-container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg justify-content-center">
-                            <ul class="navbar-nav">
-                                <li><a href="./" class="js-scroll-trigger nav-link">Home</a></li>
-                                <li><a href="/about" class="js-scroll-trigger nav-link">About Us</a></li>
-                                <li><a href="#service" class="js-scroll-trigger nav-link">Services</a></li>
-                                <li><a href="#team" class="js-scroll-trigger nav-link">Meet The Team</a></li>
-                                <li><a href="/contact" class="js-scroll-trigger nav-link">Contact Us</a></li>
-                                <li><a href="/academy" class="js-scroll-trigger nav-link">Our Academy</a></li>
-                                <li><a href="/invest" class="nav-link">Invest</a></li>
-                                <% if(user){ %>     
-                                    <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
-                                <% } else { %>   
-                                    <li><a href="/invest/signup" class="nav-link">Sign Up</a></li>
-                                    <li><a href="/invest/login" class="nav-link">Login</a></li>
-                                <% } %>  
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- <div class="col-lg-3 d-none d-lg-block d-md-none text-right pr-0">
+    <% var navDir={ service : '/#sevice' , price : '/#price' , team :'/#team' } %>
+        <!-- START NAVIGATION AREA -->
+        <div class="sticky-menu">
+            <div class="mainmenu-area">
+                <div class="auto-container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <nav class="navbar navbar-expand-lg justify-content-center">
+                                <ul class="navbar-nav">
+                                    <li><a href="./" class="js-scroll-trigger nav-link">Home</a></li>
+                                    <li><a href="/about" class="js-scroll-trigger nav-link">About Us</a></li>
+                                    <li><a href="#service" class="js-scroll-trigger nav-link">Services</a></li>
+                                    <li><a href="#team" class="js-scroll-trigger nav-link">Meet The Team</a></li>
+                                    <li><a href="/contact" class="js-scroll-trigger nav-link">Contact Us</a></li>
+                                    <li><a href="/academy" class="js-scroll-trigger nav-link">Our Academy</a></li>
+                                    <li><a href="/invest" class="nav-link">Invest</a></li>
+                                    <% if(user){ %>
+                                        <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                                        <% } else { %>
+                                            <li><a href="/invest/signup" class="nav-link">Sign Up</a></li>
+                                            <li><a href="/invest/login" class="nav-link">Login</a></li>
+                                            <% } %>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- <div class="col-lg-3 d-none d-lg-block d-md-none text-right pr-0">
                         <form class="navbar-form">
                             <div class="form-group">
                                 <input class="form-control" name="search" value="Search here..." type="text">
@@ -81,10 +75,10 @@
                             </div>
                         </form>
                     </div> -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- END NAVIGATION AREA -->	
+        <!-- END NAVIGATION AREA -->
 </header>
 <!-- END HEADER SECTION -->
