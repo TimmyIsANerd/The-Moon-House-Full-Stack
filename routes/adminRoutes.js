@@ -1,8 +1,9 @@
 // Import Express
-const express = require('express');
+import express from 'express';
+
 // Import Express Router
 const router = express.Router();
-const adminController = require('../controllers/adminController');
+import adminController from '../controllers/adminController.js';
 
 // Setup Routes for Admin
 // Admin Sign Up GET
@@ -28,4 +29,4 @@ router.post('/admin/createuserportfiolio/:id',adminController.admin_dashboard_cr
 router.get('/admin/sendnotification',adminController.send_notification_get);
 router.post('/admin/sendnotification',adminController.send_notification_post);
 
-module.exports = router;
+export default router;

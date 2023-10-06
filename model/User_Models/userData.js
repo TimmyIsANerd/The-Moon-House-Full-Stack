@@ -1,5 +1,5 @@
 // Require Mongoose
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 // const { isEmail } = require('validator');
 // Investor Account Schema
 const investorAccountSchema = new mongoose.Schema(
@@ -222,11 +222,11 @@ const userNotifications = mongoose.model(
   userNotificationsSchema
 );
 
-module.exports = {
+export {
   userData,
   investorAccount,
   nextOfKinInformation,
   userContactInformation,
   withdrawalInfo,
   userNotifications,
-};
+}
