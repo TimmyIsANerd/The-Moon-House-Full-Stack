@@ -2,33 +2,38 @@ import mongoose from "mongoose";
 
 const NextOfKin = new mongoose.Schema(
     {
-      KinfirstName: {
+      kinFirstName: {
         type: String,
         required: true,
       },
-      KinlastName: {
+      kinLastName: {
         type: String,
         required: true,
       },
-      Kinemail: {
+      kinEmail: {
         type: String,
         required: true,
       },
-      KinphoneNumber: {
+      kinPhoneNumber: {
         type: Number,
       },
-      Kinaddress: {
+      kinAddress: {
         type: String,
       },
-      KinPostalCode: {
+      kinPostalCode: {
         type: String,
       },
       KinCity: {
         type: String,
       },
-      KinCountry: {
+      kinCountry: {
         type: String,
       },
+      kinTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: [true, "Please provide user"],
+      }
     },
     { timestamps: true }
 );
