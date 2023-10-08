@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
 const schema = mongoose.Schema;
 
-const RunningInvestmentSchema = new schema(
+const InvestmentSchema = new schema(
   {
+    user: {
+      type: schema.Types.ObjectId,
+      ref: "User",
+      required: [true, "Please provide user"],
+    },
     amount: {
       type: Number,
       min: "10",
@@ -19,13 +24,8 @@ const RunningInvestmentSchema = new schema(
       enum: ["running", "completed"],
       default: "running",
     },
-    investedBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: [true, "Please provide user"],
-    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("UserRunningInvestment", RunningInvestmentSchema);
+export default mongoose.model("UserInvestment", InvestmentSchema);

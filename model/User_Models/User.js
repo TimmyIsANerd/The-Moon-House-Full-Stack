@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema(
       minlength: 8,
       select: false,
     },
-    referalCode: {
+    referralCode: {
       type: String,
       unique: true,
     },
@@ -40,7 +40,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "No one",
     },
-    accoutVerified: {
+    accountVerified: {
       type: Boolean,
       default: false,
     },
@@ -53,6 +53,16 @@ const UserSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    activityPin: {
+      type: Number,
+      minlength: 4,
+      maxlength: 4,
+    },
+    adminActivityPin: {
+      type: Number,
+      minlength: 4,
+      maxlength: 4,
+    }
   },
   { timestamps: true }
 );
