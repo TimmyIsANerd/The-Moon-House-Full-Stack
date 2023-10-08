@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+const schema = mongoose.Schema;
 
-const UserRunningInvestment = new mongoose.Schema(
+const RunningInvestmentSchema = new schema(
   {
     amount: {
       type: Number,
@@ -27,4 +28,4 @@ const UserRunningInvestment = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("UserRunningInvestment", UserRunningInvestment);
+export default mongoose.model("UserRunningInvestment", RunningInvestmentSchema);

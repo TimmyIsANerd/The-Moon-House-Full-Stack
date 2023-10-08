@@ -1,54 +1,78 @@
 import mongoose from "mongoose";
+import validator from "validator";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-const userDataSchema = new mongoose.Schema(
-    {
-      // User Sign Up
-      firstName: {
-        type: String,
-        required: true,
-      },
-      lastName: {
-        type: String,
-        required: true,
-      },
-      email: { type: String, required: true, unique: true, lowercase: true },
-      password: { type: String, required: true, minlength: 8 },
-      status: {
-        type: String,
-        enum: ["Pending", "Active"],
-        default: "Pending",
-      },
-      fundAccVerification: {
-        type: String,
-        option: ["Verified", "Unverified"],
-        default: "Unverified",
-      },
-      userType: {
-        type: String,
-        enum: ["student", "admin", "investor"],
-        default: "investor",
-      },
-      confirmationCode: {
-        type: String,
-        unique: true,
-      },
-      referalCode: {
-        type: String,
-        unique: true,
-      },
-      // Account Investment Data
-      investorAccount: [investorAccountSchema],
-      // User Contact Information
-      userContactInformation: [userContactInformationSchema],
-      // Next Of Kin Information
-      nextOfKinInformation: [nextOfKinInformationSchema],
-      // Withdrawal Information
-      withdrawalInfo: [withdrawalInfoSchema],
-      // User Notifications
-      userNotifications: [userNotificationsSchema],
+const UserSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: [true, "Please provide first name"],
+      maxlength: 20,
+      trim: true,
     },
-    { collection: "user_data_signup" },
-    { timestamps: true }
+    lastName: {
+      type: String,
+      required: [true, "Please provide last name"],
+      maxlength: 20,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: [true, "Please provide your email"],
+      validate: {
+        validator: validator.isEmail,
+        message: "Please provide a valid email address",
+      },
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Please provide password"],
+      minlength: 8,
+      select: false,
+    },
+    referalCode: {
+      type: String,
+      unique: true,
+    },
+    referredBy: {
+      type: String,
+      default: "No one",
+    },
+    accoutVerified: {
+      type: Boolean,
+      default: false,
+    },
+    userType: {
+      type: String,
+      enum: ["admin", "investor"],
+      default: "investor",
+    },
+    confirmationCode: {
+      type: String,
+      unique: true,
+    },
+  },
+  { timestamps: true }
 );
 
-export default mongoose.model("userData", userDataSchema);
+UserSchema.pre("save", async function () {
+  // console.log(this.modifiedPaths());
+  if (!this.isModified("password")) return;
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+UserSchema.methods.createJWT = function () {
+  return jwt.sign({ userId: this._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_LIFETIME,
+  });
+};
+
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+  const isMatch = await bcrypt.compare(candidatePassword, this.password);
+  return isMatch;
+};
+
+export default mongoose.model("User", UserSchema);

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+const schema = mongoose.Schema;
 
-const NextOfKin = new mongoose.Schema(
+const NextOfKinSchema = new schema(
     {
       kinFirstName: {
         type: String,
@@ -38,4 +39,4 @@ const NextOfKin = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.model("NextOfKin", nextOfKinInformationSchema);
+export default mongoose.model("NextOfKin", NextOfKinSchema);

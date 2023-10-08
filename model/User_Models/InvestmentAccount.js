@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const InvestmentAccount = new mongoose.Schema(
+const InvestmentAccountSchema = new mongoose.Schema(
     {
       // Account Balance
       accountBalance: {
@@ -62,4 +62,4 @@ const InvestmentAccount = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.model("InvestmentAccount", InvestmentAccount);
+export default mongoose.model("UserInvestmentAccount", InvestmentAccountSchema);
