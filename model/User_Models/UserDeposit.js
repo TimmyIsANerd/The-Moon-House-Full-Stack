@@ -5,6 +5,7 @@ const DepositSchema = new schema(
   {
     user: {
       type: schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     amount: {
