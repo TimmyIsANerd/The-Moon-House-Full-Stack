@@ -26,3 +26,5 @@ const WithdrawalSchema = new schema(
   },
   { timestamps: true }
 );
+
+export default mongoose.model("UserWithdrawal", WithdrawalSchema);
