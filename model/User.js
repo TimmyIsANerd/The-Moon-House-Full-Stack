@@ -62,6 +62,12 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       minlength: 4,
       maxlength: 4,
+    },
+    userTag: {
+      type: String,
+      required: [true, "Please provide user tag"],
+      maxlength: 16,
+      unique: [true, "User tag already exists"],
     }
   },
   { timestamps: true }
