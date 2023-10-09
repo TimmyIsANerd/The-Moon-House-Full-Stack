@@ -40,9 +40,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "No one",
     },
-    accountVerified: {
-      type: Boolean,
-      default: false,
+    accountStatus: {
+      type: String,
+      enum: ["Verified", "Unverified", "Suspended", "Deleted", "Banned"],
+      default: "Unverified",
     },
     confirmationCode: {
       type: String,

@@ -32,9 +32,10 @@ const AdminSchema = new mongoose.Schema(
       minlength: 8,
       select: false,
     },
-    accountVerified: {
-      type: Boolean,
-      default: false,
+    accountStatus: {
+      type: String,
+      enum: ["Verified", "Unverified", "Suspended", "Deleted", "Banned"],
+      default: "Unverified",
     },
     adminRoleAssigned: {
         type: Boolean,
