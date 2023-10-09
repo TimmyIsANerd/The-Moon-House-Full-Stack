@@ -32,7 +32,7 @@ mongoose
   })
   .then(() =>
     app.listen(port, () =>
-      console.log(`The Moon House App listening on port ${port}`)
+      console.log(`Xionvest App listening on port ${port}`)
     )
   )
   .catch((err) => console.log(err));
@@ -54,9 +54,9 @@ app.use(cookieParser());
 // Use Express Routes
 app.use(basicRoutes);
 // Health check route
-app.get("/health",(req,res) =>{
-  res.status(200)
-})
+app.get("/health", (req, res) => {
+  res.status(200);
+});
 app.use(authRoutes);
 app.use("/admin", adminRoutes);
 app.use(userRoutes);

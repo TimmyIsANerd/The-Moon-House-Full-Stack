@@ -1,27 +1,32 @@
 <html lang="en">
-<%- include('./partials/academy/academy_head.ejs'); %> 
-<%- include('./partials/academy/academy_partial.ejs'); %> 
-<body>
+<%- include('./partials/academy/academy_head.ejs'); %>
+    <%- include('./partials/academy/academy_partial.ejs'); %>
 
-    <h1>Email Confirmation</h1>
-    <section id="email_confirmation">
-        <h1><%= email %></h1> 
-        <p>Please go click the confimation link in your inbox.</p>
-    </section>
+        <body>
 
-    <footer>
-        <div class="container-fluid">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="footer text-center">
-                    <!-- <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have read and acknowledged our <a href="/policy">Privacy Policy</a></p> -->
-                    <% var date = new Date(); %> 
-                    <p>The Moon House &copy; <%= date.getFullYear(); %> </p>
+            <h1>Email Confirmation</h1>
+            <section id="email_confirmation">
+                <h1>
+                    <%= email %>
+                </h1>
+                <p>Please go click the confimation link in your inbox.</p>
+            </section>
+
+            <footer>
+                <div class="container-fluid">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer text-center">
+                            <!-- <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have read and acknowledged our <a href="/policy">Privacy Policy</a></p> -->
+                            <% var date=new Date(); %>
+                                <p>Xionvest &copy; <%= date.getFullYear(); %>
+                                </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Static Javascript -->
-	<%- include('./partials/academy/academy_scripts.ejs') %> 
-</body>
+            </footer>
+
+            <!-- Static Javascript -->
+            <%- include('./partials/academy/academy_scripts.ejs') %>
+        </body>
+
 </html>

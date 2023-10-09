@@ -292,7 +292,7 @@ md = {
     });
   },
   showNotificationRefer: function(from, align) {
-    type = ['', 'info', 'danger', 'success', 'warning', 'primary'];
+    type = ['info', 'danger', 'success', 'warning', 'primary'];
 
     color = Math.floor((Math.random() * 5) + 1);
 
@@ -301,7 +301,7 @@ md = {
       message: "Referal system is currently under Maintainance. Please bear with us."
 
     }, {
-      type: type[color],
+      type: type[3],
       timer: 3000,
       placement: {
         from: from,
