@@ -44,21 +44,11 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    userType: {
-      type: String,
-      enum: ["admin", "investor"],
-      default: "investor",
-    },
     confirmationCode: {
       type: String,
       unique: true,
     },
     activityPin: {
-      type: Number,
-      minlength: 4,
-      maxlength: 4,
-    },
-    adminActivityPin: {
       type: Number,
       minlength: 4,
       maxlength: 4,
