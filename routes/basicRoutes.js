@@ -1,14 +1,20 @@
 // Basic Routes
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const basicController = require('../controllers/basicController');
+import {
+    home,
+    invest,
+    contact_us,
+    privacy_policy,
+    terms,
+  } from '../controllers/basicController.js';
 // Import checkUser Middleware
-const { checkUser } = require('../middleware/authMiddleware');
+import { checkUser } from '../middleware/authMiddleware.js';
 
 // Set up Basic Routes
 // Home Route
 router.get('*', checkUser)
-router.get('/',basicController.home);
+router.get('/',home);
 router.get('/home',(req,res)=>{
     res.redirect('/');
 });
@@ -19,13 +25,13 @@ router.get('/health',(req,res) =>{
     return res.status(200);
 })
 // Invest Page Route
-router.get('/invest',basicController.invest);
+router.get('/invest',invest);
 // Contact Us Route
-router.get('/contact',basicController.contact_us);
+router.get('/contact',contact_us);
 // Privacy Policy Route
-router.get('/policy',basicController.privacy_policy);
+router.get('/policy',privacy_policy);
 // Terms & Conditions Route
-router.get('/terms',basicController.terms);
+router.get('/terms',terms);
 
 
-module.exports = router;
+export default router;

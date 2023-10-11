@@ -35,6 +35,8 @@ const UserSchema = new mongoose.Schema(
     referralCode: {
       type: String,
       unique: true,
+      required: [true, "Please generate user's referral code"],
+      maxlength: 8,
     },
     referredBy: {
       type: String,
@@ -56,7 +58,7 @@ const UserSchema = new mongoose.Schema(
     },
     userTag: {
       type: String,
-      required: [true, "Please provide user tag"],
+      // required: [true, "Please provide user tag"],
       maxlength: 16,
       unique: [true, "User tag already exists"],
     }

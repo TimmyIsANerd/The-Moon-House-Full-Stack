@@ -1,7 +1,7 @@
 // Import Nodemailer Module
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 // Import auth config file (Contains Email Sender Credentials)
-const config = require("../config/auth.config");
+import config from "../config/auth.config.js";
 const { user, pass } = config;
 
 // Created a transport object and passed sender credentials
@@ -14,7 +14,7 @@ const transport = nodemailer.createTransport({
 });
 
 // Export sendEmail Function
-module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
+export default function sendConfirmationEmail(firstName, email, confirmationCode) {
   console.log("Check");
   transport
     .sendMail({
