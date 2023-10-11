@@ -1,5 +1,5 @@
 // Import Models
-const userData = require('../model/userData');
+import userData from '../model/User_Models/userData.js';
 // Admin Controller
  
 // Dashboard GET
@@ -63,12 +63,12 @@ const send_notification_post = (req,res) =>{
         })
 }
 
-module.exports = {
+export {
+    admin_dashboard_get,
     admin_signup_get,
     admin_signup_post,
     admin_get,
     admin_post,
-    admin_dashboard_get,
     admin_dashboard_create_user,
     admin_dashboard_delete_user,
     admin_dashboard_editUserInformation,

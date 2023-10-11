@@ -1,27 +1,29 @@
 // Import required modules
-const express = require("express");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
+import express from "express";
+import morgan from "morgan";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+dotenv.config()
 //Create instance of express app
 const app = express();
 
 // Import Express Routes
-const basicRoutes = require("./routes/basicRoutes");
+import basicRoutes from "./routes/basicRoutes.js";
 // Authentication Routes
-const authRoutes = require("./routes/authRoutes");
+import authRoutes from "./routes/authRoutes.js";
 // Admin Account Routes
-const adminRoutes = require("./routes/adminRoutes");
+import adminRoutes from "./routes/adminRoutes.js";
 // User Account Routes
-const userRoutes = require("./routes/userRoutes");
+import userRoutes from "./routes/userRoutes.js";
 
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
-const dbURI =
-  process.env.NODE_ENV === "production"
-    ? "mongodb+srv://timmyisanerd:TheTitan1123@themoonhouse.miu4r.mongodb.net/tmh"
-    : "mongodb://127.0.0.1:27017/the_moon_house";
+const dbURI = process.env.MONGODB
+  // process.env.NODE_ENV === "production"
+  //   ? "mongodb+srv://timmyisanerd:TheTitan1123@themoonhouse.miu4r.mongodb.net/tmh"
+  //   : "mongodb+srv://sololo:Harley4058@cluster1.do5hnis.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.set("strictQuery", true);
 mongoose
