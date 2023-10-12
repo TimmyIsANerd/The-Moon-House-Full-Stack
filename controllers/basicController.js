@@ -25,10 +25,18 @@ const terms = (req, res) => {
   res.render("terms", { title: "Terms & Conditions" });
 };
 
-module.exports = {
+// module.exports = {
+//   home,
+//   invest,
+//   contact_us,
+//   privacy_policy,
+//   terms,
+// };
+
+export {
   home,
   invest,
   contact_us,
   privacy_policy,
   terms,
-};
+}

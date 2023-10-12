@@ -1,8 +1,7 @@
 // Import JWT
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 // Import Models
-const { userData } = require('../model/userData');
-const User = userData;
+import { User, UserNotification } from '../model/index.js';
 // JWT SECRET
 const JWT_SECRET = 'the-moon-house-secret';
 // User Dashboard GET
@@ -37,12 +36,19 @@ const user_dashboard_security_get = (req,res) =>{
     })
 }
 // User Dashboard Notifications GET
-const user_dashboard_notifications_get = (req,res) =>{
-    res.render('user/dashboard_notifications',{
-        title:'User Notifications',
-        activeNavLink:'notifications'
-    })
+const user_dashboard_notifications_get = async (req,res) =>{
+    // get notification from UserNotification of current user
+    const notification = await UserNotification.find({user:req.user.id});
+    if (notification){
+        res.render('user/dashboard_notifications',{
+            title:'User Notifications',
+            activeNavLink:'notifications',
+            notification
+        })
+    }
 }
+
+
 // User Dashboard History GET
 const user_dashboard_history_get = (req,res) =>{
     res.render('user/dashboard_history',{
@@ -178,7 +184,7 @@ const user_dashboard_roicalculator_get = (req,res)=>{
 }
 
 
-module.exports = {
+export {
     user_dashboard_get,
     user_dashboard_createUserPortfolio,
     user_dashboard_editUserInformation,

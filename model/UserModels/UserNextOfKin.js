@@ -39,4 +39,4 @@ const NextOfKinSchema = new schema(
     { timestamps: true }
 );
 
-export default mongoose.model("NextOfKin", NextOfKinSchema);
+export default mongoose.model("UserNextOfKin", NextOfKinSchema);

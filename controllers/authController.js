@@ -1,19 +1,20 @@
 // Import Required Model
-const {
-  userData,
-  investorAccount,
-  nextOfKinInformation,
-  userContactInformation,
-  withdrawalInfo,
-} = require("../model/userData");
-const userSignUp = userData;
+import {
+  User,
+  UserNotification,
+  // investorAccount,
+  // nextOfKinInformation,
+  // userContactInformation,
+  // withdrawalInfo,
+} from "../model/index.js";
+const userSignUp = User;
 // Import nodemailer auth config
-const config = require("../config/auth.config");
-const nodemailer = require("../config/nodemailer.config");
+// import config from '../config/auth.config.js'
+import sendConfirmationEmail from "../config/nodemailer.config.js";
 // Import Bcrypt
-const bcrypt = require("bcryptjs");
+import bcrypt from "bcryptjs";
 // Import JWT
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 // Creating JWT Secret
 const JWT_SECRET = "the-moon-house-secret";
@@ -36,31 +37,52 @@ const sign_up_post = async (req, res) => {
     confirmationToken +=
       characters[Math.floor(Math.random() * characters.length)];
   }
-  // Referal Code Generator
-  const referalCodeGen = () => {
-    var codeCharacters = "abcdefgh01234";
-    let referalCode = "";
-    for (let i = 0; i < 10; i++) {
-      referalCode +=
-        codeCharacters[Math.floor(Math.random() * codeCharacters.lenght)];
+  // Referral Code Generator
+  const referralCodeGen = async () => {
+    const referralCharacters = "0123456789abcdefghijklmnopqrstuvwxyz";
+    let referralCode = "";
+    for (let i = 0; i < 8; i++) {
+      referralCode += referralCharacters[Math.floor(Math.random() * referralCharacters.length)];
     }
-    return referalCode;
+    console.log("USER REFERRAL CODE", referralCode);
+    return referralCode;
   };
+
+  let referralCode = await referralCodeGen();
+  let user = await User.find({ referralCode: referralCode });
+  while (user.length > 0) {
+    referralCode = await referralCodeGen();
+    user = await User.find({ referralCode: referralCode });
+  }
+
+  // // User Tag Generator
+  const userTagGen = () => {
+    var tagCharacters = "abcdefghijklmnopqrstuvwxyz";
+    let tag = "";
+    for (let i = 0; i < 7; i++) {
+      tag += tagCharacters[Math.floor(Math.random() * tagCharacters.length)];
+    }
+    let userTag = "@" + tag;
+    console.log("USER TAG GENERATED", userTag);
+    return userTag;
+  };
+
+  let userTag = await userTagGen();
+  let userTagCheck = await User.find({ userTag: userTag });
+  while (userTagCheck.length > 0) {
+    userTag = await userTagGen();
+    userTagCheck = await User.find({ userTag: userTag });
+  }
+
   // Collect body into destructured object
-  const { firstName, lastName, email, password: plainTextPassword } = req.body;
-  // Specifications for Account Balance
-  // const date = new Date();
-  // const currentDate = date.getDate();
-  // const investmentBalance = {
-  //     accountBalance:0,
-  //     deposits:{
-  //         amount:0,
-  //     },
-  //     transactionDate:currentDate,
-  //     transactionType:['Bank Deposit','USDT Wallet']
-  // }
-  // const {accountBalance,deposits,transactionDate,transactionType} = investmentBalance;
-  // Hashing Password using bcrypt library
+  const {
+    firstName,
+    lastName,
+    email,
+    password: plainTextPassword,
+    referredBy,
+  } = req.body;
+
   // Full Name Validation
   if (!firstName || !lastName) {
     return res.json({ status: error, error: "Please Enter Full Name" });
@@ -78,7 +100,16 @@ const sign_up_post = async (req, res) => {
       error: "Password is less than 8 characters",
     });
   }
-  const password = await bcrypt.hash(plainTextPassword, 10);
+  const password = plainTextPassword;
+
+  if (referredBy) {
+    // Check if any user has the referral code
+    const user = await User.findOne({ referralCode: referredBy });
+    if (!user) {
+      return res.json({ status: error, error: "Invalid Referral Code" });
+    }
+  }
+  // const password = await bcrypt.hash(plainTextPassword, 10);
   // Use Try/Catch to Create User in the Database
 
   // Create a New unverified user in the system
@@ -90,64 +121,28 @@ const sign_up_post = async (req, res) => {
       lastName,
       email,
       password,
-      status: "Active",
-      fundAccVerification: "Unverified",
-      userType: "investor",
-      referalCode: confirmationToken,
+      referralCode,
+      referredBy,
+      userTag,
       confirmationCode: confirmationToken,
-      investorAccount: {
-        accountBalance: 0,
-        deposits: {
-          depositEntry: [
-            {
-              amount: 0,
-              transactionDate: currentDate,
-              transactionType: "",
-            },
-          ],
-        },
-        ROI: {
-          accountBalance: 0,
-          ROIEntry: [
-            {
-              amount: 0,
-              transactionDate: currentDate,
-              investmentPackage: "",
-            },
-          ],
-        },
-        Invested: {
-          accountBalance: 0,
-          investmentEntry: [
-            {
-              amount: 0,
-              transactionDate: currentDate,
-            },
-          ],
-        },
-        Referal: {
-          accountBalance: 0,
-          amount: 0,
-          transactionDate: currentDate,
-          payoutOption: "",
-          referals: [],
-        },
-      },
-      userNotifications: {
-        notification: [
+    });
+    console.log("User Created Successfully", newUser);
+    // Notification for User
+    const notification = await UserNotification.create(
+      [
           {
+            user: newUser._id,
             message: "Welcome to Xionvest Investor Dashboard",
             messageStatus: "Unread",
           },
           {
-            message:
-              "Currently you can only make deposits to your account using USDT",
+            user: newUser._id,
+            message: "Currently you can only make deposits to your account using USDT",
             messageStatus: "Unread",
-          },
-        ],
-      },
-    });
-    console.log("User Created Successfully", newUser);
+          }
+        ]
+    );
+    console.log("Notification Created Successfully", notification);
     // Use nested try/catch to create token
     try {
       // Create Token
@@ -167,15 +162,15 @@ const sign_up_post = async (req, res) => {
             return;
           }
 
-          nodemailer.sendConfirmationEmail(
+          sendConfirmationEmail(
             newUser.firstName,
             newUser.email,
             newUser.confirmationCode
           );
 
-          return res.json({
-            status: "ok",
-          });
+          // return res.json({
+          //   status: "ok",
+          // });
         });
       } catch (error) {
         if (error) {
@@ -226,7 +221,7 @@ const verifyUser = (req, res, next) => {
         });
       }
 
-      user.status = "Active";
+      user.accountStatus = "Verified";
       user.save((err) => {
         if (err) {
           res.status(500).send({ message: err });
@@ -266,7 +261,7 @@ const login_post = async (req, res) => {
   // Login Condition
 
   // Incase of unverified account
-  if ((await user.status) != "Active") {
+  if ((await user.accountStatus) != "Verified") {
     return res.status(401).json({
       status: "error",
       error: "Pending Account. Please verify your Email!",
@@ -314,7 +309,7 @@ const unverifieduseraccount = (req, res) => {
   res.render("unverifiedlogin", { title: "Unverified Account" });
 };
 
-module.exports = {
+export {
   sign_up_get,
   sign_up_post,
   sign_up_success_get,
