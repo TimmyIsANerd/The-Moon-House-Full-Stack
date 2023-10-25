@@ -1,9 +1,10 @@
 // Import JWT
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 // Import User Model
-const { userData } = require('../model/userData');
+// const { userData } = require('../model/userData');
+import {User} from '../model/index.js'
 
-const User = userData;
+// const User = userData;
 
 // JWT SECRET
 const JWT_SECRET = 'the-moon-house-secret';
@@ -73,4 +74,5 @@ const dashboardRedirect = (req,res,next) =>{
         next();
     }
 }
-module.exports = { requireAuth, checkUser, dashboardRedirect };
+
+export { requireAuth, checkUser, dashboardRedirect };

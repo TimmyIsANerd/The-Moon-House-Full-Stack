@@ -1,11 +1,14 @@
 {
   "name": "the_moon_house_full",
   "version": "1.0.0",
-  "description": "The Moon House Full Project",
+  "description": "Xionvest Full Project",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
-    "start": "nodemon app"
+    "start": "NODE_ENV=production node app.js",
+    "dev": "nodemon app",
+    "build": "NODE_ENV=production node app.js"
   },
   "repository": {
     "type": "git",
@@ -32,14 +35,15 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "jest": "^27.0.6",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.5",
+    "jest": "^29.4.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.0",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.6.2",
+    "nodemailer": "^6.9.1",
     "nodemon": "^2.0.12",
-    "validator": "^13.6.0"
+    "validator": "^13.9.0"
   }
 }

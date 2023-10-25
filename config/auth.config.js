@@ -1,5 +1,7 @@
-module.exports = {
-    secret : 'theMoonHouse-secret-key',
-    user:'themoonhouse.crypto@gmail.com',
-    pass:'themoonhouse@1123',
+const config = {
+    secret : process.env.SECRET,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
 };
+
+export default config;

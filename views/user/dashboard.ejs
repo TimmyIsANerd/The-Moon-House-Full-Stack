@@ -15,357 +15,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head Tag -->
-<%- include('../partials/dashboard/head.ejs') %> 
+<%- include('../partials/dashboard/head.ejs') %>
 
-<body class="dark-edition">
+  <body class="dark-edition">
     <!-- Sidebar -->
-    <%- include('../partials/dashboard/sidebar.ejs') %> 
-    <!-- Sidebar -->
-    <div class="main-panel">
-      <!-- Navbar -->
-      <%- include('../partials/dashboard/nav.ejs') %> 
-      <!-- Navbar -->   
-      <!-- Body --> 
-      <div class="container" style="margin-top:6em;" id="main_dashboard">
-        <div class="row">
-          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-warning card-header-icon">
-                <div class="card-icon">
-                  <i class="material-icons">account_balance</i>
+    <%- include('../partials/dashboard/sidebar.ejs') %>
+      <!-- Sidebar -->
+      <div class="main-panel">
+        <!-- Navbar -->
+        <%- include('../partials/dashboard/nav.ejs') %>
+          <!-- Navbar -->
+          <!-- Body -->
+          <div class="container" style="margin-top:6em;" id="main_dashboard">
+            <div class="row">
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                      <i class="material-icons">account_balance</i>
+                    </div>
+                    <p class="card-category">Available Balance</p>
+                    <h3 class="card-title">$<span>
+                        <%= user.investorAccount[0].accountBalance %>
+                      </span>
+                      <!-- <small>GB</small> -->
+                    </h3>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <i class="material-icons text-warning">payment</i>
+                      <a class="warning-link">Withdraw</a>
+                    </div>
+                  </div>
                 </div>
-                <p class="card-category">Available Balance</p>
-                <h3 class="card-title">$<span><%= user.investorAccount[0].accountBalance %> </span>
-                  <!-- <small>GB</small> -->
-                </h3>
               </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons text-warning">payment</i>
-                  <a class="warning-link">Withdraw</a>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                      <i class="material-icons">payments</i>
+                    </div>
+                    <p class="card-category">Paid ROI</p>
+                    <h3 class="card-title">$<span>
+                        <%= user.investorAccount[0].ROI.accountBalance %>
+                    </h3>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <i class="material-icons text-success">date_range</i>
+                      <a href="/dashboard/history#investment_table" class="success-link">ROI Payout Information</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                      <i class="material-icons">paid</i>
+                    </div>
+                    <p class="card-category">Invested</p>
+                    <h3 class="card-title">$<span>
+                        <%= user.investorAccount[0].Invested.accountBalance %>
+                    </h3>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <i class="material-icons text-info">store</i>
+                      <a href="/dashboard/history#investment_table" class="info-link">Active Amount Invested</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                  <div class="card-header card-header-primary card-header-icon">
+                    <div class="card-icon">
+                      <i class="material-icons">group</i>
+                    </div>
+                    <p class="card-category">Referal Earnings</p>
+                    <h3 class="card-title">$<span>
+                        <%= user.investorAccount[0].Referal.accountBalance %>
+                    </h3>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <i class="material-icons text-primary">paid</i>
+                      <a class="primary-link" onclick="md.showNotificationRefer('bottom','right')"
+                        style="cursor: pointer;">Refer and Earn</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-success card-header-icon">
-                <div class="card-icon">
-                  <i class="material-icons">payments</i>
-                </div>
-                <p class="card-category">Paid ROI</p>
-                <h3 class="card-title">$<span><%= user.investorAccount[0].ROI.accountBalance %></h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons text-success">date_range</i>
-                  <a href="/dashboard/history#investment_table" class="success-link">ROI Payout Information</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-info card-header-icon">
-                <div class="card-icon">
-                  <i class="material-icons">paid</i>
-                </div>
-                <p class="card-category">Invested</p>
-                <h3 class="card-title">$<span><%= user.investorAccount[0].Invested.accountBalance %></h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons text-info">store</i>
-                  <a href="/dashboard/history#investment_table" class="info-link">Active Amount Invested</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-header card-header-primary card-header-icon">
-                <div class="card-icon">
-                  <i class="material-icons">group</i>
-                </div>
-                <p class="card-category">Referal Earnings</p>
-                <h3 class="card-title">$<span><%= user.investorAccount[0].Referal.accountBalance %></h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons text-primary">paid</i>
-                  <a class="primary-link" onclick="md.showNotificationRefer('bottom','right')" style="cursor: pointer;">Refer and Earn</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <style>
-        /* Custom CSS */                
-        .invest-choice-box{
-          /* cursor: pointer; */
-          width:100%;
-          border-radius: 10px;
-          background: #333;
-          transition:0.5s;
-          text-align: center;
-          box-shadow: 0px 1px 30px -5px #000;
-        }
-        .invest-choice-box h4{
-          font-weight: bold;
-        }
-        .invest-choice-box .text{
-          text-align: left;
-          padding: 0 10px;
-        }
-        .invest-choice-box h4{
-          font-size: 14px;
-        }
-        .invest-choice-box p{
-          font-size:12px;
-          margin-bottom: 0px;
-        }
-        .invest-choice-box img{
-          border-top-left-radius: 10px;
-          border-top-right-radius: 10px;
-        }
-        .text-bold{
-          font-weight: 600;
-        }
-        </style>
-        <div class="row">
-          <div class="col-lg-8 col-md-12">
-            <div class="card">
-              <div class="card-header card-header-warning">
-                <h3 class="card-title">Available Services</h3>
-                <p class="card-category">All Investment packages in one place.</p>
-              </div>
-              <div class="row mt-2" id="packages_slot">
-                <!-- <div class="col-md-12 text-center">
+            <style>
+              /* Custom CSS */
+              .invest-choice-box {
+                /* cursor: pointer; */
+                width: 100%;
+                border-radius: 10px;
+                background: #333;
+                transition: 0.5s;
+                text-align: center;
+                box-shadow: 0px 1px 30px -5px #000;
+              }
+
+              .invest-choice-box h4 {
+                font-weight: bold;
+              }
+
+              .invest-choice-box .text {
+                text-align: left;
+                padding: 0 10px;
+              }
+
+              .invest-choice-box h4 {
+                font-size: 14px;
+              }
+
+              .invest-choice-box p {
+                font-size: 12px;
+                margin-bottom: 0px;
+              }
+
+              .invest-choice-box img {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+              }
+
+              .text-bold {
+                font-weight: 600;
+              }
+            </style>
+            <div class="row">
+              <div class="col-lg-8 col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-warning">
+                    <h3 class="card-title">Available Services</h3>
+                    <p class="card-category">All Investment packages in one place.</p>
+                  </div>
+                  <div class="row mt-2" id="packages_slot">
+                    <!-- <div class="col-md-12 text-center">
                   <h3 class="text-white">Investment Packages</h3>
                 </div> -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">   
-                  <div class="card-body">
-                    <div class="invest-choice-box" style="min-height:306.183px;">
-                      <img src="/assets/img/service/2.jpg" class="img-fluid" alt="">
-                      <div class="text">
-                        <h4 class='text-center text-white mt-2' id="vip-package">VIP PACKAGE</h4>
-                        <p class="text-warning">ROI : <span class="text-bold">15% Monthly/100% 6th Month</span> </p>
-                        <p class="text-white">Min. Capital : <span class="text-warning">$100</span></p>
-                        <p class="text-white">Duration: <span class="text-warning">6 Months</span></p>
-                      </div>    
-                      <a href="/dashboard/invest_vip" type="button" class="text-center btn btn-warning btn-sm" data-mdb-ripple-color="dark" id="vip_package_option"><i class="material-icons">attach_money</i> Invest Now</a>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                      <div class="card-body">
+                        <div class="invest-choice-box" style="min-height:306.183px;">
+                          <img src="/assets/img/service/2.jpg" class="img-fluid" alt="">
+                          <div class="text">
+                            <h4 class='text-center text-white mt-2' id="vip-package">VIP PACKAGE</h4>
+                            <p class="text-warning">ROI : <span class="text-bold">15% Monthly/100% 6th Month</span>
+                            </p>
+                            <p class="text-white">Min. Capital : <span class="text-warning">$100</span></p>
+                            <p class="text-white">Duration: <span class="text-warning">6 Months</span></p>
+                          </div>
+                          <a href="/dashboard/invest_vip" type="button" class="text-center btn btn-warning btn-sm"
+                            data-mdb-ripple-color="dark" id="vip_package_option"><i
+                              class="material-icons">attach_money</i> Invest Now</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                      <div class="card-body">
+                        <div class="invest-choice-box">
+                          <img src="/assets/img/service/3.jpg" class="img-fluid" alt="">
+                          <div class="text">
+                            <h4 class='text-center text-white mt-2' id="vip-package">EXCLUSIVE PACKAGE</h4>
+                            <p class="text-warning">ROI Estimate: <span class="text-bold">100% - 200% </span> </p>
+                            <p class="text-warning">Target ROI: <span class="text-bold">1000% </span></p>
+                            <p class="text-white">Min. Capital : <span class="text-warning">$1000</span></p>
+                            <p class="text-white">Duration: <span class="text-warning">6 Months</span></p>
+                          </div>
+                          <a href="/dashboard/invest_exclusive" type="button"
+                            class="text-center my-2 btn btn-warning btn-sm" data-mdb-ripple-color="dark"
+                            id="exclusive_package_option"> <i class="material-icons">attach_money</i> Invest Now</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">   
-                  <div class="card-body">
-                    <div class="invest-choice-box">
-                      <img src="/assets/img/service/3.jpg" class="img-fluid" alt="">
-                      <div class="text">
-                        <h4 class='text-center text-white mt-2' id="vip-package">EXCLUSIVE PACKAGE</h4>
-                        <p class="text-warning">ROI Estimate: <span class="text-bold">100% - 200% </span> </p>
-                        <p class="text-warning">Target ROI: <span class="text-bold">1000% </span></p>
-                        <p class="text-white">Min. Capital : <span class="text-warning">$1000</span></p>
-                        <p class="text-white">Duration: <span class="text-warning">6 Months</span></p>
-                      </div>    
-                      <a href="/dashboard/invest_exclusive" type="button" class="text-center my-2 btn btn-warning btn-sm" data-mdb-ripple-color="dark" id="exclusive_package_option" > <i class="material-icons">attach_money</i> Invest Now</a>
-                    </div>
+              </div>
+              <div class="col-lg-3 col-md-3 mx-auto">
+                <div class="card">
+                  <div class="card-header card-header-info">
+                    <h4>Quick Actions</h4>
                   </div>
+                  <div class="card-body text-center">
+                    <a class="btn btn-info text-center btn-block my-3" type="button" href="/dashboard/fund"
+                      id="quick_deposit">Quick Deposit</buttan>
+                      <a href="/dashboard/notifications" class="btn btn-info text-center btn-block my-3"
+                        type="button">Notifications</a>
+                      <a href="/dashboard/roi_calculator" class="btn btn-info text-center btn-block my-3" type="button"
+                        id="roi_calculator_btn">ROI Calculator</a>
+                      <button class="btn btn-info text-center btn-block my-3" type="button">Reports</button>
+                      <button class="btn btn-info text-center btn-block my-3" type="button">Support</button>
+                  </div>
+                </div>
               </div>
             </div>
+            <!-- Body -->
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 mx-auto">
-            <div class="card">
-              <div class="card-header card-header-info">
-                <h4>Quick Actions</h4>
-              </div>
-              <div class="card-body text-center">
-                <a class="btn btn-info text-center btn-block my-3" type="button" href="/dashboard/fund" id="quick_deposit">Quick Deposit</buttan>
-                <a href="/dashboard/notifications" class="btn btn-info text-center btn-block my-3" type="button">Notifications</a>
-                <a href="/dashboard/roi_calculator" class="btn btn-info text-center btn-block my-3" type="button" id="roi_calculator_btn">ROI Calculator</a>
-                <button class="btn btn-info text-center btn-block my-3" type="button">Reports</button>
-                <button class="btn btn-info text-center btn-block my-3" type="button">Support</button>
-              </div>
-            </div>
-          </div>
+
       </div>
-      <!-- Body -->
-          </div>
-          
-    </div>
-      
-<%- include('../partials/dashboard/scripts.ejs') %> 
-  <script>
-    $(document).ready(function() {
-      $().ready(function() {
-        $sidebar = $('.sidebar');
 
-        $sidebar_img_container = $sidebar.find('.sidebar-background');
+      <%- include('../partials/dashboard/scripts.ejs') %>
+        <script>
+          $(document).ready(function () {
+            $().ready(function () {
+              $sidebar = $('.sidebar');
 
-        $full_page = $('.full-page');
+              $sidebar_img_container = $sidebar.find('.sidebar-background');
 
-        $sidebar_responsive = $('body > .navbar-collapse');
+              $full_page = $('.full-page');
 
-        window_width = $(window).width();
+              $sidebar_responsive = $('body > .navbar-collapse');
 
-        $('.fixed-plugin a').click(function(event) {
-          // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-          if ($(this).hasClass('switch-trigger')) {
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (window.event) {
-              window.event.cancelBubble = true;
-            }
-          }
-        });
+              window_width = $(window).width();
 
-        $('.fixed-plugin .active-color span').click(function() {
-          $full_page_background = $('.full-page-background');
+              $('.fixed-plugin a').click(function (event) {
+                // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                if ($(this).hasClass('switch-trigger')) {
+                  if (event.stopPropagation) {
+                    event.stopPropagation();
+                  } else if (window.event) {
+                    window.event.cancelBubble = true;
+                  }
+                }
+              });
 
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
+              $('.fixed-plugin .active-color span').click(function () {
+                $full_page_background = $('.full-page-background');
 
-          var new_color = $(this).data('color');
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
 
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data-color', new_color);
-          }
+                var new_color = $(this).data('color');
 
-          if ($full_page.length != 0) {
-            $full_page.attr('filter-color', new_color);
-          }
+                if ($sidebar.length != 0) {
+                  $sidebar.attr('data-color', new_color);
+                }
 
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.attr('data-color', new_color);
-          }
-        });
+                if ($full_page.length != 0) {
+                  $full_page.attr('filter-color', new_color);
+                }
 
-        $('.fixed-plugin .background-color .badge').click(function() {
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
+                if ($sidebar_responsive.length != 0) {
+                  $sidebar_responsive.attr('data-color', new_color);
+                }
+              });
 
-          var new_color = $(this).data('background-color');
+              $('.fixed-plugin .background-color .badge').click(function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
 
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data-background-color', new_color);
-          }
-        });
+                var new_color = $(this).data('background-color');
 
-        $('.fixed-plugin .img-holder').click(function() {
-          $full_page_background = $('.full-page-background');
+                if ($sidebar.length != 0) {
+                  $sidebar.attr('data-background-color', new_color);
+                }
+              });
 
-          $(this).parent('li').siblings().removeClass('active');
-          $(this).parent('li').addClass('active');
+              $('.fixed-plugin .img-holder').click(function () {
+                $full_page_background = $('.full-page-background');
+
+                $(this).parent('li').siblings().removeClass('active');
+                $(this).parent('li').addClass('active');
 
 
-          var new_image = $(this).find("img").attr('src');
+                var new_image = $(this).find("img").attr('src');
 
-          if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-            $sidebar_img_container.fadeOut('fast', function() {
-              $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-              $sidebar_img_container.fadeIn('fast');
+                if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                  $sidebar_img_container.fadeOut('fast', function () {
+                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                    $sidebar_img_container.fadeIn('fast');
+                  });
+                }
+
+                if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                  var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                  $full_page_background.fadeOut('fast', function () {
+                    $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                    $full_page_background.fadeIn('fast');
+                  });
+                }
+
+                if ($('.switch-sidebar-image input:checked').length == 0) {
+                  var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                  var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                  $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                  $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                }
+
+                if ($sidebar_responsive.length != 0) {
+                  $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                }
+              });
+
+              $('.switch-sidebar-image input').change(function () {
+                $full_page_background = $('.full-page-background');
+
+                $input = $(this);
+
+                if ($input.is(':checked')) {
+                  if ($sidebar_img_container.length != 0) {
+                    $sidebar_img_container.fadeIn('fast');
+                    $sidebar.attr('data-image', '#');
+                  }
+
+                  if ($full_page_background.length != 0) {
+                    $full_page_background.fadeIn('fast');
+                    $full_page.attr('data-image', '#');
+                  }
+
+                  background_image = true;
+                } else {
+                  if ($sidebar_img_container.length != 0) {
+                    $sidebar.removeAttr('data-image');
+                    $sidebar_img_container.fadeOut('fast');
+                  }
+
+                  if ($full_page_background.length != 0) {
+                    $full_page.removeAttr('data-image', '#');
+                    $full_page_background.fadeOut('fast');
+                  }
+
+                  background_image = false;
+                }
+              });
+
+              $('.switch-sidebar-mini input').change(function () {
+                $body = $('body');
+
+                $input = $(this);
+
+                if (md.misc.sidebar_mini_active == true) {
+                  $('body').removeClass('sidebar-mini');
+                  md.misc.sidebar_mini_active = false;
+
+                  $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                } else {
+
+                  $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                  setTimeout(function () {
+                    $('body').addClass('sidebar-mini');
+
+                    md.misc.sidebar_mini_active = true;
+                  }, 300);
+                }
+
+                // we simulate the window Resize so the charts will get updated in realtime.
+                var simulateWindowResize = setInterval(function () {
+                  window.dispatchEvent(new Event('resize'));
+                }, 180);
+
+                // we stop the simulation of Window Resize after the animations are completed
+                setTimeout(function () {
+                  clearInterval(simulateWindowResize);
+                }, 1000);
+
+              });
             });
-          }
+          });
+        </script>
+        <script>
+          $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            md.initDashboardPageCharts();
 
-          if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-            $full_page_background.fadeOut('fast', function() {
-              $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-              $full_page_background.fadeIn('fast');
-            });
-          }
-
-          if ($('.switch-sidebar-image input:checked').length == 0) {
-            var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-          }
-
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-          }
-        });
-
-        $('.switch-sidebar-image input').change(function() {
-          $full_page_background = $('.full-page-background');
-
-          $input = $(this);
-
-          if ($input.is(':checked')) {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar_img_container.fadeIn('fast');
-              $sidebar.attr('data-image', '#');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page_background.fadeIn('fast');
-              $full_page.attr('data-image', '#');
-            }
-
-            background_image = true;
-          } else {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar.removeAttr('data-image');
-              $sidebar_img_container.fadeOut('fast');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page.removeAttr('data-image', '#');
-              $full_page_background.fadeOut('fast');
-            }
-
-            background_image = false;
-          }
-        });
-
-        $('.switch-sidebar-mini input').change(function() {
-          $body = $('body');
-
-          $input = $(this);
-
-          if (md.misc.sidebar_mini_active == true) {
-            $('body').removeClass('sidebar-mini');
-            md.misc.sidebar_mini_active = false;
-
-            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-          } else {
-
-            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-            setTimeout(function() {
-              $('body').addClass('sidebar-mini');
-
-              md.misc.sidebar_mini_active = true;
-            }, 300);
-          }
-
-          // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 180);
-
-          // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
-            clearInterval(simulateWindowResize);
-          }, 1000);
-
-        });
-      });
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-
-    });
-  </script>
-  <script src="../dashboard/assets/js/custom.js"></script>
-</body>
+          });
+        </script>
+        <script src="../dashboard/assets/js/custom.js"></script>
+  </body>
 
 </html>

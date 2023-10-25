@@ -1,38 +1,42 @@
 <html lang="en">
-<%- include('./partials/head.ejs'); %> 
-<%- include('./partials/admin/admin_partial.ejs'); %> 
-<body>
-    <h1>Welcome Admin</h1>
-    <section id="access_form">
-        <div class="container">
-            <div class="col-12">
-                <div class="form_surface">
-                    <div class="form">
-                        <form>
-                            <div class="form-group">
-                                <input type="username" name="username" id="username">
-                                <input type="password" name="password" id="password">
+<%- include('./partials/head.ejs'); %>
+    <%- include('./partials/admin/admin_partial.ejs'); %>
+
+        <body>
+            <h1>Welcome Admin</h1>
+            <section id="access_form">
+                <div class="container">
+                    <div class="col-12">
+                        <div class="form_surface">
+                            <div class="form">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="username" name="username" id="username">
+                                        <input type="password" name="password" id="password">
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <footer>
+                <div class="container-fluid">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer text-center">
+                            <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have
+                                read and acknowledged our <a href="/policy">Privacy Policy</a></p>
+                            <% var date=new Date(); %>
+                                <p>Xionvest &copy; <%= date.getFullYear(); %>
+                                </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-        </div>
-    </section>
-    <footer>
-        <div class="container-fluid">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="footer text-center">
-                    <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have read and acknowledged our <a href="/policy">Privacy Policy</a></p>
-                    <% var date = new Date(); %> 
-                    <p>The Moon House &copy; <%= date.getFullYear(); %> </p>
-                </div>
-            </div>
-        </div>
-    </footer>
+            </footer>
 
-    <!-- Static Javascript -->
-	<%- include('./partials/scripts.ejs') %> 
-</body>
+            <!-- Static Javascript -->
+            <%- include('./partials/scripts.ejs') %>
+        </body>
+
 </html>
