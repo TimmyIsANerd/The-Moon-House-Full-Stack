@@ -3,6 +3,11 @@ const schema = mongoose.Schema;
 
 const InvestmentAccountSchema = new schema(
     {
+      user:{
+        type: schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
       accountBalance: {
         type: Number,
         default: 0,
