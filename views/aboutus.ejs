@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head Partial -->
+<%- include('./partials/head.ejs') %>
+
+<body>
+
+    <!-- START PRELOADER -->
+    <div id="page-preloader">
+        <div class="theme-loader">Prism Bridge Capital</div>
+    </div>
+    <!-- END PRELOADER -->
+
+    <!-- NAV SECTION -->
+    <%- include('./partials/nav.ejs') %>
+
+    <!-- START PAGE BANNER AND BREADCRUMBS -->
+    <section id="page-banner">
+        <div class="single-page-title-area overlay" data-background="assets/img/bg/slide1.jpg">
+            <div class="auto-container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="single-page-title">
+                            <h2>About Us</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row-->
+            </div>
+        </div>
+        <div class="single-page-title-area-bottom">
+            <div class="auto-container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">About Us</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- end row-->
+            </div>
+        </div>
+    </section>
+    <!-- END PAGE BANNER AND BREADCRUMBS -->
+
+    <!-- START ABOUT SECTION -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12 mb-lg-0 mb-md-4 mb-sm-4 mb-4">
+                    <div class="about-img">
+                        <img src="assets/img/bg/promobg1.jpg" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="about-content">
+                        <h3>Welcome to <span>Prism Bridge Capital</span></h3>
+                        <p>Prism Bridge Capital is a full-stack Node.js application designed for comprehensive investment management. We are dedicated to empowering our users through education and robust financial tools.</p>
+                        <h4>Our Core Services:</h4>
+                        <ul>
+                            <li><strong>Investment Management:</strong> Our platform provides a secure and efficient environment for managing your cryptocurrency investments, offering various plans and tracking tools.</li>
+                            <li><strong>User Authentication & Security:</strong> We ensure the highest level of security for your account with robust user authentication and data protection measures.</li>
+                            <li><strong>Admin Dashboard:</strong> For administrators, we offer a powerful dashboard for seamless user and portfolio management, ensuring smooth operations.</li>
+                            <li><strong>User Dashboard:</strong> Our intuitive user-facing dashboard allows you to effortlessly manage your investments, view detailed transaction history, and update your personal profiles.</li>
+                            <li><strong>Crypto Trading & Investment Education:</strong> We are committed to educating our users about Blockchain and Cryptocurrency, providing insights and strategies to help you profit greatly from crypto trading and investment.</li>
+                        </ul>
+                        <p>At Prism Bridge Capital, we combine cutting-edge technology with expert knowledge to provide a leading platform for your financial growth in the world of digital assets.</p>
+                        <a href="/contact" class="btn-style btn-filled mt-3">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END ABOUT SECTION -->
+
+    <!-- START CALLTOACTION SECTION -->
+    <section id="calltoaction" class="calltoaction-padding section-padding bg-theme">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-12 mb-lg-0 mb-md-4 mb-sm-4 mb-4">
+                    <div class="calltoaction-two-wrap">
+                        <h4>Need Our Services?</h4>
+                        <p>We are always ready to respond promptly.</p>
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-lg-right text-md-right text-sm-left text-left">
+                    <a href="/contact" target="_blank" class="btn-style btn-border btn-border-3">Contact Us</a>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row-->
+        </div>
+    </section>
+    <!-- END CALLTOACTION SECTION -->
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+    <!-- Messenger Chat Plugin Code -->
+    <%- include('./partials/plugin.ejs') %>
+    <!-- Static Javascript -->
+    <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>

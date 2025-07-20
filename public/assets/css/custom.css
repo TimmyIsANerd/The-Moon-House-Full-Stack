@@ -1,5 +1,5 @@
 :root {
-  --orange: #f7921a;
+  --orange: #1D8F8F;
 }
 .orange {
   color: var(--orange);
@@ -13,7 +13,7 @@
   font-size: 15px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #000 !important;
+  color: #0F2C47 !important;
 }
 .refer-flyer {
   width: 35%;

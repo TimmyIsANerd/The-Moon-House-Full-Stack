@@ -1,78 +1,198 @@
-/* Admin  */
-body{
-    background-color:rgb(247, 152, 39) ;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-}
-footer{
-    background-color: #ffffff;
-    margin-top:auto;
-    min-height: 75px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-.form{
-    background-color: #fff;
-    max-width: 310px;
-    min-width: 280px;
-    min-height: 500px;
-    z-index: 999;
-    box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
-    -webkit-box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
-    -moz-box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
-    border-radius: 30px;
-}
-.form .form-group{
-    /* margin-top:5em; */
-    text-align: center;
-}
-.form_surface{
-    margin-top:30px;
-}
-.form input{
-    margin: 15px 0;
-}
-.form button{
-    cursor: pointer;
-    margin-top: 20px;
-}
-.input{
-    margin-top:3.5em;
-}
-.logo{
-    width:25%;
-    height: auto;
-}
-.logo_container{
-    padding-top:2.5em;
-}
-#access_form{
-    margin-top:4em;
-    margin-bottom: 2.5rem;
-}
-.welcome-col{
-    display:flex;
+/* User Authentication Pages */
+body {
+    background-color: #1D8F8F; /* CTA/Accent color for background */
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top:30px;
-    background-color:#fff;
-    border-radius:30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+footer {
+    background-color: #FFFFFF; /* White background for footer */
+    margin-top: auto;
+    min-height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form_surface {
+    background-color: #FFFFFF; /* White background for the form card */
+    border-radius: 12px; /* More rounded corners */
+    padding: 40px 30px; /* Increased padding */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer, more prominent shadow */
+    -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Max width for better readability */
+    width: 90%; /* Responsive width */
+    margin: 50px auto; /* Center the form vertically and horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 100%;
     text-align: center;
-    padding:25px 20px;
-    min-height: 500px;
-    box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
-    -webkit-box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
-    -moz-box-shadow: 0px 1px 30px -5px rgba(0,0,0,0.69);
 }
-.main-header.header-2 .mainmenu-area{
-    background-color:#fff;
+
+.form-group {
+    margin-bottom: 20px; /* Spacing between form groups */
 }
-.main-header .mainmenu-area .navbar-nav .nav-link{
-    color:#333 !important;
+
+.form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px; /* Spacing between inputs */
+    border: 1px solid #cccccc; /* Lighter border */
+    border-radius: 8px; /* Rounded input fields */
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
-.main-header .mainmenu-area .navbar-nav .nav-link:hover{
-    color:#fff !important;
+
+.form input:focus {
+    border-color: #1976A5; /* Sky Blue on focus */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 165, 0.2); /* Subtle focus glow */
+}
+
+.form button {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #1D8F8F; /* Teal Green for CTA */
+    color: #FFFFFF; /* White text on CTA */
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form button:hover {
+    background-color: #1976A5; /* Sky Blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.input {
+    margin-top: 20px; /* Adjust spacing above inputs */
+}
+
+.logo {
+    width: 80px; /* Adjust logo size */
+    height: auto;
+    margin-bottom: 20px; /* Space below logo */
+}
+
+.logo_container {
+    padding-top: 0; /* Remove extra padding */
+    margin-bottom: 20px;
+}
+
+#access_form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Allows the form section to take available space */
+}
+
+.welcome-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    background-color: #0F2C47; /* Midnight Blue for welcome section */
+    color: #E6E8EB; /* Light text on dark background */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 500px;
+    width: 90%;
+}
+
+.welcome-col h3 {
+    color: #E6E8EB;
+    margin-bottom: 15px;
+}
+
+.welcome-col p {
+    color: #E6E8EB;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.welcome-col .quote-btn {
+    background-color: #1D8F8F;
+    color: #FFFFFF;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.welcome-col .quote-btn:hover {
+    background-color: #1976A5;
+    transform: translateY(-2px);
+}
+
+.text-bold {
+    font-weight: bold;
+    color: #1D8F8F; /* Ensure links are visible and match theme */
+    text-decoration: none;
+}
+
+.text-bold:hover {
+    text-decoration: underline;
+}
+
+/* Error message styling */
+.error-message {
+    color: #D32F2F; /* A distinct red for errors */
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+    padding-left: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form_surface, .welcome-col {
+        margin: 30px auto;
+        padding: 30px 20px;
+    }
+
+    .form input, .form button, .welcome-col .quote-btn {
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+
+    .logo {
+        width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form_surface, .welcome-col {
+        margin: 20px auto;
+        padding: 25px 15px;
+    }
+
+    .form input, .form button, .welcome-col .quote-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .logo {
+        width: 50px;
+    }
 }

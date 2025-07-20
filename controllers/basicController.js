@@ -33,10 +33,15 @@ const terms = (req, res) => {
 //   terms,
 // };
 
+const about_us = (req, res) => {
+  res.render("aboutus", { title: "About Us" });
+};
+
 export {
   home,
   invest,
   contact_us,
   privacy_policy,
   terms,
+  about_us,
 }

@@ -36,7 +36,11 @@
                     </div>
                     <p class="card-category">Available Balance</p>
                     <h3 class="card-title">$<span>
-                        <%= user.investorAccount[0].accountBalance %>
+                        <% if (user.investorAccount && user.investorAccount[0] && user.investorAccount[0].accountBalance) { %>
+                          <%= user.investorAccount[0].accountBalance %>
+                        <% } else { %>
+                          0
+                        <% } %>
                       </span>
                       <!-- <small>GB</small> -->
                     </h3>
@@ -57,7 +61,11 @@
                     </div>
                     <p class="card-category">Paid ROI</p>
                     <h3 class="card-title">$<span>
-                        <%= user.investorAccount[0].ROI.accountBalance %>
+                        <% if (user.investorAccount && user.investorAccount[0] && user.investorAccount[0].ROI && user.investorAccount[0].ROI.accountBalance) { %>
+                          <%= user.investorAccount[0].ROI.accountBalance %>
+                        <% } else { %>
+                          0
+                        <% } %>
                     </h3>
                   </div>
                   <div class="card-footer">
@@ -76,7 +84,11 @@
                     </div>
                     <p class="card-category">Invested</p>
                     <h3 class="card-title">$<span>
-                        <%= user.investorAccount[0].Invested.accountBalance %>
+                        <% if (user.investorAccount && user.investorAccount[0] && user.investorAccount[0].Invested && user.investorAccount[0].Invested.accountBalance) { %>
+                          <%= user.investorAccount[0].Invested.accountBalance %>
+                        <% } else { %>
+                          0
+                        <% } %>
                     </h3>
                   </div>
                   <div class="card-footer">
@@ -95,7 +107,11 @@
                     </div>
                     <p class="card-category">Referal Earnings</p>
                     <h3 class="card-title">$<span>
-                        <%= user.investorAccount[0].Referal.accountBalance %>
+                        <% if (user.investorAccount && user.investorAccount[0] && user.investorAccount[0].Referal && user.investorAccount[0].Referal.accountBalance) { %>
+                          <%= user.investorAccount[0].Referal.accountBalance %>
+                        <% } else { %>
+                          0
+                        <% } %>
                     </h3>
                   </div>
                   <div class="card-footer">

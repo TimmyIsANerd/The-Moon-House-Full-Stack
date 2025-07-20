@@ -37,7 +37,7 @@
               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 mx-auto mt-5" id="exclusive_package_section">
-                      <% if(user.investorAccount[0].accountBalance < 1000 ){ %>
+                      <% if(user.investorAccount && user.investorAccount[0] && user.investorAccount[0].accountBalance < 1000 ){ %>
                         <div class="text-center">
                           <p class="text-warning text-bold">Insufficient Balance</p>
                           <p class="text-white">Please fund your account before attempting to make this Investment. <br>
@@ -45,7 +45,7 @@
                           </p>
                           <p class="text-white">Your current balance is <span class="text-warning text-bold">$<%= user.investorAccount[0].accountBalance %></span> </p>
                         </div>
-                        <% } if(user.investorAccount[0].accountBalance >= 1000)  { %>
+                        <% } if(user.investorAccount && user.investorAccount[0] && user.investorAccount[0].accountBalance >= 1000)  { %>
     
                         <p>The Terms of this investment</p>
                         <form action="">

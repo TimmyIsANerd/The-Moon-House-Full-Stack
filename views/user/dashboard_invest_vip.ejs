@@ -37,15 +37,15 @@
               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                 <div class="row">
                   <div class="col-lg-12 col-md-12 mx-auto mt-3" id="vip_package_section">
-                    <% if(user.investorAccount[0].accountBalance < 100){ %>
+                    <% if(user.investorAccount && user.investorAccount[0] && user.investorAccount[0].accountBalance < 100){ %>
                       <div class="text-center">
                         <p class="text-warning text-bold">Insufficient Balance</p>
                         <p class="text-white">Please fund your account before attempting to make this Investment. <br>
                         You need a minimum of <span class="text-warning text-bold">$100</span> in your account to invest in this plan.
                         </p>
-                        <p class="text-white">Your current balance is <span class="text-warning text-bold">$<%= user.investorAccount[0].accountBalance %></span> </p>
+                        <p class="text-white">Your current balance is <span class="text-warning text-bold">$<% if (user.investorAccount && user.investorAccount[0] && user.investorAccount[0].accountBalance) { %><%= user.investorAccount[0].accountBalance %><% } else { %>0<% } %></span> </p>
                       </div>
-                      <% } if(user.investorAccount[0].accountBalance > 1000) { %>
+                      <% } if(user.investorAccount && user.investorAccount[0] && user.investorAccount[0].accountBalance > 1000) { %>
                       <div>
                       <p class="text-white">This Investment package is only available for capital less than $1000</p>
                       <% } if(user.investorAccount[0].accountBalance >= 100)  { %>

@@ -20,10 +20,7 @@ import userRoutes from "./routes/userRoutes.js";
 
 // Connect MongoDB
 // After Mongo Connection is successful, start listening on open port.
-const dbURI = process.env.MONGODB
-  // process.env.NODE_ENV === "production"
-  //   ? "mongodb+srv://timmyisanerd:TheTitan1123@themoonhouse.miu4r.mongodb.net/tmh"
-  //   : "mongodb+srv://sololo:Harley4058@cluster1.do5hnis.mongodb.net/?retryWrites=true&w=majority";
+const dbURI = process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", true);
 mongoose
@@ -32,7 +29,7 @@ mongoose
   })
   .then(() =>
     app.listen(port, () =>
-      console.log(`Xionvest App listening on port ${port}`)
+      console.log(`Prism Bridge Capital App listening on port ${port}`)
     )
   )
   .catch((err) => console.log(err));

@@ -1,12 +1,12 @@
 /* Admin  */
 body{
-    background-color:rgb(247, 152, 39) ;
+    background-color:#1D8F8F ;
     min-height:100vh;
     display:flex;
     flex-direction:column;
 }
 footer{
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     margin-top:auto;
     min-height: 75px;
     display:flex;
@@ -14,7 +14,7 @@ footer{
     align-items: center;
 }
 .form_surface{
-    background-color: #fff;
+    background-color: #E6E8EB;
     border-radius:25px;
     margin-top: 10em;
     min-width: 900px;
@@ -22,7 +22,7 @@ footer{
     
 }
 .form{
-    background-color: #fff;
+    background-color: #E6E8EB;
     position: absolute;
     top:-90px;
     left:150px;
@@ -30,7 +30,7 @@ footer{
     min-width: 280px;
     min-height: 500px;
     z-index: 999;
-    box-shadow: 1px 1px 0.6px 0.8px #333;
+    box-shadow: 1px 1px 0.6px 0.8px #0F2C47;
     border-radius: 30px;
 }
 .form .form-group{

@@ -100,7 +100,7 @@ const sign_up_post = async (req, res) => {
       error: "Password is less than 8 characters",
     });
   }
-  const password = plainTextPassword;
+  // const password = plainTextPassword;
 
   if (referredBy) {
     // Check if any user has the referral code
@@ -109,7 +109,8 @@ const sign_up_post = async (req, res) => {
       return res.json({ status: error, error: "Invalid Referral Code" });
     }
   }
-  // const password = await bcrypt.hash(plainTextPassword, 10);
+  
+  const password = await bcrypt.hash(plainTextPassword, 10);
   // Use Try/Catch to Create User in the Database
 
   // Create a New unverified user in the system
@@ -132,7 +133,7 @@ const sign_up_post = async (req, res) => {
       [
           {
             user: newUser._id,
-            message: "Welcome to Xionvest Investor Dashboard",
+            message: "Welcome to Prism Bridge Capital Investor Dashboard",
             messageStatus: "Unread",
           },
           {
@@ -162,11 +163,11 @@ const sign_up_post = async (req, res) => {
             return;
           }
 
-          sendConfirmationEmail(
-            newUser.firstName,
-            newUser.email,
-            newUser.confirmationCode
-          );
+          // sendConfirmationEmail(
+          //   newUser.firstName,
+          //   newUser.email,
+          //   newUser.confirmationCode
+          // );
 
           // return res.json({
           //   status: "ok",

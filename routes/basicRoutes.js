@@ -7,6 +7,7 @@ import {
     contact_us,
     privacy_policy,
     terms,
+    about_us,
   } from '../controllers/basicController.js';
 // Import checkUser Middleware
 import { checkUser } from '../middleware/authMiddleware.js';
@@ -32,6 +33,8 @@ router.get('/contact',contact_us);
 router.get('/policy',privacy_policy);
 // Terms & Conditions Route
 router.get('/terms',terms);
+// About Us Route
+router.get('/about',about_us);
 
 
 export default router;

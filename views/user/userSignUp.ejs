@@ -1,129 +1,100 @@
 <html lang="en">
 <%- include('./../partials/user/head.ejs'); %>
 
-    <body>
-        <%- include('./../partials/user/nav.ejs') %>
-            <link rel="stylesheet" href="/assets/css/user/user.css">
-            <section id="access_form">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
-                            <div class="welcome-col">
-                                <h3>Hi Welcome To <span>Xionvest</span></h3>
-                                <p>We Are The Perfect Hub For Crypto Education & Growth.</p>
-                                <a href="/invest/login" class="quote-btn btn">Already an Investor? Sign In</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 mx-auto">
-                            <div class="form_surface">
-                                <div class="form col-12">
-                                    <form id="reg-form">
-                                        <div class="form-group">
-                                            <div class="logo_container">
-                                                <img src="/assets/img/nav-logo.png" class="logo" alt="">
-                                            </div>
-                                            <div class="input">
-                                                <input type="text" class="form-control" name="firstName"
-                                                    placeholder="First Name" id="firstName" required>
-                                                <input type="text" class="form-control" name="lastName"
-                                                    placeholder="Last Name" id="lastName" required>
-                                                <div id="fullname-error"
-                                                    style="color:red; font-size:12px;text-align:left;"></div>
-                                                <input class="form-control" autocomplete="off" type="email" name="email"
-                                                    id="email" placeholder="Email" required>
-                                                <div id="email-error"
-                                                    style="color:red; font-size:12px;text-align:left;"></div>
-                                                <input class="form-control" autocomplete="off" type="password"
-                                                    name="password" id="password" placeholder="Password" required
-                                                    minlength="8">
-                                                <div id="password-error"
-                                                    style="color:red; font-size:12px;text-align:left;"></div>
-                                                <!-- <p>Already have an account? <a href="/user/login" class="text-bold">Login</a></p> -->
-                                                <button type="submit" value="Submit Form" class="quote-btn btn">Sign
-                                                    Up</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <script>
-                const form = document.getElementById('reg-form');
-                const emailError = document.getElementById('email-error');
-                const passwordError = document.getElementById('password-error');
-                const fullNameError = document.getElementById('fullname-error')
-                form.addEventListener('submit', registerUser);
-                // 1. Send Data as JSON
-                async function registerUser(e) {
-                    e.preventDefault();
-                    const firstName = document.getElementById('firstName').value;
-                    const lastName = document.getElementById('lastName').value;
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-                    const result = await fetch('/api/signup', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            firstName,
-                            lastName,
-                            email,
-                            password
-                        })
-                    }).then((res) => res.json())
-                        .then((data) => {
-                            if (data.error == 'Email is already registered') {
-                                console.log('Email Already in Use');
-                                emailError.textContent = data.error
-                            }
-                            if (data.error == 'Please Enter Full Name') {
-                                fullNameError.textContent = data.error
-                            }
-                            if (data.error == 'Password is less than 8 characters') {
-                                passwordError.textContent = data.error
-                            }
-                            console.log(data.user)
-                            if (data.user) {
-                                location.assign('/dashboard')
-                            }
-                        })
-                        // .then((data) => 
-                        .catch((error) => {
-                            if (result.status === 'ok') {
-                                console.log('Submission to Database Successful');
-                                alert('Sign Up Successful')
-                                emailError.textContent = data.error
-                                // Everything went fine
-                            }
-                            if (result.status === "error") {
-                                // something went wrong
-                                alert(result.error)
-                            } else {
-                                console.log(error)
-                            }
-                        })
-                }
-            </script>
-            <footer>
-                <div class="container-fluid">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="footer text-center">
-                            <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have
-                                read and acknowledged our <a href="/policy">Privacy Policy</a></p>
-                            <% var date=new Date(); %>
-                                <p><a href="/">Xionvest</a> &copy; <%= date.getFullYear(); %>
-                                </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+<body>
+    <%- include('./../partials/user/nav.ejs') %>
+    <link rel="stylesheet" href="/assets/css/user/user.css">
 
-            <!-- Static Javascript -->
-            <%- include('../partials/academy/academy_scripts.ejs') %>
-    </body>
+    <section id="access_form">
+        <div class="form_surface">
+            <div class="form">
+                <form id="reg-form">
+                    <div class="logo_container">
+                        <img src="/assets/img/nav-logo.png" class="logo" alt="Prism Bridge Capital Logo">
+                    </div>
+                    <h2>Join Prism Bridge Capital</h2>
+                    <p>Create your account</p>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="firstName" placeholder="First Name" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" id="lastName" required>
+                        <div id="fullname-error" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" autocomplete="off" type="email" name="email" id="email" placeholder="Email" required>
+                        <div id="email-error" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" autocomplete="off" type="password" name="password" id="password" placeholder="Password" required minlength="8">
+                        <div id="password-error" class="error-message"></div>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                    <p>Already have an account? <a href="/invest/login" class="text-bold">Login</a></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form = document.getElementById('reg-form');
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+        const fullNameError = document.getElementById('fullname-error');
+        form.addEventListener('submit', registerUser);
+
+        async function registerUser(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const result = await fetch('/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                })
+            }).then((res) => res.json());
+
+            // Clear previous errors
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            fullNameError.textContent = '';
+
+            if (result.error) {
+                if (result.error.includes('Email')) {
+                    emailError.textContent = result.error;
+                } else if (result.error.includes('Password')) {
+                    passwordError.textContent = result.error;
+                } else if (result.error.includes('Name')) {
+                    fullNameError.textContent = result.error;
+                }
+            } else if (result.user) {
+                location.assign('/dashboard');
+            }
+        }
+    </script>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="footer text-center">
+                    <p>By clicking Sign Up, you agree to our <a href="/terms">Terms and Conditions</a> and have read and acknowledged our <a href="/policy">Privacy Policy</a></p>
+                    <% var date=new Date(); %>
+                    <p><a href="/">Prism Bridge Capital</a> &copy; <%= date.getFullYear(); %></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <%- include('../partials/academy/academy_scripts.ejs') %>
+</body>
 
 </html>

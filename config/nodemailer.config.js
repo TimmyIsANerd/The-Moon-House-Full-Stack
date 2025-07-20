@@ -20,13 +20,13 @@ export default function sendConfirmationEmail(firstName, email, confirmationCode
     .sendMail({
       from: user,
       to: email,
-      subject: "Please Confirm Your Account | Xionvest",
+      subject: "Please Confirm Your Account | Prism Bridge Capital",
       // Email Confirmation Content
       html: `    
         <div>
             <h1>Email Confirmation</h1>
             <h2>Hello ${firstName}</h2>
-            <p>Thank you for signing up to join Xionvest <br> Please confirm your email by clicking on the following link</p>
+            <p>Thank you for signing up to join Prism Bridge Capital <br> Please confirm your email by clicking on the following link</p>
             <a href="http://localhost:4000/confirm/${confirmationCode}">Click Here</a>
         </div>
         `,

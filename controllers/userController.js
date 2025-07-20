@@ -11,26 +11,20 @@ const JWT_SECRET = "the-moon-house-secret";
 // User Dashboard GET
 const user_dashboard_get = async (req, res) => {
   // Get user dashboard information form UserInvestmentAccount
-  const user = req.body._id;
-  const userInvestmentAccount = await UserInvestmentAccount.findOne({
+  const user = req.user._id;
+  let userInvestmentAccount = await UserInvestmentAccount.findOne({
     user,
   });
   try {
     if (!userInvestmentAccount) {
       // Create user investment account detail to default value
-      await userInvestmentAccount.create({
+      userInvestmentAccount = await UserInvestmentAccount.create({
         user,
-        accountBalance,
-        totalInvestedAmount,
-        totalROI,
-        referralBonus,
-        lifeTimeReferralBonus,
-      });
-      userInvestmentAccount.save(() => {
-        if (err) {
-          console.log(err);
-          res.status(500).send(err);
-        }
+        accountBalance: 0,
+        totalInvestedAmount: 0,
+        totalROI: 0,
+        referralBonus: 0,
+        lifeTimeReferralBonus: 0,
       });
     }
     if (userInvestmentAccount) {

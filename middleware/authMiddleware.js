@@ -14,11 +14,13 @@ const requireAuth = (req,res,next) =>{
 
     // Check if token exists & is verified
     if(token){
-        jwt.verify(token,JWT_SECRET,(err,decodedToken)=>{
+        jwt.verify(token,JWT_SECRET, async (err,decodedToken)=>{
             if(err){
                 console.log(err.message)
                 res.redirect('/invest/login');
             } else {
+                let user = await User.findById(decodedToken.id);
+                req.user = user;
                 console.log(decodedToken);
                 next();
             }
@@ -64,8 +66,6 @@ const dashboardRedirect = (req,res,next) =>{
                 next();
             } else {
                 res.redirect('/dashboard');
-                console.log(decodedToken);
-                next();
             }
         })
     } else {
